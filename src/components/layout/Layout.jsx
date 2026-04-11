@@ -16,8 +16,7 @@ const scrollToHashTarget = (hash) => {
     return false;
   }
 
-  const y = element.getBoundingClientRect().top + window.scrollY - 104;
-  window.scrollTo({ top: y, behavior: "smooth" });
+  element.scrollIntoView({ behavior: "smooth", block: "start" });
   return true;
 };
 

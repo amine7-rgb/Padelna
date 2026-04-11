@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { closeDrawers, toggleMobileNav, toggleTheme } from "../../features/uiSlice.js";
 import { selectCartSummary } from "../../utils/productFilters.js";
@@ -15,41 +15,38 @@ const homeLinks = [
 function Header() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const navigate = useNavigate();
   const theme = useSelector((state) => state.ui.theme);
   const mobileNavOpen = useSelector((state) => state.ui.mobileNavOpen);
   const cartSummary = useSelector(selectCartSummary);
 
-  const handleSectionNavigation = (event, sectionId) => {
-    event.preventDefault();
+  const handleSectionNavigation = (sectionId) => {
     dispatch(closeDrawers());
 
     if (sectionId === "home") {
       if (location.pathname !== "/") {
-        navigate("/");
+        window.location.assign("/");
         return;
       }
 
+      window.history.replaceState({}, "", "/");
       window.scrollTo({ top: 0, behavior: "smooth" });
-      navigate("/", { replace: true });
       return;
     }
 
     if (location.pathname !== "/") {
-      navigate(`/#${sectionId}`);
+      window.location.assign(`/#${sectionId}`);
       return;
     }
 
     const element = document.getElementById(sectionId);
 
     if (!element) {
-      navigate(`/#${sectionId}`);
+      window.location.assign(`/#${sectionId}`);
       return;
     }
 
-    const y = element.getBoundingClientRect().top + window.scrollY - 104;
-    window.scrollTo({ top: y, behavior: "smooth" });
-    navigate(`/#${sectionId}`, { replace: true });
+    window.history.replaceState({}, "", `/#${sectionId}`);
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
@@ -73,13 +70,9 @@ function Header() {
 
         <nav className={`header-nav ${mobileNavOpen ? "open" : ""}`} aria-label="Navigation principale">
           {homeLinks.map((link) => (
-            <Link
-              key={link.id}
-              to={link.id === "home" ? "/" : `/#${link.id}`}
-              onClick={(event) => handleSectionNavigation(event, link.id)}
-            >
+            <button key={link.id} type="button" onClick={() => handleSectionNavigation(link.id)}>
               {link.label}
-            </Link>
+            </button>
           ))}
           <NavLink
             to="/store"
