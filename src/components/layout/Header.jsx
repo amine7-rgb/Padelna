@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { closeDrawers, toggleMobileNav, toggleTheme } from "../../features/uiSlice.js";
@@ -18,6 +19,18 @@ function Header() {
   const theme = useSelector((state) => state.ui.theme);
   const mobileNavOpen = useSelector((state) => state.ui.mobileNavOpen);
   const cartSummary = useSelector(selectCartSummary);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 18);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleSectionNavigation = (sectionId) => {
     dispatch(closeDrawers());
@@ -50,7 +63,7 @@ function Header() {
   };
 
   return (
-    <header className="site-header">
+    <header className={`site-header ${isScrolled ? "scrolled" : ""}`}>
       <div className="header-inner">
         <NavLink className="brand-lockup logo-only" to="/" aria-label={`${brand.name} home`}>
           <img src="/logo-padelna.svg" alt={`${brand.name} logo`} />
