@@ -4,6 +4,7 @@ import { api } from "../../services/api.js";
 import { showToast } from "../../features/uiSlice.js";
 import Reveal from "./Reveal.jsx";
 import SectionTitle from "./SectionTitle.jsx";
+import LoadingBall from "../ui/LoadingBall.jsx";
 
 const initialForm = {
   name: "",
@@ -48,7 +49,12 @@ function ContactSection() {
       </Reveal>
 
       <Reveal className="contact-layout">
-        <form className="contact-form-card" onSubmit={handleSubmit}>
+        <form className={`contact-form-card ${sending ? "loading-surface" : ""}`} onSubmit={handleSubmit}>
+          {sending ? (
+            <div className="loading-surface-overlay">
+              <LoadingBall label="Envoi du message..." variant="overlay" />
+            </div>
+          ) : null}
           <label>
             Nom
             <input name="name" value={form.name} onChange={handleChange} required />
@@ -75,7 +81,7 @@ function ContactSection() {
             <textarea name="message" rows="6" value={form.message} onChange={handleChange} required />
           </label>
           <button type="submit" className="primary-button wide" disabled={sending}>
-            {sending ? "Envoi..." : "Envoyer la demande"}
+            {sending ? <LoadingBall label="Envoi..." variant="inline" /> : "Envoyer la demande"}
           </button>
         </form>
 
@@ -98,4 +104,3 @@ function ContactSection() {
 }
 
 export default ContactSection;
-

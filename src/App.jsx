@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout.jsx";
+import LoadingBall from "./components/ui/LoadingBall.jsx";
 
 const HomePage = lazy(() => import("./pages/HomePage.jsx"));
 const StorePage = lazy(() => import("./pages/StorePage.jsx"));
@@ -10,7 +11,7 @@ const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
 
 function App() {
   return (
-    <Suspense fallback={<div className="page-loader">Chargement de Padelna...</div>}>
+    <Suspense fallback={<LoadingBall label="Chargement de Padelna..." variant="page" />}>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />

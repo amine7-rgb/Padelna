@@ -4,6 +4,7 @@ import FilterSidebar from "../components/product/FilterSidebar.jsx";
 import ProductGrid from "../components/product/ProductGrid.jsx";
 import Reveal from "../components/sections/Reveal.jsx";
 import SectionTitle from "../components/sections/SectionTitle.jsx";
+import LoadingBall from "../components/ui/LoadingBall.jsx";
 import { fetchProducts } from "../features/productsSlice.js";
 import { selectFilteredProducts } from "../utils/productFilters.js";
 
@@ -39,7 +40,7 @@ function StorePage() {
           </div>
 
           {status === "loading" ? (
-            <div className="empty-state">Chargement du catalogue...</div>
+            <LoadingBall label="Chargement du catalogue..." variant="section" />
           ) : filteredProducts.length ? (
             <ProductGrid products={filteredProducts} />
           ) : (
@@ -54,4 +55,3 @@ function StorePage() {
 }
 
 export default StorePage;
-

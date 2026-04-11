@@ -13,6 +13,7 @@ import { toggleFavorite } from "../features/favoritesSlice.js";
 import { showToast } from "../features/uiSlice.js";
 import { formatCurrency } from "../utils/formatCurrency.js";
 import Icon from "../components/ui/Icon.jsx";
+import LoadingBall from "../components/ui/LoadingBall.jsx";
 
 const initialReview = {
   name: "",
@@ -56,7 +57,7 @@ function ProductPage() {
   );
 
   if (activeStatus === "loading" || !activeProduct) {
-    return <div className="page-loader">Chargement du produit...</div>;
+    return <LoadingBall label="Chargement du produit..." variant="page" />;
   }
 
   const isFavorite = favorites.includes(activeProduct.slug);
@@ -203,9 +204,14 @@ function ProductPage() {
             </div>
           </Reveal>
 
-          <Reveal className="review-form-card">
+          <Reveal className={`review-form-card ${reviewStatus === "loading" ? "loading-surface" : ""}`}>
             <p className="eyebrow">Ajouter un avis</p>
             <h2>Partagez votre retour pour rassurer les prochains clients.</h2>
+            {reviewStatus === "loading" ? (
+              <div className="loading-surface-overlay">
+                <LoadingBall label="Publication de l'avis..." variant="overlay" />
+              </div>
+            ) : null}
             <form onSubmit={handleReviewSubmit}>
               <label>
                 Nom
@@ -234,7 +240,7 @@ function ProductPage() {
                 />
               </label>
               <button type="submit" className="primary-button review-submit-button" disabled={reviewStatus === "loading"}>
-                {reviewStatus === "loading" ? "Ajout..." : "Publier l'avis"}
+                {reviewStatus === "loading" ? <LoadingBall label="Ajout..." variant="inline" /> : "Publier l'avis"}
               </button>
             </form>
           </Reveal>

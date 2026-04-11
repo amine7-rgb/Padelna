@@ -5,6 +5,7 @@ import Reveal from "../components/sections/Reveal.jsx";
 import SectionTitle from "../components/sections/SectionTitle.jsx";
 import QuantitySelector from "../components/product/QuantitySelector.jsx";
 import Icon from "../components/ui/Icon.jsx";
+import LoadingBall from "../components/ui/LoadingBall.jsx";
 import { clearCart, removeFromCart, updateCartQuantity } from "../features/cartSlice.js";
 import { showToast } from "../features/uiSlice.js";
 import { fetchProducts } from "../features/productsSlice.js";
@@ -52,9 +53,7 @@ function CartPage() {
         <div className="cart-page-layout">
           <Reveal className="cart-list-card">
             {isHydratingCart ? (
-              <div className="empty-state cart-empty-state">
-                <p>Chargement des produits du panier...</p>
-              </div>
+              <LoadingBall label="Chargement des produits du panier..." variant="section" />
             ) : items.length ? (
               <div className="cart-page-items">
                 {items.map((item) => (

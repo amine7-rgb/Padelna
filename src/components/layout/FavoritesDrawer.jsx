@@ -18,8 +18,13 @@ function FavoritesDrawer() {
             <p>Favoris</p>
             <h3>{favorites.length} produit(s)</h3>
           </div>
-          <button type="button" onClick={() => dispatch(toggleFavorites())}>
-            Fermer
+          <button
+            type="button"
+            className="drawer-close-button"
+            onClick={() => dispatch(toggleFavorites())}
+            aria-label="Fermer les favoris"
+          >
+            <Icon name="close" />
           </button>
         </div>
 
