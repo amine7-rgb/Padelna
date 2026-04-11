@@ -1,0 +1,58 @@
+<svg width="720" height="220" viewBox="0 0 720 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="220" rx="28" fill="#F7F3E9"/>
+  <g opacity="0.95" stroke="#173F99" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M105 30C76 40 50 68 44 101C39 130 44 164 63 191C66 195 73 198 77 195L104 177C108 174 110 168 107 164C99 150 95 133 97 117C99 89 117 65 144 55C149 53 151 48 149 43L136 12C133 7 128 5 123 8L105 30Z"/>
+    <path d="M577 45C609 51 635 73 646 104C657 135 653 171 632 198C629 202 622 204 618 200L593 181C589 178 588 172 591 168C602 152 606 134 603 116C600 88 581 65 553 56C548 54 546 49 549 44L564 17C567 12 572 11 577 14L577 45Z"/>
+    <path d="M341 78C365 52 398 39 431 40C445 40 457 54 458 68C459 84 448 98 432 98C418 98 406 102 397 111C385 122 381 138 385 154C388 169 381 181 366 185C352 188 338 178 334 164C326 136 329 104 341 78Z"/>
+    <path d="M296 103C337 104 366 117 389 140"/>
+    <path d="M292 111L330 83"/>
+    <path d="M286 118L337 121"/>
+  </g>
+  <g fill="#173F99" opacity="0.86">
+    <circle cx="104" cy="78" r="5"/>
+    <circle cx="120" cy="70" r="5"/>
+    <circle cx="138" cy="66" r="5"/>
+    <circle cx="158" cy="68" r="5"/>
+    <circle cx="91" cy="96" r="5"/>
+    <circle cx="109" cy="90" r="5"/>
+    <circle cx="128" cy="84" r="5"/>
+    <circle cx="146" cy="82" r="5"/>
+    <circle cx="164" cy="84" r="5"/>
+    <circle cx="81" cy="116" r="5"/>
+    <circle cx="100" cy="111" r="5"/>
+    <circle cx="119" cy="104" r="5"/>
+    <circle cx="138" cy="100" r="5"/>
+    <circle cx="157" cy="100" r="5"/>
+    <circle cx="176" cy="106" r="5"/>
+    <circle cx="86" cy="136" r="5"/>
+    <circle cx="105" cy="132" r="5"/>
+    <circle cx="124" cy="126" r="5"/>
+    <circle cx="143" cy="122" r="5"/>
+    <circle cx="162" cy="124" r="5"/>
+    <circle cx="177" cy="132" r="5"/>
+    <circle cx="96" cy="157" r="5"/>
+    <circle cx="115" cy="151" r="5"/>
+    <circle cx="134" cy="146" r="5"/>
+    <circle cx="153" cy="146" r="5"/>
+    <circle cx="170" cy="152" r="5"/>
+    <circle cx="606" cy="91" r="5"/>
+    <circle cx="589" cy="102" r="5"/>
+    <circle cx="620" cy="107" r="5"/>
+    <circle cx="576" cy="118" r="5"/>
+    <circle cx="594" cy="122" r="5"/>
+    <circle cx="612" cy="126" r="5"/>
+    <circle cx="629" cy="131" r="5"/>
+    <circle cx="568" cy="137" r="5"/>
+    <circle cx="587" cy="142" r="5"/>
+    <circle cx="605" cy="147" r="5"/>
+    <circle cx="623" cy="151" r="5"/>
+    <circle cx="557" cy="157" r="5"/>
+    <circle cx="575" cy="161" r="5"/>
+    <circle cx="594" cy="166" r="5"/>
+    <circle cx="612" cy="171" r="5"/>
+  </g>
+  <text x="208" y="140" fill="#173F99" font-size="88" font-weight="700" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">
+    PADELNA
+  </text>
+</svg>
+
