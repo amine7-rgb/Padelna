@@ -9,11 +9,14 @@ import { selectFeaturedProducts } from "../utils/productFilters.js";
 import ProductGrid from "../components/product/ProductGrid.jsx";
 import Reveal from "../components/sections/Reveal.jsx";
 import SectionTitle from "../components/sections/SectionTitle.jsx";
+import { getSiteCopy } from "../data/siteContent.js";
 
 function HomePage() {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.products.status);
   const featuredProducts = useSelector(selectFeaturedProducts);
+  const language = useSelector((state) => state.ui.language);
+  const copy = getSiteCopy(language);
 
   useEffect(() => {
     if (status === "idle") {
@@ -28,9 +31,9 @@ function HomePage() {
       <section className="section">
         <Reveal>
           <SectionTitle
-            eyebrow="Store Preview"
-            title="A storefront built to sell, guide and reassure."
-            copy="Animated cards, advanced filters, product reviews, favorites and a Redux cart give Padelna a strong e-commerce foundation."
+            eyebrow={copy.home.previewEyebrow}
+            title={copy.home.previewTitle}
+            copy={copy.home.previewCopy}
           />
         </Reveal>
         <ProductGrid products={featuredProducts} compact />

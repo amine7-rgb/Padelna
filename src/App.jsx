@@ -1,7 +1,9 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Layout from "./components/layout/Layout.jsx";
 import LoadingBall from "./components/ui/LoadingBall.jsx";
+import { getSiteCopy } from "./data/siteContent.js";
 
 const HomePage = lazy(() => import("./pages/HomePage.jsx"));
 const StorePage = lazy(() => import("./pages/StorePage.jsx"));
@@ -10,8 +12,11 @@ const ProductPage = lazy(() => import("./pages/ProductPage.jsx"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
 
 function App() {
+  const language = useSelector((state) => state.ui.language);
+  const copy = getSiteCopy(language);
+
   return (
-    <Suspense fallback={<LoadingBall label="Loading Padelna..." variant="page" />}>
+    <Suspense fallback={<LoadingBall label={copy.app.loading} variant="page" />}>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />

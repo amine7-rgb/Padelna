@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { getSiteCopy } from "../../data/siteContent.js";
 import Icon from "../ui/Icon.jsx";
 
 function StarRatingInput({ value, onChange }) {
+  const language = useSelector((state) => state.ui.language);
+  const copy = getSiteCopy(language);
   const [hovered, setHovered] = useState(0);
   const visibleValue = hovered || value;
 
@@ -16,7 +20,7 @@ function StarRatingInput({ value, onChange }) {
             key={starValue}
             type="button"
             className={active ? "active" : ""}
-            aria-label={`${starValue} star${starValue > 1 ? "s" : ""}`}
+            aria-label={`${starValue} ${starValue > 1 ? copy.rating.stars : copy.rating.star}`}
             onMouseEnter={() => setHovered(starValue)}
             onFocus={() => setHovered(starValue)}
             onClick={() => onChange(starValue)}

@@ -1,21 +1,24 @@
 import { createSelector } from "@reduxjs/toolkit";
+import { localizeProduct } from "../data/productLocale.js";
 
 const normalize = (value) => String(value || "").toLowerCase();
 
-const matchesText = (product, text) => {
+const matchesText = (product, text, language) => {
   const query = normalize(text).trim();
 
   if (!query) {
     return true;
   }
 
+  const localizedProduct = localizeProduct(product, language);
+
   const haystack = [
-    product.name,
-    product.gender,
-    product.category,
-    product.summary,
-    ...(product.colors || []),
-    ...(product.badges || [])
+    localizedProduct.name,
+    localizedProduct.gender,
+    localizedProduct.category,
+    localizedProduct.summary,
+    ...(localizedProduct.colors || []),
+    ...(localizedProduct.badges || [])
   ]
     .join(" ")
     .toLowerCase();
@@ -44,10 +47,11 @@ export const selectProductFilters = (state) => state.products.filters;
 export const selectAllProducts = (state) => state.products.items;
 export const selectFavorites = (state) => state.favorites.items;
 export const selectCartItems = (state) => state.cart.items;
+export const selectLanguage = (state) => state.ui.language;
 
 export const selectFilteredProducts = createSelector(
-  [selectAllProducts, selectProductFilters],
-  (products, filters) =>
+  [selectAllProducts, selectProductFilters, selectLanguage],
+  (products, filters, language) =>
     sortProducts(
       products.filter((product) => {
         const priceMatch = product.price >= filters.minPrice && product.price <= filters.maxPrice;
@@ -65,7 +69,7 @@ export const selectFilteredProducts = createSelector(
           ratingMatch &&
           stockMatch &&
           noveltyMatch &&
-          matchesText(product, filters.search)
+          matchesText(product, filters.search, language)
         );
       }),
       filters.sort

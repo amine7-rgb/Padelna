@@ -1,3 +1,6 @@
+import { useSelector } from "react-redux";
+import { getSiteCopy } from "../../data/siteContent.js";
+
 function Star({ active }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={active ? "active" : ""}>
@@ -7,10 +10,13 @@ function Star({ active }) {
 }
 
 function RatingStars({ rating, reviewCount }) {
+  const language = useSelector((state) => state.ui.language);
+  const copy = getSiteCopy(language);
   const filledStars = Math.round(rating);
+  const ariaLabel = copy.rating.outOfFive.replace("{rating}", rating.toFixed(1));
 
   return (
-    <div className="rating-stars" aria-label={`Rating ${rating} out of 5`}>
+    <div className="rating-stars" aria-label={ariaLabel}>
       <div className="star-row">
         {Array.from({ length: 5 }, (_, index) => (
           <Star key={index} active={index < filledStars} />

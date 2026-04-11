@@ -24,12 +24,17 @@ function Layout() {
   const dispatch = useDispatch();
   const location = useLocation();
   const theme = useSelector((state) => state.ui.theme);
+  const language = useSelector((state) => state.ui.language);
   const toast = useSelector((state) => state.ui.toast);
 
   useEffect(() => {
     document.documentElement.style.colorScheme = theme === "sand" ? "light" : "dark";
     document.body.style.background = theme === "sand" ? "#f3eddf" : "#07121f";
   }, [theme]);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
 
   useEffect(() => {
     dispatch(closeDrawers());

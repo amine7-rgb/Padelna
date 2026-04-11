@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { brand } from "../../data/brand.js";
+import { useSelector } from "react-redux";
+import { getBrandContent } from "../../data/brand.js";
+import { getSiteCopy } from "../../data/siteContent.js";
 import { useTypingWords } from "../../utils/useTypingWords.js";
 import Reveal from "./Reveal.jsx";
 import Icon from "../ui/Icon.jsx";
 
 function HeroCarousel() {
+  const language = useSelector((state) => state.ui.language);
+  const brand = getBrandContent(language);
+  const copy = getSiteCopy(language);
   const [slide, setSlide] = useState(0);
   const current = brand.heroSlides[slide];
   const typed = useTypingWords(brand.typingWords, 62, 1500);
@@ -32,11 +37,11 @@ function HeroCarousel() {
         <div className="hero-actions">
           <Link className="primary-button" to="/store">
             <Icon name="shop" />
-            Shop now
+            {copy.hero.shopNow}
           </Link>
           <a className="ghost-button" href="/#about">
             <Icon name="arrow-right" />
-            Meet the brand
+            {copy.hero.meetBrand}
           </a>
         </div>
         <div className="hero-proof">
@@ -47,7 +52,7 @@ function HeroCarousel() {
             </article>
           ))}
         </div>
-        <div className="hero-dots" aria-label="Change hero slide">
+        <div className="hero-dots" aria-label={copy.hero.changeSlide}>
           {brand.heroSlides.map((item, index) => (
             <button
               key={item.id}

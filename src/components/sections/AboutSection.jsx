@@ -1,8 +1,12 @@
-import { brand } from "../../data/brand.js";
+import { useSelector } from "react-redux";
+import { getBrandContent } from "../../data/brand.js";
 import Reveal from "./Reveal.jsx";
 import SectionTitle from "./SectionTitle.jsx";
 
 function AboutSection() {
+  const language = useSelector((state) => state.ui.language);
+  const brand = getBrandContent(language);
+
   return (
     <section id="about" className="section">
       <Reveal>
@@ -41,4 +45,3 @@ function AboutSection() {
 }
 
 export default AboutSection;
-

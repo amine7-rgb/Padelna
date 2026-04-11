@@ -4,6 +4,7 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: {
     theme: "velocity",
+    language: "en",
     cartOpen: false,
     favoritesOpen: false,
     mobileNavOpen: false,
@@ -12,6 +13,9 @@ const uiSlice = createSlice({
   reducers: {
     toggleTheme(state) {
       state.theme = state.theme === "velocity" ? "sand" : "velocity";
+    },
+    setLanguage(state, action) {
+      state.language = action.payload;
     },
     toggleCart(state) {
       state.cartOpen = !state.cartOpen;
@@ -44,6 +48,7 @@ const uiSlice = createSlice({
 
 export const {
   toggleTheme,
+  setLanguage,
   toggleCart,
   toggleFavorites,
   closeDrawers,

@@ -1,25 +1,28 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { closeDrawers, toggleMobileNav, toggleTheme } from "../../features/uiSlice.js";
+import { closeDrawers, setLanguage, toggleMobileNav, toggleTheme } from "../../features/uiSlice.js";
 import { selectCartSummary } from "../../utils/productFilters.js";
-import { brand } from "../../data/brand.js";
+import { getBrandContent } from "../../data/brand.js";
+import { getSiteCopy } from "../../data/siteContent.js";
 import Icon from "../ui/Icon.jsx";
-
-const homeLinks = [
-  { label: "Home", id: "home", icon: "home" },
-  { label: "About", id: "about", icon: "spark" },
-  { label: "New", id: "new-arrivals", icon: "spark" },
-  { label: "Contact", id: "contact", icon: "mail" }
-];
 
 function Header() {
   const dispatch = useDispatch();
   const location = useLocation();
   const theme = useSelector((state) => state.ui.theme);
+  const language = useSelector((state) => state.ui.language);
   const mobileNavOpen = useSelector((state) => state.ui.mobileNavOpen);
   const cartSummary = useSelector(selectCartSummary);
   const [isScrolled, setIsScrolled] = useState(false);
+  const brand = getBrandContent(language);
+  const copy = getSiteCopy(language);
+  const homeLinks = [
+    { label: copy.header.home, id: "home", icon: "home" },
+    { label: copy.header.about, id: "about", icon: "spark" },
+    { label: copy.header.newArrivals, id: "new-arrivals", icon: "spark" },
+    { label: copy.header.contact, id: "contact", icon: "mail" }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,7 +68,7 @@ function Header() {
   return (
     <header className={`site-header ${isScrolled ? "scrolled" : ""}`}>
       <div className="header-inner">
-        <NavLink className="brand-lockup logo-only" to="/" aria-label={`${brand.name} home`}>
+        <NavLink className="brand-lockup logo-only" to="/" aria-label={`${brand.name} ${copy.header.home}`}>
           <img src="/logo-padelna.svg" alt={`${brand.name} logo`} />
         </NavLink>
 
@@ -73,7 +76,7 @@ function Header() {
           className="mobile-nav-toggle"
           type="button"
           aria-expanded={mobileNavOpen}
-          aria-label="Open menu"
+          aria-label={copy.header.openMenu}
           onClick={() => dispatch(toggleMobileNav())}
         >
           <span />
@@ -81,7 +84,7 @@ function Header() {
           <span />
         </button>
 
-        <nav className={`header-nav ${mobileNavOpen ? "open" : ""}`} aria-label="Primary navigation">
+        <nav className={`header-nav ${mobileNavOpen ? "open" : ""}`} aria-label={copy.header.primaryNav}>
           {homeLinks.map((link) => (
             <button key={link.id} type="button" onClick={() => handleSectionNavigation(link.id)}>
               <Icon name={link.icon} />
@@ -94,14 +97,32 @@ function Header() {
             className={({ isActive }) => (isActive ? "active nav-store-link" : "nav-store-link")}
           >
             <Icon name="shop" />
-            <span>Store</span>
+            <span>{copy.header.store}</span>
           </NavLink>
         </nav>
 
         <div className="header-actions">
+          <div className="language-toggle" aria-label={copy.header.language}>
+            <button
+              type="button"
+              className={language === "en" ? "active" : ""}
+              aria-pressed={language === "en"}
+              onClick={() => dispatch(setLanguage("en"))}
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              className={language === "fr" ? "active" : ""}
+              aria-pressed={language === "fr"}
+              onClick={() => dispatch(setLanguage("fr"))}
+            >
+              FR
+            </button>
+          </div>
           <button className="theme-button" type="button" onClick={() => dispatch(toggleTheme())}>
             <Icon name={theme === "sand" ? "moon" : "sun"} />
-            <span>{theme === "sand" ? "Dark" : "Light"}</span>
+            <span>{theme === "sand" ? copy.header.dark : copy.header.light}</span>
           </button>
           <Link className="badge-button strong icon-badge-button" to="/cart" onClick={() => dispatch(closeDrawers())}>
             <Icon name="cart" />

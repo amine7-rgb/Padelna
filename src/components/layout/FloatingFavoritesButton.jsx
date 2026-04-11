@@ -1,24 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavorites } from "../../features/uiSlice.js";
+import { getSiteCopy } from "../../data/siteContent.js";
 import Icon from "../ui/Icon.jsx";
 
 function FloatingFavoritesButton() {
   const dispatch = useDispatch();
   const favoritesCount = useSelector((state) => state.favorites.items.length);
   const isOpen = useSelector((state) => state.ui.favoritesOpen);
+  const language = useSelector((state) => state.ui.language);
+  const copy = getSiteCopy(language);
 
   return (
     <button
       type="button"
       className={`favorites-launcher ${isOpen ? "open" : ""}`}
-      aria-label="Open favorites"
+      aria-label={copy.favorites.open}
       aria-expanded={isOpen}
       onClick={() => dispatch(toggleFavorites())}
     >
       <span className="favorites-launcher-icon">
         <Icon name="heart" filled={favoritesCount > 0 || isOpen} />
       </span>
-      <span className="favorites-launcher-text">Favorites</span>
+      <span className="favorites-launcher-text">{copy.favorites.label}</span>
       {favoritesCount > 0 ? <span className="favorites-launcher-badge">{favoritesCount}</span> : null}
     </button>
   );

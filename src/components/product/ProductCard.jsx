@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleFavorite } from "../../features/favoritesSlice.js";
 import { addToCart } from "../../features/cartSlice.js";
 import { showToast } from "../../features/uiSlice.js";
+import { getSiteCopy } from "../../data/siteContent.js";
+import { localizeProduct } from "../../data/productLocale.js";
 import { formatCurrency } from "../../utils/formatCurrency.js";
 import RatingStars from "./RatingStars.jsx";
 import Icon from "../ui/Icon.jsx";
@@ -10,6 +12,9 @@ import Icon from "../ui/Icon.jsx";
 function ProductCard({ product, compact = false }) {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.items);
+  const language = useSelector((state) => state.ui.language);
+  const copy = getSiteCopy(language);
+  const localizedProduct = localizeProduct(product, language);
   const isFavorite = favorites.includes(product.slug);
 
   const handleFavorite = () => {
@@ -17,7 +22,7 @@ function ProductCard({ product, compact = false }) {
     dispatch(
       showToast({
         type: "info",
-        message: isFavorite ? "Product removed from favorites." : "Product added to favorites."
+        message: isFavorite ? copy.favorites.removedToast : copy.favorites.addedToast
       })
     );
   };
@@ -30,32 +35,37 @@ function ProductCard({ product, compact = false }) {
         quantity: 1
       })
     );
-    dispatch(showToast({ type: "success", message: `${product.name} added to cart.` }));
+    dispatch(showToast({ type: "success", message: `${localizedProduct.name} ${copy.product.addedToCart}` }));
   };
 
   return (
     <article className={`product-card ${compact ? "compact" : ""}`}>
       <Link className="product-image-wrap" to={`/store/${product.slug}`}>
-        <img src={product.images[0]?.url} alt={product.images[0]?.alt || product.name} loading="lazy" />
-        <span className="product-badge">{product.heroTag}</span>
+        <img src={product.images[0]?.url} alt={product.images[0]?.alt || localizedProduct.name} loading="lazy" />
+        <span className="product-badge">{localizedProduct.heroTag}</span>
       </Link>
 
       <div className="product-actions">
-        <button type="button" className={isFavorite ? "active" : ""} onClick={handleFavorite} aria-label="Save to favorites">
+        <button
+          type="button"
+          className={isFavorite ? "active" : ""}
+          onClick={handleFavorite}
+          aria-label={isFavorite ? copy.favorites.removeAria : copy.favorites.addAria}
+        >
           <Icon name="heart" filled={isFavorite} />
         </button>
-        <button type="button" onClick={handleAddCart} aria-label="Add to cart">
+        <button type="button" onClick={handleAddCart} aria-label={copy.product.addToCart}>
           <Icon name="cart" />
         </button>
-        <Link className="product-icon-link" to={`/store/${product.slug}`} aria-label="View product details">
+        <Link className="product-icon-link" to={`/store/${product.slug}`} aria-label={copy.favorites.view}>
           <Icon name="eye" />
         </Link>
       </div>
 
       <div className="product-card-copy">
         <RatingStars rating={product.rating} reviewCount={product.reviewCount} />
-        <h3>{product.name}</h3>
-        <p>{product.gender}</p>
+        <h3>{localizedProduct.name}</h3>
+        <p>{localizedProduct.gender}</p>
         <strong>{formatCurrency(product.price)}</strong>
       </div>
     </article>

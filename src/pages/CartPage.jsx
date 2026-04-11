@@ -9,6 +9,8 @@ import LoadingBall from "../components/ui/LoadingBall.jsx";
 import { clearCart, removeFromCart, updateCartQuantity } from "../features/cartSlice.js";
 import { showToast } from "../features/uiSlice.js";
 import { fetchProducts } from "../features/productsSlice.js";
+import { getSiteCopy } from "../data/siteContent.js";
+import { localizeProduct } from "../data/productLocale.js";
 import { selectCartDetailedItems, selectCartSummary } from "../utils/productFilters.js";
 import { formatCurrency } from "../utils/formatCurrency.js";
 
@@ -16,8 +18,13 @@ function CartPage() {
   const dispatch = useDispatch();
   const productsStatus = useSelector((state) => state.products.status);
   const rawCartItems = useSelector((state) => state.cart.items);
-  const items = useSelector(selectCartDetailedItems);
+  const language = useSelector((state) => state.ui.language);
+  const items = useSelector(selectCartDetailedItems).map((item) => ({
+    ...item,
+    product: localizeProduct(item.product, language)
+  }));
   const summary = useSelector(selectCartSummary);
+  const copy = getSiteCopy(language);
   const rawQuantity = rawCartItems.reduce((total, item) => total + item.quantity, 0);
   const isHydratingCart = rawCartItems.length > 0 && items.length === 0 && productsStatus !== "succeeded";
   const deliveryFee = summary.quantity ? (summary.total >= 320 ? 0 : 14) : 0;
@@ -34,7 +41,7 @@ function CartPage() {
     dispatch(
       showToast({
         type: "success",
-        message: "Cart ready. The next step can be checkout or online payment."
+        message: copy.cart.checkoutToast
       })
     );
   };
@@ -44,16 +51,16 @@ function CartPage() {
       <section className="section">
         <Reveal>
           <SectionTitle
-            eyebrow="Cart"
-            title="Your selected products are grouped here."
-            copy="Detailed cart items stay on the left, while the invoice summary stays clear on the right."
+            eyebrow={copy.cart.eyebrow}
+            title={copy.cart.title}
+            copy={copy.cart.copy}
           />
         </Reveal>
 
         <div className="cart-page-layout">
           <Reveal className="cart-list-card">
             {isHydratingCart ? (
-              <LoadingBall label="Loading your cart..." variant="section" />
+              <LoadingBall label={copy.cart.loading} variant="section" />
             ) : items.length ? (
               <div className="cart-page-items">
                 {items.map((item) => (
@@ -63,11 +70,11 @@ function CartPage() {
                       <div>
                         <strong>{item.product.name}</strong>
                         <span>{item.product.gender}</span>
-                        <small>{item.size ? `Size ${item.size}` : "Standard size"}</small>
+                        <small>{item.size ? `${copy.cart.size} ${item.size}` : copy.cart.standardSize}</small>
                       </div>
                       <div className="cart-page-meta">
-                        <small>Unit price: {formatCurrency(item.product.price)}</small>
-                        <small>Subtotal: {formatCurrency(item.subtotal)}</small>
+                        <small>{copy.cart.unitPrice}: {formatCurrency(item.product.price)}</small>
+                        <small>{copy.cart.subtotal}: {formatCurrency(item.subtotal)}</small>
                       </div>
                       <QuantitySelector
                         value={item.quantity}
@@ -92,13 +99,13 @@ function CartPage() {
                       />
                     </div>
                     <div className="cart-page-item-actions">
-                      <Link to={`/store/${item.slug}`} className="cart-item-link" aria-label="View product">
+                      <Link to={`/store/${item.slug}`} className="cart-item-link" aria-label={copy.cart.viewProduct}>
                         <Icon name="eye" />
                       </Link>
                       <button
                         type="button"
                         className="icon-link-button"
-                        aria-label="Remove from cart"
+                        aria-label={copy.cart.remove}
                         onClick={() => dispatch(removeFromCart({ slug: item.slug, size: item.size }))}
                       >
                         <Icon name="trash" />
@@ -109,49 +116,49 @@ function CartPage() {
               </div>
             ) : (
               <div className="empty-state cart-empty-state">
-                <p>Your cart is empty for now.</p>
+                <p>{copy.cart.empty}</p>
                 <Link to="/store" className="primary-button">
                   <Icon name="arrow-left" />
-                  Back to store
+                  {copy.cart.backToStore}
                 </Link>
               </div>
             )}
           </Reveal>
 
           <Reveal className="cart-summary-card">
-            <span>Invoice</span>
-            <strong>Order summary</strong>
+            <span>{copy.cart.invoice}</span>
+            <strong>{copy.cart.summary}</strong>
             <div className="invoice-lines">
               <div>
-                <span>Items</span>
+                <span>{copy.cart.items}</span>
                 <strong>{isHydratingCart ? rawQuantity : summary.quantity}</strong>
               </div>
               <div>
-                <span>Subtotal</span>
-                <strong>{isHydratingCart ? "Calculating..." : formatCurrency(summary.total)}</strong>
+                <span>{copy.cart.subtotal}</span>
+                <strong>{isHydratingCart ? copy.cart.calculating : formatCurrency(summary.total)}</strong>
               </div>
               <div>
-                <span>Delivery</span>
-                <strong>{isHydratingCart ? "Calculating..." : deliveryFee === 0 ? "Free" : formatCurrency(deliveryFee)}</strong>
+                <span>{copy.cart.delivery}</span>
+                <strong>{isHydratingCart ? copy.cart.calculating : deliveryFee === 0 ? copy.cart.free : formatCurrency(deliveryFee)}</strong>
               </div>
               <div>
-                <span>VAT</span>
-                <strong>{isHydratingCart ? "Calculating..." : formatCurrency(vat)}</strong>
+                <span>{copy.cart.vat}</span>
+                <strong>{isHydratingCart ? copy.cart.calculating : formatCurrency(vat)}</strong>
               </div>
             </div>
             <div className="invoice-total">
-              <span>Total to pay</span>
-              <strong>{isHydratingCart ? "Calculating..." : formatCurrency(grandTotal)}</strong>
+              <span>{copy.cart.total}</span>
+              <strong>{isHydratingCart ? copy.cart.calculating : formatCurrency(grandTotal)}</strong>
             </div>
-            <p>This box is ready for a future Stripe, PayPal or custom checkout step.</p>
+            <p>{copy.cart.note}</p>
             <div className="cart-summary-actions">
               <button type="button" className="ghost-button" onClick={() => dispatch(clearCart())} disabled={!items.length}>
                 <Icon name="trash" />
-                Clear cart
+                {copy.cart.clear}
               </button>
               <button type="button" className="primary-button" onClick={handleCheckout} disabled={!items.length}>
                 <Icon name="arrow-right" />
-                Checkout
+                {copy.cart.checkout}
               </button>
             </div>
           </Reveal>

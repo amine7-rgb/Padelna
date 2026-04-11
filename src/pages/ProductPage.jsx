@@ -11,6 +11,8 @@ import { addToCart } from "../features/cartSlice.js";
 import { fetchProductBySlug, fetchProducts, submitReview } from "../features/productsSlice.js";
 import { toggleFavorite } from "../features/favoritesSlice.js";
 import { showToast } from "../features/uiSlice.js";
+import { getSiteCopy } from "../data/siteContent.js";
+import { localizeProduct } from "../data/productLocale.js";
 import { formatCurrency } from "../utils/formatCurrency.js";
 import Icon from "../components/ui/Icon.jsx";
 import LoadingBall from "../components/ui/LoadingBall.jsx";
@@ -30,9 +32,11 @@ function ProductPage() {
   const reviewStatus = useSelector((state) => state.products.reviewStatus);
   const products = useSelector((state) => state.products.items);
   const favorites = useSelector((state) => state.favorites.items);
+  const language = useSelector((state) => state.ui.language);
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [reviewForm, setReviewForm] = useState(initialReview);
+  const copy = getSiteCopy(language);
 
   useEffect(() => {
     if (status === "idle") {
@@ -57,9 +61,10 @@ function ProductPage() {
   );
 
   if (activeStatus === "loading" || !activeProduct) {
-    return <LoadingBall label="Loading product..." variant="page" />;
+    return <LoadingBall label={copy.product.loading} variant="page" />;
   }
 
+  const localizedProduct = localizeProduct(activeProduct, language);
   const isFavorite = favorites.includes(activeProduct.slug);
 
   const handleAddCart = () => {
@@ -70,7 +75,7 @@ function ProductPage() {
         quantity
       })
     );
-    dispatch(showToast({ type: "success", message: `${activeProduct.name} added to cart.` }));
+    dispatch(showToast({ type: "success", message: `${localizedProduct.name} ${copy.product.addedToCart}` }));
   };
 
   const handleReviewSubmit = async (event) => {
@@ -79,7 +84,7 @@ function ProductPage() {
     try {
       await dispatch(submitReview({ slug, payload: reviewForm })).unwrap();
       setReviewForm(initialReview);
-      dispatch(showToast({ type: "success", message: "Thanks, your review has been added." }));
+      dispatch(showToast({ type: "success", message: copy.product.reviewAdded }));
     } catch (error) {
       dispatch(showToast({ type: "error", message: error.message }));
     }
@@ -89,42 +94,46 @@ function ProductPage() {
     <div className="product-page">
       <section className="section product-detail-layout">
         <Reveal className="product-gallery-column">
-          <ProductGallery product={activeProduct} />
+          <ProductGallery product={localizedProduct} />
         </Reveal>
 
         <Reveal className="product-summary-column">
           <Link className="back-link" to="/store">
             <Icon name="arrow-left" />
-            Back to store
+            {copy.product.backToStore}
           </Link>
-          <p className="eyebrow">{activeProduct.heroTag}</p>
-          <h1>{activeProduct.name}</h1>
-          <RatingStars rating={activeProduct.rating} reviewCount={activeProduct.reviewCount} />
+          <p className="eyebrow">{localizedProduct.heroTag}</p>
+          <h1>{localizedProduct.name}</h1>
+          <RatingStars rating={localizedProduct.rating} reviewCount={localizedProduct.reviewCount} />
           <div className="price-row">
-            <strong>{formatCurrency(activeProduct.price)}</strong>
-            {activeProduct.previousPrice ? <span>{formatCurrency(activeProduct.previousPrice)}</span> : null}
+            <strong>{formatCurrency(localizedProduct.price)}</strong>
+            {localizedProduct.previousPrice ? <span>{formatCurrency(localizedProduct.previousPrice)}</span> : null}
           </div>
-          <p className="product-description-long">{activeProduct.description}</p>
+          <p className="product-description-long">{localizedProduct.description}</p>
 
           <div className="meta-grid">
             <article>
-              <span>Gender</span>
-              <strong>{activeProduct.gender}</strong>
+              <span>{copy.product.gender}</span>
+              <strong>{localizedProduct.gender}</strong>
             </article>
             <article>
-              <span>Category</span>
-              <strong>{activeProduct.category}</strong>
+              <span>{copy.product.category}</span>
+              <strong>{localizedProduct.category}</strong>
             </article>
             <article>
-              <span>Stock</span>
-              <strong>{activeProduct.inStock ? `${activeProduct.stockCount} available` : "Sold out"}</strong>
+              <span>{copy.product.stock}</span>
+              <strong>
+                {localizedProduct.inStock
+                  ? `${localizedProduct.stockCount} ${copy.product.available}`
+                  : copy.product.soldOut}
+              </strong>
             </article>
           </div>
 
           <div className="detail-block">
-            <span>Sizes</span>
+            <span>{copy.product.sizes}</span>
             <div className="chip-group">
-              {activeProduct.sizes.map((size) => (
+              {localizedProduct.sizes.map((size) => (
                 <button
                   key={size}
                   type="button"
@@ -138,9 +147,9 @@ function ProductPage() {
           </div>
 
           <div className="detail-block">
-            <span>Colors</span>
+            <span>{copy.product.colors}</span>
             <div className="chip-group muted">
-              {activeProduct.colors.map((color) => (
+              {localizedProduct.colors.map((color) => (
                 <button key={color} type="button">
                   {color}
                 </button>
@@ -149,7 +158,7 @@ function ProductPage() {
           </div>
 
           <div className="detail-block">
-            <span>Quantity</span>
+            <span>{copy.product.quantity}</span>
             <QuantitySelector
               value={quantity}
               onDecrease={() => setQuantity((current) => Math.max(1, current - 1))}
@@ -160,16 +169,16 @@ function ProductPage() {
           <div className="detail-actions">
             <button type="button" className="primary-button" onClick={handleAddCart}>
               <Icon name="cart" />
-              Add to cart
+              {copy.product.addToCart}
             </button>
             <button type="button" className="ghost-button" onClick={() => dispatch(toggleFavorite(activeProduct.slug))}>
               <Icon name="heart" filled={isFavorite} />
-              {isFavorite ? "Remove favorite" : "Save favorite"}
+              {isFavorite ? copy.product.removeFavorite : copy.product.saveFavorite}
             </button>
           </div>
 
           <div className="benefit-grid">
-            {activeProduct.benefits.map((benefit) => (
+            {localizedProduct.benefits.map((benefit) => (
               <article key={benefit}>
                 <strong>{benefit}</strong>
               </article>
@@ -177,9 +186,9 @@ function ProductPage() {
           </div>
 
           <div className="tech-list">
-            <span>Fabric and tech details</span>
+            <span>{copy.product.fabricTech}</span>
             <ul>
-              {activeProduct.techFeatures.map((feature) => (
+              {localizedProduct.techFeatures.map((feature) => (
                 <li key={feature}>{feature}</li>
               ))}
             </ul>
@@ -190,10 +199,10 @@ function ProductPage() {
       <section className="section review-section">
         <div className="review-layout">
           <Reveal className="review-list-card">
-            <p className="eyebrow">Customer reviews</p>
-            <h2>What players think about this product.</h2>
+            <p className="eyebrow">{copy.product.reviewsEyebrow}</p>
+            <h2>{copy.product.reviewsTitle}</h2>
             <div className="review-list">
-              {activeProduct.reviews.map((review, index) => (
+              {localizedProduct.reviews.map((review, index) => (
                 <article key={`${review.name}-${index}`}>
                   <div className="review-head">
                     <strong>{review.name}</strong>
@@ -206,16 +215,16 @@ function ProductPage() {
           </Reveal>
 
           <Reveal className={`review-form-card ${reviewStatus === "loading" ? "loading-surface" : ""}`}>
-            <p className="eyebrow">Add a review</p>
-            <h2>Share your feedback with the next customer.</h2>
+            <p className="eyebrow">{copy.product.addReviewEyebrow}</p>
+            <h2>{copy.product.addReviewTitle}</h2>
             {reviewStatus === "loading" ? (
               <div className="loading-surface-overlay">
-                <LoadingBall label="Publishing review..." variant="overlay" />
+                <LoadingBall label={copy.product.publishing} variant="overlay" />
               </div>
             ) : null}
             <form onSubmit={handleReviewSubmit}>
               <label>
-                Name
+                {copy.product.name}
                 <input
                   name="name"
                   value={reviewForm.name}
@@ -224,14 +233,14 @@ function ProductPage() {
                 />
               </label>
               <label>
-                Rating
+                {copy.product.rating}
                 <StarRatingInput
                   value={reviewForm.rating}
                   onChange={(rating) => setReviewForm((current) => ({ ...current, rating }))}
                 />
               </label>
               <label className="wide">
-                Comment
+                {copy.product.comment}
                 <textarea
                   name="comment"
                   rows="5"
@@ -243,11 +252,11 @@ function ProductPage() {
               <div className="form-action-row wide">
                 <button type="submit" className="primary-button review-submit-button" disabled={reviewStatus === "loading"}>
                   {reviewStatus === "loading" ? (
-                    <LoadingBall label="Sending..." variant="inline" />
+                    <LoadingBall label={copy.product.sending} variant="inline" />
                   ) : (
                     <>
                       <Icon name="send" />
-                      Publish review
+                      {copy.product.publishReview}
                     </>
                   )}
                 </button>
@@ -260,8 +269,8 @@ function ProductPage() {
       {relatedProducts.length ? (
         <section className="section section-alt">
           <Reveal>
-            <p className="eyebrow">You may also like</p>
-            <h2>More pieces built with the same padel mindset.</h2>
+            <p className="eyebrow">{copy.product.youMayAlsoLike}</p>
+            <h2>{copy.product.morePieces}</h2>
           </Reveal>
           <ProductGrid products={relatedProducts} compact />
         </section>

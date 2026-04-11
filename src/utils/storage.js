@@ -5,6 +5,7 @@ const defaultPersistedState = {
   favorites: { items: [] },
   ui: {
     theme: "velocity",
+    language: "en",
     cartOpen: false,
     favoritesOpen: false,
     mobileNavOpen: false,
@@ -47,7 +48,7 @@ export const persistState = (state) => {
       JSON.stringify({
         cart: state.cart,
         favorites: state.favorites,
-        ui: { theme: state.ui.theme }
+        ui: { theme: state.ui.theme, language: state.ui.language }
       })
     );
   } catch {

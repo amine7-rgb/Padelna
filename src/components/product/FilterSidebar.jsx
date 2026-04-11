@@ -10,6 +10,8 @@ import {
   toggleInStockFilter,
   toggleNewOnlyFilter
 } from "../../features/productsSlice.js";
+import { getSiteCopy } from "../../data/siteContent.js";
+import { getLocalizedCategory, getLocalizedGender } from "../../data/productLocale.js";
 import Icon from "../ui/Icon.jsx";
 
 function FilterSidebar() {
@@ -17,22 +19,24 @@ function FilterSidebar() {
   const products = useSelector((state) => state.products.items);
   const filters = useSelector((state) => state.products.filters);
   const priceBounds = useSelector((state) => state.products.priceBounds);
+  const language = useSelector((state) => state.ui.language);
+  const copy = getSiteCopy(language);
   const categories = [...new Set(products.map((product) => product.category))];
   const genders = [...new Set(products.map((product) => product.gender))];
 
   return (
     <aside className="filter-sidebar">
       <div className="filter-block">
-        <span>Live search</span>
+        <span>{copy.filters.liveSearch}</span>
         <input
           value={filters.search}
           onChange={(event) => dispatch(setSearchFilter(event.target.value))}
-          placeholder="Type polo, women, blue..."
+          placeholder={copy.filters.liveSearchPlaceholder}
         />
       </div>
 
       <div className="filter-block">
-        <span>Categories</span>
+        <span>{copy.filters.categories}</span>
         <div className="chip-group">
           {categories.map((category) => (
             <button
@@ -41,14 +45,14 @@ function FilterSidebar() {
               className={filters.categories.includes(category) ? "active" : ""}
               onClick={() => dispatch(toggleCategoryFilter(category))}
             >
-              {category}
+              {getLocalizedCategory(category, language)}
             </button>
           ))}
         </div>
       </div>
 
       <div className="filter-block">
-        <span>Gender</span>
+        <span>{copy.filters.gender}</span>
         <div className="chip-group">
           {genders.map((gender) => (
             <button
@@ -57,14 +61,14 @@ function FilterSidebar() {
               className={filters.genders.includes(gender) ? "active" : ""}
               onClick={() => dispatch(toggleGenderFilter(gender))}
             >
-              {gender}
+              {getLocalizedGender(gender, language)}
             </button>
           ))}
         </div>
       </div>
 
       <div className="filter-block">
-        <span>Price in dinars</span>
+        <span>{copy.filters.price}</span>
         <div className="price-range">
           <input
             type="number"
@@ -98,40 +102,40 @@ function FilterSidebar() {
       </div>
 
       <div className="filter-block">
-        <span>Advanced filters</span>
+        <span>{copy.filters.advanced}</span>
         <label className="switch-row">
           <input type="checkbox" checked={filters.inStock} onChange={() => dispatch(toggleInStockFilter())} />
-          <span>In stock only</span>
+          <span>{copy.filters.inStockOnly}</span>
         </label>
         <label className="switch-row">
           <input type="checkbox" checked={filters.newOnly} onChange={() => dispatch(toggleNewOnlyFilter())} />
-          <span>New arrivals only</span>
+          <span>{copy.filters.newOnly}</span>
         </label>
       </div>
 
       <div className="filter-block">
-        <span>Minimum rating</span>
+        <span>{copy.filters.minRating}</span>
         <select value={filters.rating} onChange={(event) => dispatch(setRatingFilter(Number(event.target.value)))}>
-          <option value={0}>All ratings</option>
+          <option value={0}>{copy.filters.allRatings}</option>
           <option value={4}>4+ / 5</option>
           <option value={4.5}>4.5+ / 5</option>
         </select>
       </div>
 
       <div className="filter-block">
-        <span>Sort by</span>
+        <span>{copy.filters.sortBy}</span>
         <select value={filters.sort} onChange={(event) => dispatch(setSortFilter(event.target.value))}>
-          <option value="featured">Featured</option>
-          <option value="newest">Newest</option>
-          <option value="rating">Top rated</option>
-          <option value="price-asc">Price low to high</option>
-          <option value="price-desc">Price high to low</option>
+          <option value="featured">{copy.filters.featured}</option>
+          <option value="newest">{copy.filters.newest}</option>
+          <option value="rating">{copy.filters.topRated}</option>
+          <option value="price-asc">{copy.filters.priceAsc}</option>
+          <option value="price-desc">{copy.filters.priceDesc}</option>
         </select>
       </div>
 
       <button type="button" className="ghost-button" onClick={() => dispatch(clearFilters())}>
         <Icon name="refresh" />
-        Reset filters
+        {copy.filters.reset}
       </button>
     </aside>
   );
