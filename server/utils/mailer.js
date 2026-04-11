@@ -29,23 +29,37 @@ const escapeHtml = (value = "") =>
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 
-export const formatContactText = ({ name, email, company, budget, message }) => `
+const formatPhoneLine = ({ phone, phoneCountry, phoneCode, phoneNumber }) => {
+  if (phone) {
+    return phone;
+  }
+
+  if (phoneNumber && phoneCode) {
+    return `${phoneCode} ${phoneNumber}`;
+  }
+
+  if (phoneCountry || phoneNumber) {
+    return [phoneCountry, phoneCode, phoneNumber].filter(Boolean).join(" ");
+  }
+
+  return "Not provided";
+};
+
+export const formatContactText = ({ name, email, phone, phoneCountry, phoneCode, phoneNumber, message }) => `
 New Padelna contact request
 
 Name: ${name}
 Email: ${email}
-Company / club: ${company || "Not provided"}
-Budget: ${budget || "Not selected"}
+Phone: ${formatPhoneLine({ phone, phoneCountry, phoneCode, phoneNumber })}
 
 Message:
 ${message}
 `;
 
-export const formatContactHtml = ({ name, email, company, budget, message }) => {
+export const formatContactHtml = ({ name, email, phone, phoneCountry, phoneCode, phoneNumber, message }) => {
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
-  const safeCompany = escapeHtml(company || "Not provided");
-  const safeBudget = escapeHtml(budget || "Not selected");
+  const safePhone = escapeHtml(formatPhoneLine({ phone, phoneCountry, phoneCode, phoneNumber }));
   const safeMessage = escapeHtml(message).replaceAll("\n", "<br />");
 
   return `<!doctype html>
@@ -58,27 +72,26 @@ export const formatContactHtml = ({ name, email, company, budget, message }) => 
             <tr>
               <td style="padding:32px;background:linear-gradient(135deg,#123f9b,#091a41);">
                 <p style="margin:0 0 10px;color:#90ffe8;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">Padelna Contact</p>
-                <h1 style="margin:0;color:#ffffff;font-size:32px;line-height:1.18;">Nouvelle demande depuis la boutique</h1>
-                <p style="margin:14px 0 0;color:#dbe7ff;font-size:15px;line-height:1.7;">Un visiteur a envoye un message depuis le site e-commerce Padelna.</p>
+                <h1 style="margin:0;color:#ffffff;font-size:32px;line-height:1.18;">New website request</h1>
+                <p style="margin:14px 0 0;color:#dbe7ff;font-size:15px;line-height:1.7;">A visitor just sent a message from the Padelna e-commerce website.</p>
               </td>
             </tr>
             <tr>
               <td style="padding:28px 32px 12px;color:#15233f;">
                 <p><strong>Name:</strong> ${safeName}</p>
                 <p><strong>Email:</strong> <a href="mailto:${safeEmail}" style="color:#123f9b;text-decoration:none;">${safeEmail}</a></p>
-                <p><strong>Club / company:</strong> ${safeCompany}</p>
-                <p><strong>Budget:</strong> ${safeBudget}</p>
+                <p><strong>Phone:</strong> ${safePhone}</p>
                 <div style="margin-top:22px;padding:20px;border-radius:16px;background:#f5f7fb;border:1px solid #d9e2f2;">
                   <p style="margin:0 0 8px;color:#587095;font-size:12px;font-weight:700;text-transform:uppercase;">Message</p>
                   <p style="margin:0;color:#15233f;font-size:16px;line-height:1.8;">${safeMessage}</p>
                 </div>
                 <div style="padding-top:22px;">
-                  <a href="mailto:${safeEmail}" style="display:inline-block;background:#123f9b;color:#ffffff;text-decoration:none;padding:13px 18px;border-radius:12px;font-size:15px;font-weight:700;">Reply to contact</a>
+                  <a href="mailto:${safeEmail}" style="display:inline-block;background:#123f9b;color:#ffffff;text-decoration:none;padding:13px 18px;border-radius:12px;font-size:15px;font-weight:700;">Reply to sender</a>
                 </div>
               </td>
             </tr>
             <tr>
-              <td style="padding:18px 32px;background:#eff4ff;color:#5a6f90;font-size:13px;">Message envoye depuis Padelna. Meme email de destination que le portfolio: amed14170@gmail.com.</td>
+              <td style="padding:18px 32px;background:#eff4ff;color:#5a6f90;font-size:13px;">Sent from Padelna. Same destination inbox as the portfolio: amed14170@gmail.com.</td>
             </tr>
           </table>
         </td>
@@ -87,4 +100,3 @@ export const formatContactHtml = ({ name, email, company, budget, message }) => 
   </body>
 </html>`;
 };
-

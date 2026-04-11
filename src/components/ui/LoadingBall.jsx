@@ -1,4 +1,4 @@
-function LoadingBall({ label = "Chargement...", variant = "page" }) {
+function LoadingBall({ label = "Loading...", variant = "page" }) {
   return (
     <div className={`loading-ball loading-ball-${variant}`} role="status" aria-live="polite">
       <div className="loading-ball-visual" aria-hidden="true">

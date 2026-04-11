@@ -11,7 +11,7 @@ const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
 
 function App() {
   return (
-    <Suspense fallback={<LoadingBall label="Chargement de Padelna..." variant="page" />}>
+    <Suspense fallback={<LoadingBall label="Loading Padelna..." variant="page" />}>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />

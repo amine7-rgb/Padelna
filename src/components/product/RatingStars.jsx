@@ -10,7 +10,7 @@ function RatingStars({ rating, reviewCount }) {
   const filledStars = Math.round(rating);
 
   return (
-    <div className="rating-stars" aria-label={`Note ${rating} sur 5`}>
+    <div className="rating-stars" aria-label={`Rating ${rating} out of 5`}>
       <div className="star-row">
         {Array.from({ length: 5 }, (_, index) => (
           <Star key={index} active={index < filledStars} />
@@ -25,4 +25,3 @@ function RatingStars({ rating, reviewCount }) {
 }
 
 export default RatingStars;
-

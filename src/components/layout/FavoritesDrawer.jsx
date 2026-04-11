@@ -15,14 +15,14 @@ function FavoritesDrawer() {
       <div className="drawer-panel">
         <div className="drawer-header">
           <div>
-            <p>Favoris</p>
-            <h3>{favorites.length} produit(s)</h3>
+            <p>Favorites</p>
+            <h3>{favorites.length} product(s)</h3>
           </div>
           <button
             type="button"
             className="drawer-close-button"
             onClick={() => dispatch(toggleFavorites())}
-            aria-label="Fermer les favoris"
+            aria-label="Close favorites"
           >
             <Icon name="close" />
           </button>
@@ -38,13 +38,13 @@ function FavoritesDrawer() {
                   <span>{product.gender}</span>
                 </div>
                 <div className="drawer-item-actions">
-                  <Link to={`/store/${product.slug}`} onClick={() => dispatch(toggleFavorites())} aria-label="Voir le produit">
+                  <Link to={`/store/${product.slug}`} onClick={() => dispatch(toggleFavorites())} aria-label="View product">
                     <Icon name="eye" />
                   </Link>
                   <button
                     type="button"
                     className="link-button icon-link-button"
-                    aria-label="Retirer des favoris"
+                    aria-label="Remove from favorites"
                     onClick={() => dispatch(toggleFavorite(product.slug))}
                   >
                     <Icon name="trash" />
@@ -54,7 +54,7 @@ function FavoritesDrawer() {
             ))
           ) : (
             <div className="drawer-empty">
-              <p>Ajoutez vos pieces preferees ici pour les retrouver rapidement.</p>
+              <p>Save your favorite pieces here to find them again in one click.</p>
             </div>
           )}
         </div>

@@ -2,7 +2,7 @@ const parseResponse = async (response) => {
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(data.error || "Une erreur est survenue.");
+    throw new Error(data.error || "Something went wrong.");
   }
 
   return data;

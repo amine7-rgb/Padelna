@@ -2,13 +2,13 @@ export const seedProducts = [
   {
     name: "Carthage Match Polo",
     slug: "carthage-match-polo",
-    gender: "Homme",
+    gender: "Men",
     price: 189,
     previousPrice: 219,
     category: "Matchwear",
-    summary: "Un polo leger et net pour des points explosifs sous le soleil tunisien.",
+    summary: "A light, sharp polo made for explosive points under Tunisian sun.",
     description:
-      "Le Carthage Match Polo combine un tissu respirant, des manches souples et une coupe stable pour garder le haut du corps libre dans toutes les phases de jeu. C'est une piece signature pour les joueurs qui veulent rester precis sur le court tout en gardant une allure premium au club.",
+      "Carthage Match Polo combines breathable fabric, flexible sleeves and a stable fit to keep the upper body free through every phase of play. It is a signature piece for players who want precision on court with a premium presence at the club.",
     heroTag: "Best seller",
     isNewArrival: true,
     isFeatured: true,
@@ -16,49 +16,49 @@ export const seedProducts = [
     stockCount: 16,
     rating: 4.8,
     reviewCount: 3,
-    colors: ["Bleu Padelna", "Sable", "Blanc"],
+    colors: ["Padelna Blue", "Sand", "White"],
     sizes: ["S", "M", "L", "XL"],
     badges: ["Dry motion", "Premium fabric"],
-    benefits: ["Sechage rapide", "Coutures plates", "Liberte d'epaule"],
-    techFeatures: ["Mesh lateral", "Col stabilise", "Toucher doux"],
+    benefits: ["Quick dry", "Flat seams", "Shoulder freedom"],
+    techFeatures: ["Side mesh", "Stabilized collar", "Soft handfeel"],
     images: [
       {
         url: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80",
-        alt: "Carthage Match Polo bleu premium"
+        alt: "Blue Carthage Match Polo"
       },
       {
         url: "https://images.unsplash.com/photo-1506629905607-d405b7a2b7a6?auto=format&fit=crop&w=1200&q=80",
-        alt: "Detail tissu polo Padelna"
+        alt: "Fabric detail of the Carthage Match Polo"
       }
     ],
     reviews: [
       {
         name: "Yassine",
         rating: 5,
-        comment: "Le tissu reste leger meme apres un long match. Super finition."
+        comment: "The fabric stays light even after a long match. Great finish."
       },
       {
         name: "Rami",
         rating: 5,
-        comment: "La coupe fait vraiment premium et tient bien au service."
+        comment: "The fit feels premium and stays clean during the serve."
       },
       {
         name: "Karim",
         rating: 4.4,
-        comment: "Tres bon confort et seche vite. Je reprendrai une autre couleur."
+        comment: "Very comfortable and dries fast. I would buy another color."
       }
     ]
   },
   {
     name: "Alya Court Dress",
     slug: "alya-court-dress",
-    gender: "Femme",
+    gender: "Women",
     price: 214,
     previousPrice: 244,
     category: "Matchwear",
-    summary: "Une robe padel aerienne avec short integre et maintien fluide.",
+    summary: "An airy padel dress with integrated shorts and fluid support.",
     description:
-      "Alya Court Dress a ete pensee pour les joueuses qui veulent de l'aisance dans les deplacements lateraux sans perdre l'elegance. Son tissu stretch accompagne le corps, son short integre securise le jeu et sa ligne moderne affirme l'identite Padelna.",
+      "Alya Court Dress was built for players who want ease in lateral movement without losing elegance. The stretch fabric follows the body, the integrated shorts secure the game, and the modern line reinforces the Padelna identity.",
     heroTag: "New drop",
     isNewArrival: true,
     isFeatured: true,
@@ -66,44 +66,44 @@ export const seedProducts = [
     stockCount: 10,
     rating: 4.9,
     reviewCount: 2,
-    colors: ["Blanc craie", "Bleu nuit", "Corail"],
+    colors: ["Chalk White", "Night Blue", "Coral"],
     sizes: ["XS", "S", "M", "L"],
     badges: ["Feather fit", "Club chic"],
-    benefits: ["Short integre", "Tissu stretch", "Legerete premium"],
-    techFeatures: ["Respirabilite micro-perforee", "Bretelles stables", "Anti-transpiration"],
+    benefits: ["Integrated shorts", "Stretch fabric", "Premium lightness"],
+    techFeatures: ["Micro-perforated breathability", "Stable straps", "Sweat control"],
     images: [
       {
         url: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80",
-        alt: "Alya Court Dress blanche"
+        alt: "White Alya Court Dress"
       },
       {
         url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80",
-        alt: "Robe padel Padelna en mouvement"
+        alt: "Padel-inspired movement in the Alya Court Dress"
       }
     ],
     reviews: [
       {
         name: "Meriem",
         rating: 5,
-        comment: "La robe tombe parfaitement et reste hyper confortable pendant le jeu."
+        comment: "The dress falls perfectly and stays very comfortable while playing."
       },
       {
         name: "Sana",
         rating: 4.8,
-        comment: "Tres belle piece, feminine et vraiment adaptee au padel."
+        comment: "Beautiful piece, feminine and really adapted to padel."
       }
     ]
   },
   {
     name: "Tunis Ace Shorts",
     slug: "tunis-ace-shorts",
-    gender: "Homme",
+    gender: "Men",
     price: 129,
     previousPrice: 149,
     category: "Training",
-    summary: "Un short nerveux et respirant pour accelerer a chaque echange.",
+    summary: "A reactive, breathable short built to accelerate through every rally.",
     description:
-      "Le Tunis Ace Shorts mise sur une taille stable, une matiere extensible et des poches utiles pour les balles. Il accompagne l'entrainement, le match et les moments club avec une sensation de legerete continue.",
+      "Tunis Ace Shorts focus on a stable waistband, stretch fabric and useful ball pockets. They move easily from training to matches to club moments with a constant feeling of lightness.",
     heroTag: "Training essential",
     isNewArrival: false,
     isFeatured: true,
@@ -111,44 +111,44 @@ export const seedProducts = [
     stockCount: 24,
     rating: 4.6,
     reviewCount: 2,
-    colors: ["Noir", "Bleu Padelna"],
+    colors: ["Black", "Padelna Blue"],
     sizes: ["S", "M", "L", "XL"],
     badges: ["Flexible waist", "Quick dry"],
-    benefits: ["Mouvement libre", "Poches balles", "Poids plume"],
-    techFeatures: ["Taille ajustee", "Stretch 4 directions", "Finition anti-frottement"],
+    benefits: ["Free movement", "Ball pockets", "Featherweight feel"],
+    techFeatures: ["Tuned waistband", "4-way stretch", "Anti-rub finish"],
     images: [
       {
         url: "https://images.unsplash.com/photo-1518622358385-8ea7d0794bf6?auto=format&fit=crop&w=1200&q=80",
-        alt: "Short technique Tunis Ace"
+        alt: "Tunis Ace technical shorts"
       },
       {
         url: "https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=1200&q=80",
-        alt: "Short Padelna porte sur court"
+        alt: "Tunis Ace shorts on court"
       }
     ],
     reviews: [
       {
         name: "Hamza",
         rating: 4.7,
-        comment: "Bien coupe et tres agreable pendant les mouvements rapides."
+        comment: "Well cut and very pleasant during fast movements."
       },
       {
         name: "Moez",
         rating: 4.5,
-        comment: "Simple, efficace et vraiment bien respire."
+        comment: "Simple, effective and very breathable."
       }
     ]
   },
   {
     name: "Medina Flex Skirt Set",
     slug: "medina-flex-skirt-set",
-    gender: "Femme",
+    gender: "Women",
     price: 198,
     previousPrice: 228,
     category: "Training",
-    summary: "Une silhouette vive avec jupe technique et top seconde peau.",
+    summary: "A lively silhouette with a technical skirt and second-skin top.",
     description:
-      "Medina Flex Skirt Set est un ensemble pense pour le rythme du padel moderne. La jupe suit les accelerations, le top stabilise la silhouette et l'ensemble reste frais grace a une matiere selectionnee pour sa respirabilite.",
+      "Medina Flex Skirt Set is designed for the rhythm of modern padel. The skirt follows quick changes of direction, the top stabilizes the silhouette, and the full set stays fresh thanks to a fabric selected for breathability.",
     heroTag: "Club favorite",
     isNewArrival: true,
     isFeatured: false,
@@ -156,44 +156,44 @@ export const seedProducts = [
     stockCount: 14,
     rating: 4.7,
     reviewCount: 2,
-    colors: ["Bleu glacier", "Blanc", "Terracotta"],
+    colors: ["Glacier Blue", "White", "Terracotta"],
     sizes: ["XS", "S", "M", "L"],
-    badges: ["Set coordonne", "Light support"],
-    benefits: ["Confort tournoi", "Look complet", "Maille douce"],
-    techFeatures: ["Short integre discret", "Top respirant", "Finition premium"],
+    badges: ["Coordinated set", "Light support"],
+    benefits: ["Tournament comfort", "Full look", "Soft knit"],
+    techFeatures: ["Hidden integrated shorts", "Breathable top", "Premium finishing"],
     images: [
       {
         url: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=80",
-        alt: "Ensemble Medina Flex"
+        alt: "Medina Flex coordinated set"
       },
       {
         url: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80",
-        alt: "Detail set padel femme"
+        alt: "Women's Medina Flex detail shot"
       }
     ],
     reviews: [
       {
         name: "Ines",
         rating: 4.9,
-        comment: "Le set est magnifique et tres confortable."
+        comment: "The set looks amazing and feels very comfortable."
       },
       {
         name: "Lina",
         rating: 4.5,
-        comment: "Belle coupe, tres bonne liberte de mouvement."
+        comment: "Beautiful fit with very good freedom of movement."
       }
     ]
   },
   {
     name: "Sahara Warm-Up Jacket",
     slug: "sahara-warm-up-jacket",
-    gender: "Unisexe",
+    gender: "Unisex",
     price: 239,
     previousPrice: 269,
     category: "Outerwear",
-    summary: "La veste d'echauffement premium pour entrer sur le court avec presence.",
+    summary: "A premium warm-up jacket made to enter the court with presence.",
     description:
-      "Sahara Warm-Up Jacket apporte une couche sportive elegante, utile avant le match, pendant le voyage et apres la session. Sa structure legere bloque le vent, garde le confort et donne une allure forte a l'identite Padelna.",
+      "Sahara Warm-Up Jacket adds an elegant sporting layer before the match, during travel and after the session. Its light structure blocks wind, keeps comfort high and gives the Padelna identity a strong silhouette.",
     heroTag: "Outerwear",
     isNewArrival: false,
     isFeatured: true,
@@ -201,39 +201,39 @@ export const seedProducts = [
     stockCount: 9,
     rating: 4.8,
     reviewCount: 1,
-    colors: ["Bleu profond", "Sable fumee"],
+    colors: ["Deep Blue", "Smoked Sand"],
     sizes: ["S", "M", "L", "XL"],
     badges: ["Wind shield", "Club layer"],
-    benefits: ["Protection legere", "Style avant match", "Interieur doux"],
-    techFeatures: ["Zip premium", "Poignets souples", "Coupe mixte"],
+    benefits: ["Light protection", "Pre-match style", "Soft interior"],
+    techFeatures: ["Premium zip", "Flexible cuffs", "Unisex fit"],
     images: [
       {
         url: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=80",
-        alt: "Veste Sahara Warm-Up"
+        alt: "Sahara Warm-Up Jacket"
       },
       {
         url: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1200&q=80",
-        alt: "Detail veste Padelna"
+        alt: "Detail of the Sahara Warm-Up Jacket"
       }
     ],
     reviews: [
       {
         name: "Skander",
         rating: 4.8,
-        comment: "Veste super classe, bonne tenue et tres beau bleu."
+        comment: "Very classy jacket, strong shape and a beautiful blue tone."
       }
     ]
   },
   {
     name: "Jasmine Move Top",
     slug: "jasmine-move-top",
-    gender: "Femme",
+    gender: "Women",
     price: 118,
     previousPrice: 138,
     category: "Training",
-    summary: "Un top souple et respirant pour enchainer les echanges en confiance.",
+    summary: "A soft, breathable top for confident movement through every rally.",
     description:
-      "Jasmine Move Top est une base essentielle pour les entrainements et les matchs d'ete. Son tissu technique evacue bien la chaleur et sa coupe feminine garde un tombant net sans compresser.",
+      "Jasmine Move Top is an essential layer for training sessions and summer matches. Its technical fabric releases heat well while the feminine fit stays clean without compressing the body.",
     heroTag: "Core layer",
     isNewArrival: true,
     isFeatured: false,
@@ -241,39 +241,39 @@ export const seedProducts = [
     stockCount: 20,
     rating: 4.5,
     reviewCount: 1,
-    colors: ["Corail", "Blanc", "Bleu air"],
+    colors: ["Coral", "White", "Sky Blue"],
     sizes: ["XS", "S", "M", "L"],
     badges: ["Soft touch", "Quick dry"],
-    benefits: ["Top leger", "Respiration active", "Seconde peau"],
-    techFeatures: ["Fibre seche rapide", "Coutures fines", "Ligne feminine"],
+    benefits: ["Light top", "Active airflow", "Second-skin feel"],
+    techFeatures: ["Fast-dry fiber", "Fine seams", "Feminine line"],
     images: [
       {
         url: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80",
-        alt: "Top Jasmine Move"
+        alt: "Jasmine Move Top"
       },
       {
         url: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80",
-        alt: "Top femme Padelna detail"
+        alt: "Detail of the Jasmine Move Top"
       }
     ],
     reviews: [
       {
         name: "Aya",
         rating: 4.5,
-        comment: "Top agreable et facile a porter sous une veste ou seul."
+        comment: "Comfortable top and very easy to wear on its own or under a jacket."
       }
     ]
   },
   {
     name: "Lagoon Club Hoodie",
     slug: "lagoon-club-hoodie",
-    gender: "Unisexe",
+    gender: "Unisex",
     price: 209,
     previousPrice: 239,
     category: "Outerwear",
-    summary: "Le hoodie premium pour la sortie de court et la vie du club.",
+    summary: "A premium hoodie made for post-court comfort and club life.",
     description:
-      "Lagoon Club Hoodie prolonge l'energie Padelna apres le match. Sa matiere dense mais souple, sa capuche structuree et ses details propres donnent un rendu street-sport ideal pour la communaute padel.",
+      "Lagoon Club Hoodie extends the Padelna energy after the match. Its dense but soft fabric, structured hood and clean details create an ideal street-sport piece for the padel community.",
     heroTag: "Lifestyle",
     isNewArrival: false,
     isFeatured: false,
@@ -281,11 +281,11 @@ export const seedProducts = [
     stockCount: 12,
     rating: 4.7,
     reviewCount: 1,
-    colors: ["Marine", "Ecru"],
+    colors: ["Navy", "Ecru"],
     sizes: ["S", "M", "L", "XL"],
     badges: ["Heavy soft", "After match"],
-    benefits: ["Confort club", "Capuche structuree", "Interieur brosse"],
-    techFeatures: ["Maille premium", "Broderie Padelna", "Coupe unisexe"],
+    benefits: ["Club comfort", "Structured hood", "Brushed interior"],
+    techFeatures: ["Premium knit", "Padelna embroidery", "Unisex fit"],
     images: [
       {
         url: "https://images.unsplash.com/photo-1503342394128-c104d54dba01?auto=format&fit=crop&w=1200&q=80",
@@ -293,27 +293,27 @@ export const seedProducts = [
       },
       {
         url: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80",
-        alt: "Hoodie Padelna club"
+        alt: "Club look with the Lagoon Hoodie"
       }
     ],
     reviews: [
       {
         name: "Nour",
         rating: 4.7,
-        comment: "Super qualitatif et parfait pour les fins de soiree au club."
+        comment: "Great quality and perfect for late evenings at the club."
       }
     ]
   },
   {
     name: "Riviera Rally Tee",
     slug: "riviera-rally-tee",
-    gender: "Homme",
+    gender: "Men",
     price: 109,
     previousPrice: 129,
     category: "Matchwear",
-    summary: "Le tee de match epure pour jouer vite, leger et sans distraction.",
+    summary: "A clean match tee for fast play, light comfort and zero distraction.",
     description:
-      "Riviera Rally Tee mise sur l'essentiel: une main douce, une excellente aeration et un fit moderne. C'est la piece facile a porter pour les joueurs qui veulent une base technique nette au quotidien.",
+      "Riviera Rally Tee focuses on the essentials: soft touch, excellent airflow and a modern fit. It is the easy piece for players who want a clean technical base every day.",
     heroTag: "Everyday court",
     isNewArrival: true,
     isFeatured: false,
@@ -321,11 +321,11 @@ export const seedProducts = [
     stockCount: 18,
     rating: 4.4,
     reviewCount: 1,
-    colors: ["Blanc", "Bleu Padelna", "Anthracite"],
+    colors: ["White", "Padelna Blue", "Anthracite"],
     sizes: ["S", "M", "L", "XL"],
     badges: ["Lightweight", "Court basic"],
-    benefits: ["Toucher doux", "Aeration", "Look propre"],
-    techFeatures: ["Maille fine", "Sechage rapide", "Col stable"],
+    benefits: ["Soft touch", "Airflow", "Clean look"],
+    techFeatures: ["Fine knit", "Quick dry", "Stable collar"],
     images: [
       {
         url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80",
@@ -333,14 +333,14 @@ export const seedProducts = [
       },
       {
         url: "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=1200&q=80",
-        alt: "Tee de match Padelna"
+        alt: "Match tee from the Riviera Rally line"
       }
     ],
     reviews: [
       {
         name: "Wael",
         rating: 4.4,
-        comment: "Tres bon tee pour jouer l'ete, simple et efficace."
+        comment: "Very good tee for summer play, simple and efficient."
       }
     ]
   }

@@ -25,8 +25,8 @@ function StorePage() {
         <Reveal>
           <SectionTitle
             eyebrow="Store"
-            title="Choisissez vos pieces Padelna avec un multi-filtre rapide et precis."
-            copy="Recherche live, categories, genre, prix, stock, nouveautes et tri intelligent pour aider le client a trouver sa tenue ideale."
+            title="Find your Padelna pieces with fast, precise filtering."
+            copy="Live search, categories, gender, price, stock, new drops and smart sorting help every shopper find the right fit."
           />
         </Reveal>
       </section>
@@ -35,17 +35,17 @@ function StorePage() {
         <FilterSidebar />
         <div className="store-grid-wrap">
           <div className="store-grid-header">
-            <strong>{filteredProducts.length} produit(s)</strong>
-            <span>Designe pour le padel, le club et la vie sportive.</span>
+            <strong>{filteredProducts.length} product(s)</strong>
+            <span>Designed for padel, club life and active movement.</span>
           </div>
 
           {status === "loading" ? (
-            <LoadingBall label="Chargement du catalogue..." variant="section" />
+            <LoadingBall label="Loading the catalog..." variant="section" />
           ) : filteredProducts.length ? (
             <ProductGrid products={filteredProducts} />
           ) : (
             <div className="empty-state">
-              Aucun produit ne correspond a ces filtres. Essayez une autre combinaison.
+              No product matches these filters yet. Try another combination.
             </div>
           )}
         </div>

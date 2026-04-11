@@ -16,7 +16,7 @@ function StarRatingInput({ value, onChange }) {
             key={starValue}
             type="button"
             className={active ? "active" : ""}
-            aria-label={`${starValue} etoile${starValue > 1 ? "s" : ""}`}
+            aria-label={`${starValue} star${starValue > 1 ? "s" : ""}`}
             onMouseEnter={() => setHovered(starValue)}
             onFocus={() => setHovered(starValue)}
             onClick={() => onChange(starValue)}
@@ -30,4 +30,3 @@ function StarRatingInput({ value, onChange }) {
 }
 
 export default StarRatingInput;
-

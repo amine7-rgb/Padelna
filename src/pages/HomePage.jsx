@@ -29,8 +29,8 @@ function HomePage() {
         <Reveal>
           <SectionTitle
             eyebrow="Store Preview"
-            title="Une boutique pensee pour vendre, inspirer et rassurer."
-            copy="Cartes animees, filtres avances, avis produit, favoris et panier Redux: la base front est prete pour accueillir tout votre catalogue."
+            title="A storefront built to sell, guide and reassure."
+            copy="Animated cards, advanced filters, product reviews, favorites and a Redux cart give Padelna a strong e-commerce foundation."
           />
         </Reveal>
         <ProductGrid products={featuredProducts} compact />
@@ -42,4 +42,3 @@ function HomePage() {
 }
 
 export default HomePage;
-

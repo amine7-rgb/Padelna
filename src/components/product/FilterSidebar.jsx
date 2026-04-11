@@ -10,6 +10,7 @@ import {
   toggleInStockFilter,
   toggleNewOnlyFilter
 } from "../../features/productsSlice.js";
+import Icon from "../ui/Icon.jsx";
 
 function FilterSidebar() {
   const dispatch = useDispatch();
@@ -22,11 +23,11 @@ function FilterSidebar() {
   return (
     <aside className="filter-sidebar">
       <div className="filter-block">
-        <span>Recherche live</span>
+        <span>Live search</span>
         <input
           value={filters.search}
           onChange={(event) => dispatch(setSearchFilter(event.target.value))}
-          placeholder="Tapez polo, femme, bleu..."
+          placeholder="Type polo, women, blue..."
         />
       </div>
 
@@ -47,7 +48,7 @@ function FilterSidebar() {
       </div>
 
       <div className="filter-block">
-        <span>Genre</span>
+        <span>Gender</span>
         <div className="chip-group">
           {genders.map((gender) => (
             <button
@@ -63,7 +64,7 @@ function FilterSidebar() {
       </div>
 
       <div className="filter-block">
-        <span>Prix en dinars</span>
+        <span>Price in dinars</span>
         <div className="price-range">
           <input
             type="number"
@@ -97,43 +98,43 @@ function FilterSidebar() {
       </div>
 
       <div className="filter-block">
-        <span>Filtrage avance</span>
+        <span>Advanced filters</span>
         <label className="switch-row">
           <input type="checkbox" checked={filters.inStock} onChange={() => dispatch(toggleInStockFilter())} />
-          <span>Seulement en stock</span>
+          <span>In stock only</span>
         </label>
         <label className="switch-row">
           <input type="checkbox" checked={filters.newOnly} onChange={() => dispatch(toggleNewOnlyFilter())} />
-          <span>Seulement les nouveautes</span>
+          <span>New arrivals only</span>
         </label>
       </div>
 
       <div className="filter-block">
-        <span>Note minimum</span>
+        <span>Minimum rating</span>
         <select value={filters.rating} onChange={(event) => dispatch(setRatingFilter(Number(event.target.value)))}>
-          <option value={0}>Toutes les notes</option>
+          <option value={0}>All ratings</option>
           <option value={4}>4+ / 5</option>
           <option value={4.5}>4.5+ / 5</option>
         </select>
       </div>
 
       <div className="filter-block">
-        <span>Trier par</span>
+        <span>Sort by</span>
         <select value={filters.sort} onChange={(event) => dispatch(setSortFilter(event.target.value))}>
-          <option value="featured">Mise en avant</option>
-          <option value="newest">Nouveautes</option>
-          <option value="rating">Meilleure note</option>
-          <option value="price-asc">Prix croissant</option>
-          <option value="price-desc">Prix decroissant</option>
+          <option value="featured">Featured</option>
+          <option value="newest">Newest</option>
+          <option value="rating">Top rated</option>
+          <option value="price-asc">Price low to high</option>
+          <option value="price-desc">Price high to low</option>
         </select>
       </div>
 
       <button type="button" className="ghost-button" onClick={() => dispatch(clearFilters())}>
-        Reinitialiser
+        <Icon name="refresh" />
+        Reset filters
       </button>
     </aside>
   );
 }
 
 export default FilterSidebar;
-

@@ -3,95 +3,88 @@ export const brand = {
   founded: "2026",
   email: "amed14170@gmail.com",
   phone: "+216 55 770 126",
-  location: "Tunisie",
-  tagline: "La premiere marque 100% tunisienne dediee au style padel",
+  location: "Tunisia",
+  tagline: "The first 100% Tunisian padel apparel brand.",
   shortCopy:
-    "Padelna imagine des vetements originaux, respirants et performants pour transformer chaque echange en declaration de style.",
+    "Original padel apparel from Tunisia, built with breathable fabrics, clean movement, and premium match-to-club energy.",
   heroSlides: [
     {
       id: "hero-1",
-      image:
-        "https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1800&q=80",
-      eyebrow: "Performance tunisienne",
-      title: "Des tenues de padel faites pour bouger vite, respirer fort et gagner avec allure.",
-      accent: "Match ready"
+      image: "/hero-court-speed.svg",
+      eyebrow: "Tunisian performance",
+      title: "Play light. Strike clean.",
+      accent: "Fast court energy"
     },
     {
       id: "hero-2",
-      image:
-        "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1800&q=80",
-      eyebrow: "Originalite Padelna",
-      title: "Des coupes originales, des tissus premium et une identite sport-lifestyle ancree en Tunisie.",
-      accent: "Original touch"
+      image: "/hero-club-rally.svg",
+      eyebrow: "Original identity",
+      title: "Own every rally.",
+      accent: "Club-ready style"
     },
     {
       id: "hero-3",
-      image:
-        "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1800&q=80",
-      eyebrow: "Nouveaute 2026",
-      title: "La nouvelle generation de vetements de padel pensee pour le court, le club et la ville.",
-      accent: "2026 drop"
+      image: "/hero-night-drop.svg",
+      eyebrow: "2026 launch",
+      title: "Built for padel nights.",
+      accent: "First drop"
     }
   ],
   typingWords: [
-    "100% tunisienne",
-    "tissus haute performance",
-    "style match & lifestyle",
-    "qualite dediee au padel"
+    "100% Tunisian padel brand",
+    "premium sport fabrics",
+    "match-to-club style",
+    "made to move"
   ],
   metrics: [
-    { value: "2026", label: "annee de lancement" },
-    { value: "100%", label: "marque tunisienne" },
-    { value: "Premium", label: "tissus techniques" },
-    { value: "Sport+", label: "confort et mouvement" }
+    { value: "2026", label: "launch year" },
+    { value: "100%", label: "Tunisian identity" },
+    { value: "Premium", label: "technical fabrics" },
+    { value: "Court + Club", label: "performance lifestyle" }
   ],
   promises: [
     {
-      title: "Tissus techniques premium",
-      copy:
-        "Des matieres legeres, respirantes et a sechage rapide pour rester libre pendant chaque point."
+      title: "Premium technical fabrics",
+      copy: "Lightweight, breathable and quick-dry materials designed for fast rallies and long sessions."
     },
     {
-      title: "Coupes pensees pour le padel",
-      copy:
-        "Des volumes qui suivent le corps, du service au smash, sans sacrifier le style hors court."
+      title: "Padel-first fits",
+      copy: "Cuts shaped for serves, lunges and overheads without losing a clean off-court silhouette."
     },
     {
-      title: "Identite tunisienne forte",
-      copy:
-        "Une marque nee en Tunisie pour porter haut une vision locale, moderne et ambitieuse du sport."
+      title: "Tunisian-made identity",
+      copy: "A brand born in Tunisia to express local ambition, modern sport culture and original design."
     }
   ],
   story: {
     eyebrow: "About Padelna",
-    title: "Une marque nee pour faire rayonner le padel tunisien.",
+    title: "Born to elevate Tunisian padel.",
     intro:
-      "Padelna est une marque de vetements sportswear creee en 2026 pour proposer des pieces originales, techniques et elegantes dediees aux joueuses et joueurs de padel.",
+      "Padelna was launched in 2026 to create original, technical and stylish apparel for padel players who want quality, movement and identity in one brand.",
     points: [
-      "Premiere marque 100% tunisienne centree sur le padel et son mode de vie.",
-      "Designs originaux, details premium et confort pense pour les matchs intensifs.",
-      "Matieres selectionnees pour leur douceur, leur respirabilite et leur resistance.",
-      "Une vision qui relie performance sur le terrain, identite locale et allure moderne."
+      "The first 100% Tunisian brand focused on padel and its lifestyle.",
+      "Original designs with premium details and comfort built for intense matches.",
+      "Selected fabrics for softness, breathability and long-lasting performance.",
+      "A vision that connects on-court precision, local identity and modern style."
     ]
   },
   categories: [
     {
       title: "Matchwear",
-      copy: "Polos, robes et maillots legers pour les echanges rapides."
+      copy: "Polos, dresses and match tees for fast points and clean confidence."
     },
     {
       title: "Training",
-      copy: "Tops, shorts et jupes techniques pour vos seances et entrainements."
+      copy: "Technical tops, skirts and shorts made for drills, movement and daily sessions."
     },
     {
-      title: "Lifestyle court club",
-      copy: "Vestes et hoodies pour prolonger l'esprit padel hors du terrain."
+      title: "Club Layers",
+      copy: "Jackets and hoodies that keep the padel mindset alive after the match."
     }
   ],
   footerLinks: [
     { label: "Email", href: "mailto:amed14170@gmail.com", value: "amed14170@gmail.com" },
     { label: "Instagram", href: "https://www.instagram.com/", value: "@padelna" },
-    { label: "Tunisie", href: "#about", value: "Made for Tunisian courts" }
+    { label: "Origin", href: "#about", value: "Made in Tunisia" }
   ]
 };
-

@@ -11,14 +11,14 @@ function FloatingFavoritesButton() {
     <button
       type="button"
       className={`favorites-launcher ${isOpen ? "open" : ""}`}
-      aria-label="Afficher les favoris"
+      aria-label="Open favorites"
       aria-expanded={isOpen}
       onClick={() => dispatch(toggleFavorites())}
     >
       <span className="favorites-launcher-icon">
         <Icon name="heart" filled={favoritesCount > 0 || isOpen} />
       </span>
-      <span className="favorites-launcher-text">Favoris</span>
+      <span className="favorites-launcher-text">Favorites</span>
       {favoritesCount > 0 ? <span className="favorites-launcher-badge">{favoritesCount}</span> : null}
     </button>
   );

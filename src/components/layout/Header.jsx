@@ -7,10 +7,10 @@ import { brand } from "../../data/brand.js";
 import Icon from "../ui/Icon.jsx";
 
 const homeLinks = [
-  { label: "Accueil", id: "home" },
-  { label: "About", id: "about" },
-  { label: "Nouveautes", id: "new-arrivals" },
-  { label: "Contact", id: "contact" }
+  { label: "Home", id: "home", icon: "home" },
+  { label: "About", id: "about", icon: "spark" },
+  { label: "New", id: "new-arrivals", icon: "spark" },
+  { label: "Contact", id: "contact", icon: "mail" }
 ];
 
 function Header() {
@@ -73,7 +73,7 @@ function Header() {
           className="mobile-nav-toggle"
           type="button"
           aria-expanded={mobileNavOpen}
-          aria-label="Ouvrir le menu"
+          aria-label="Open menu"
           onClick={() => dispatch(toggleMobileNav())}
         >
           <span />
@@ -81,10 +81,11 @@ function Header() {
           <span />
         </button>
 
-        <nav className={`header-nav ${mobileNavOpen ? "open" : ""}`} aria-label="Navigation principale">
+        <nav className={`header-nav ${mobileNavOpen ? "open" : ""}`} aria-label="Primary navigation">
           {homeLinks.map((link) => (
             <button key={link.id} type="button" onClick={() => handleSectionNavigation(link.id)}>
-              {link.label}
+              <Icon name={link.icon} />
+              <span>{link.label}</span>
             </button>
           ))}
           <NavLink
@@ -92,14 +93,15 @@ function Header() {
             onClick={() => dispatch(closeDrawers())}
             className={({ isActive }) => (isActive ? "active nav-store-link" : "nav-store-link")}
           >
-            Boutique
+            <Icon name="shop" />
+            <span>Store</span>
           </NavLink>
         </nav>
 
         <div className="header-actions">
           <button className="theme-button" type="button" onClick={() => dispatch(toggleTheme())}>
             <Icon name={theme === "sand" ? "moon" : "sun"} />
-            <span>{theme === "sand" ? "Mode nuit" : "Mode clair"}</span>
+            <span>{theme === "sand" ? "Dark" : "Light"}</span>
           </button>
           <Link className="badge-button strong icon-badge-button" to="/cart" onClick={() => dispatch(closeDrawers())}>
             <Icon name="cart" />

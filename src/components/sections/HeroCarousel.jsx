@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { brand } from "../../data/brand.js";
 import { useTypingWords } from "../../utils/useTypingWords.js";
 import Reveal from "./Reveal.jsx";
+import Icon from "../ui/Icon.jsx";
 
 function HeroCarousel() {
   const [slide, setSlide] = useState(0);
@@ -26,15 +27,16 @@ function HeroCarousel() {
           <span>{typed}</span>
         </h1>
         <p className="hero-copy">
-          {brand.shortCopy} Nous creons des vetements originaux avec des tissus dedies au sport pour prouver qu'une
-          marque tunisienne peut offrir une qualite de tres haut niveau.
+          {brand.shortCopy}
         </p>
         <div className="hero-actions">
           <Link className="primary-button" to="/store">
-            Decouvrir la boutique
+            <Icon name="shop" />
+            Shop now
           </Link>
           <a className="ghost-button" href="/#about">
-            Voir la marque
+            <Icon name="arrow-right" />
+            Meet the brand
           </a>
         </div>
         <div className="hero-proof">
@@ -45,7 +47,7 @@ function HeroCarousel() {
             </article>
           ))}
         </div>
-        <div className="hero-dots" aria-label="Changer de slide">
+        <div className="hero-dots" aria-label="Change hero slide">
           {brand.heroSlides.map((item, index) => (
             <button
               key={item.id}

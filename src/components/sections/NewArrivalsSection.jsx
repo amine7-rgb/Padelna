@@ -4,6 +4,7 @@ import { selectNewArrivals } from "../../utils/productFilters.js";
 import ProductGrid from "../product/ProductGrid.jsx";
 import Reveal from "./Reveal.jsx";
 import SectionTitle from "./SectionTitle.jsx";
+import Icon from "../ui/Icon.jsx";
 
 function NewArrivalsSection() {
   const products = useSelector(selectNewArrivals);
@@ -12,15 +13,16 @@ function NewArrivalsSection() {
     <section id="new-arrivals" className="section section-alt">
       <Reveal>
         <SectionTitle
-          eyebrow="Nouveautes"
-          title="Les pieces 2026 qui lancent l'univers Padelna."
-          copy="Une premiere selection capsule qui met en avant notre niveau de finition, notre identite tunisienne et notre exigence sur les tissus."
+          eyebrow="New arrivals"
+          title="The 2026 pieces opening the Padelna universe."
+          copy="A first capsule built to showcase premium finishing, Tunisian identity and sport-dedicated fabrics."
         />
       </Reveal>
       <ProductGrid products={products} compact />
       <Reveal className="section-cta-center">
         <Link to="/store" className="primary-button">
-          Voir toute la boutique
+          <Icon name="shop" />
+          View the full store
         </Link>
       </Reveal>
     </section>
@@ -28,4 +30,3 @@ function NewArrivalsSection() {
 }
 
 export default NewArrivalsSection;
-

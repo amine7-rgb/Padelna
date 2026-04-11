@@ -415,6 +415,10 @@ button:disabled {
   border: 1px solid transparent;
   background: transparent;
   color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
   transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -431,6 +435,11 @@ button:disabled {
 .header-nav button {
   border: 0;
   background: transparent;
+}
+
+.header-nav .icon {
+  width: 0.95rem;
+  height: 0.95rem;
 }
 
 .header-actions {
@@ -612,6 +621,12 @@ button:disabled {
   flex-wrap: wrap;
   gap: 0.8rem;
   margin-top: 2rem;
+}
+
+.hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
 }
 
 .hero-proof {
@@ -1015,8 +1030,42 @@ button:disabled {
   color: var(--muted);
 }
 
-.contact-form-card .wide {
+.contact-form-card .wide,
+.review-form-card .wide,
+.form-action-row {
   grid-column: 1 / -1;
+}
+
+.form-action-row {
+  display: flex;
+  align-items: center;
+}
+
+.form-action-row.center {
+  justify-content: center;
+}
+
+.phone-field {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--bg-soft) 86%, transparent);
+  overflow: hidden;
+}
+
+.phone-prefix {
+  min-width: 4.2rem;
+  padding: 0.95rem 0.95rem 0.95rem 1rem;
+  border-right: 1px solid var(--line);
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.phone-field input {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
 }
 
 .contact-side-card strong,
@@ -1163,6 +1212,13 @@ button:disabled {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--accent) 50%, white 10%);
   background: color-mix(in srgb, var(--surface-strong) 96%, transparent);
+}
+
+.footer-contact-card a,
+.product-summary-column .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .drawer-header p,
@@ -1493,7 +1549,6 @@ button:disabled {
 }
 
 .product-summary-column .back-link {
-  display: inline-flex;
   margin-bottom: 1rem;
   color: var(--accent);
 }
@@ -1604,13 +1659,25 @@ button:disabled {
 }
 
 .review-submit-button {
-  justify-self: start;
   width: auto;
-  min-width: 0;
-  min-height: 2.45rem;
-  padding-inline: 0.95rem;
-  font-size: 0.92rem;
+  min-width: 10.5rem;
+  min-height: 2.9rem;
+  padding-inline: 1rem;
+  font-size: 0.94rem;
   line-height: 1;
+}
+
+.compact-action-button,
+.review-submit-button {
+  justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.compact-action-button {
+  width: auto;
+  min-width: 12rem;
 }
 
 .favorites-launcher {
@@ -1696,6 +1763,9 @@ button:disabled {
   border: 0;
   background: transparent;
   color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .not-found {

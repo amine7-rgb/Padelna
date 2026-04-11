@@ -1,4 +1,5 @@
 import { brand } from "../../data/brand.js";
+import Icon from "../ui/Icon.jsx";
 
 function Footer() {
   return (
@@ -14,20 +15,21 @@ function Footer() {
         </div>
 
         <div className="footer-contact-card">
-          <span>Contact direct</span>
+          <span>Direct contact</span>
           <strong>{brand.email}</strong>
           <p>
-            Meme logique de contact que votre portfolio, mais adaptee a la boutique Padelna pour les demandes
-            clients, collaborations et clubs.
+            The same inbox as your portfolio, now adapted for customer requests, clubs and brand collaborations.
           </p>
-          <a href={`mailto:${brand.email}`}>Ecrire a Padelna</a>
+          <a href={`mailto:${brand.email}`}>
+            <Icon name="mail" />
+            Email Padelna
+          </a>
         </div>
       </div>
 
       <div className="footer-bottom">
         <p>
-          {brand.name} {brand.founded} | Marque de vetements de padel creee en Tunisie pour le sport, le style et
-          la performance.
+          {brand.name} {brand.founded} | Tunisian padel apparel made for performance, style and movement.
         </p>
         <div className="footer-links">
           {brand.footerLinks.map((link) => (
@@ -43,4 +45,3 @@ function Footer() {
 }
 
 export default Footer;
-

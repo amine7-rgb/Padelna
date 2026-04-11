@@ -1,0 +1,28 @@
+<svg width="1600" height="960" viewBox="0 0 1600 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="960" fill="#071728"/>
+  <rect width="1600" height="960" fill="url(#paint0_radial)" opacity="0.95"/>
+  <rect x="146" y="126" width="1308" height="708" rx="44" stroke="rgba(217,255,84,0.35)" stroke-width="10"/>
+  <rect x="246" y="206" width="1108" height="548" rx="28" stroke="rgba(96,218,255,0.28)" stroke-width="6"/>
+  <path d="M800 126V834" stroke="rgba(255,255,255,0.16)" stroke-width="6" stroke-dasharray="18 22"/>
+  <path d="M146 480H1454" stroke="rgba(255,255,255,0.16)" stroke-width="6" stroke-dasharray="18 22"/>
+  <circle cx="1120" cy="308" r="126" fill="url(#paint1_linear)"/>
+  <path d="M1036 308C1049 250.667 1085.83 222 1146.5 222" stroke="rgba(255,255,255,0.88)" stroke-width="16" stroke-linecap="round"/>
+  <path d="M1094 394C1107 336.667 1143.83 308 1204.5 308" stroke="rgba(255,255,255,0.88)" stroke-width="16" stroke-linecap="round"/>
+  <g opacity="0.9">
+    <rect x="415" y="214" width="180" height="404" rx="90" stroke="#D9FF54" stroke-width="18"/>
+    <rect x="465" y="594" width="82" height="174" rx="36" stroke="#D9FF54" stroke-width="18"/>
+    <circle cx="505" cy="400" r="78" stroke="#D9FF54" stroke-width="14" stroke-dasharray="2 28"/>
+  </g>
+  <text x="950" y="760" fill="rgba(255,255,255,0.08)" font-size="150" font-family="Arial, Helvetica, sans-serif" font-weight="700">PADELNA</text>
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1178 236) rotate(134.966) scale(1133.53 1534.9)">
+      <stop stop-color="#163E9B"/>
+      <stop offset="0.46" stop-color="#0B1E37"/>
+      <stop offset="1" stop-color="#071728"/>
+    </radialGradient>
+    <linearGradient id="paint1_linear" x1="1018" y1="186" x2="1213" y2="426" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#74F6DA"/>
+      <stop offset="1" stop-color="#2875FF"/>
+    </linearGradient>
+  </defs>
+</svg>

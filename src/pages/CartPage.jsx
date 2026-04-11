@@ -34,7 +34,7 @@ function CartPage() {
     dispatch(
       showToast({
         type: "success",
-        message: "Panier pret. La prochaine etape peut etre un checkout ou un paiement en ligne."
+        message: "Cart ready. The next step can be checkout or online payment."
       })
     );
   };
@@ -44,16 +44,16 @@ function CartPage() {
       <section className="section">
         <Reveal>
           <SectionTitle
-            eyebrow="Panier"
-            title="Vos produits selectionnes sont regroupes ici."
-            copy="A gauche la liste detaillee du panier, et a droite une facture claire avec le total."
+            eyebrow="Cart"
+            title="Your selected products are grouped here."
+            copy="Detailed cart items stay on the left, while the invoice summary stays clear on the right."
           />
         </Reveal>
 
         <div className="cart-page-layout">
           <Reveal className="cart-list-card">
             {isHydratingCart ? (
-              <LoadingBall label="Chargement des produits du panier..." variant="section" />
+              <LoadingBall label="Loading your cart..." variant="section" />
             ) : items.length ? (
               <div className="cart-page-items">
                 {items.map((item) => (
@@ -63,11 +63,11 @@ function CartPage() {
                       <div>
                         <strong>{item.product.name}</strong>
                         <span>{item.product.gender}</span>
-                        <small>{item.size ? `Taille ${item.size}` : "Taille standard"}</small>
+                        <small>{item.size ? `Size ${item.size}` : "Standard size"}</small>
                       </div>
                       <div className="cart-page-meta">
-                        <small>Prix unitaire: {formatCurrency(item.product.price)}</small>
-                        <small>Sous-total: {formatCurrency(item.subtotal)}</small>
+                        <small>Unit price: {formatCurrency(item.product.price)}</small>
+                        <small>Subtotal: {formatCurrency(item.subtotal)}</small>
                       </div>
                       <QuantitySelector
                         value={item.quantity}
@@ -92,13 +92,13 @@ function CartPage() {
                       />
                     </div>
                     <div className="cart-page-item-actions">
-                      <Link to={`/store/${item.slug}`} className="cart-item-link" aria-label="Voir le produit">
+                      <Link to={`/store/${item.slug}`} className="cart-item-link" aria-label="View product">
                         <Icon name="eye" />
                       </Link>
                       <button
                         type="button"
                         className="icon-link-button"
-                        aria-label="Retirer du panier"
+                        aria-label="Remove from cart"
                         onClick={() => dispatch(removeFromCart({ slug: item.slug, size: item.size }))}
                       >
                         <Icon name="trash" />
@@ -109,46 +109,49 @@ function CartPage() {
               </div>
             ) : (
               <div className="empty-state cart-empty-state">
-                <p>Votre panier est vide pour le moment.</p>
+                <p>Your cart is empty for now.</p>
                 <Link to="/store" className="primary-button">
-                  Retour a la boutique
+                  <Icon name="arrow-left" />
+                  Back to store
                 </Link>
               </div>
             )}
           </Reveal>
 
           <Reveal className="cart-summary-card">
-            <span>Facture</span>
-            <strong>Resume de commande</strong>
+            <span>Invoice</span>
+            <strong>Order summary</strong>
             <div className="invoice-lines">
               <div>
-                <span>Articles</span>
+                <span>Items</span>
                 <strong>{isHydratingCart ? rawQuantity : summary.quantity}</strong>
               </div>
               <div>
-                <span>Sous-total</span>
-                <strong>{isHydratingCart ? "Calcul..." : formatCurrency(summary.total)}</strong>
+                <span>Subtotal</span>
+                <strong>{isHydratingCart ? "Calculating..." : formatCurrency(summary.total)}</strong>
               </div>
               <div>
-                <span>Livraison</span>
-                <strong>{isHydratingCart ? "Calcul..." : deliveryFee === 0 ? "Offerte" : formatCurrency(deliveryFee)}</strong>
+                <span>Delivery</span>
+                <strong>{isHydratingCart ? "Calculating..." : deliveryFee === 0 ? "Free" : formatCurrency(deliveryFee)}</strong>
               </div>
               <div>
-                <span>TVA</span>
-                <strong>{isHydratingCart ? "Calcul..." : formatCurrency(vat)}</strong>
+                <span>VAT</span>
+                <strong>{isHydratingCart ? "Calculating..." : formatCurrency(vat)}</strong>
               </div>
             </div>
             <div className="invoice-total">
-              <span>Total a payer</span>
-              <strong>{isHydratingCart ? "Calcul..." : formatCurrency(grandTotal)}</strong>
+              <span>Total to pay</span>
+              <strong>{isHydratingCart ? "Calculating..." : formatCurrency(grandTotal)}</strong>
             </div>
-            <p>Ce bloc est pret pour recevoir plus tard Stripe, PayPal ou une etape checkout custom.</p>
+            <p>This box is ready for a future Stripe, PayPal or custom checkout step.</p>
             <div className="cart-summary-actions">
               <button type="button" className="ghost-button" onClick={() => dispatch(clearCart())} disabled={!items.length}>
-                Vider le panier
+                <Icon name="trash" />
+                Clear cart
               </button>
               <button type="button" className="primary-button" onClick={handleCheckout} disabled={!items.length}>
-                Commander
+                <Icon name="arrow-right" />
+                Checkout
               </button>
             </div>
           </Reveal>

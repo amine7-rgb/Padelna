@@ -1,0 +1,33 @@
+<svg width="1600" height="960" viewBox="0 0 1600 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="960" fill="#0C1B31"/>
+  <rect width="1600" height="960" fill="url(#paint0_radial)"/>
+  <circle cx="324" cy="214" r="198" fill="rgba(116,246,218,0.1)"/>
+  <circle cx="1330" cy="780" r="220" fill="rgba(40,117,255,0.14)"/>
+  <path d="M150 760C460 680 640 516 792 276C873 148 1018 112 1174 160C1298 198 1396 288 1450 402" stroke="rgba(255,255,255,0.16)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M224 634C500 566 700 430 832 230" stroke="rgba(255,255,255,0.1)" stroke-width="8" stroke-linecap="round" stroke-dasharray="16 24"/>
+  <g transform="translate(920 164) rotate(18)">
+    <rect x="0" y="0" width="222" height="466" rx="111" stroke="#EEF7FF" stroke-width="16"/>
+    <rect x="70" y="424" width="84" height="202" rx="34" stroke="#EEF7FF" stroke-width="16"/>
+    <circle cx="111" cy="182" r="92" stroke="#EEF7FF" stroke-width="14" stroke-dasharray="2 26"/>
+  </g>
+  <g transform="translate(578 356) rotate(-26)">
+    <rect x="0" y="0" width="196" height="414" rx="98" stroke="rgba(217,255,84,0.9)" stroke-width="16"/>
+    <rect x="60" y="378" width="76" height="184" rx="32" stroke="rgba(217,255,84,0.9)" stroke-width="16"/>
+    <circle cx="98" cy="162" r="82" stroke="rgba(217,255,84,0.9)" stroke-width="14" stroke-dasharray="2 24"/>
+  </g>
+  <circle cx="780" cy="446" r="92" fill="url(#paint1_linear)"/>
+  <path d="M714 446C726 401.333 756 379 804 379" stroke="rgba(255,255,255,0.92)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M754 513C766 468.333 796 446 844 446" stroke="rgba(255,255,255,0.92)" stroke-width="14" stroke-linecap="round"/>
+  <text x="166" y="844" fill="rgba(255,255,255,0.1)" font-size="140" font-family="Arial, Helvetica, sans-serif" font-weight="700">TUNISIAN PADEL</text>
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(820 460) rotate(90) scale(520 860)">
+      <stop stop-color="#143B7C"/>
+      <stop offset="0.52" stop-color="#0F213C"/>
+      <stop offset="1" stop-color="#081322"/>
+    </radialGradient>
+    <linearGradient id="paint1_linear" x1="708" y1="360" x2="854" y2="534" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D9FF54"/>
+      <stop offset="1" stop-color="#69D9FF"/>
+    </linearGradient>
+  </defs>
+</svg>

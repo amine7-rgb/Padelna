@@ -17,7 +17,7 @@ function ProductCard({ product, compact = false }) {
     dispatch(
       showToast({
         type: "info",
-        message: isFavorite ? "Produit retire des favoris." : "Produit ajoute aux favoris."
+        message: isFavorite ? "Product removed from favorites." : "Product added to favorites."
       })
     );
   };
@@ -30,7 +30,7 @@ function ProductCard({ product, compact = false }) {
         quantity: 1
       })
     );
-    dispatch(showToast({ type: "success", message: `${product.name} ajoute au panier.` }));
+    dispatch(showToast({ type: "success", message: `${product.name} added to cart.` }));
   };
 
   return (
@@ -41,13 +41,13 @@ function ProductCard({ product, compact = false }) {
       </Link>
 
       <div className="product-actions">
-        <button type="button" className={isFavorite ? "active" : ""} onClick={handleFavorite} aria-label="Ajouter aux favoris">
+        <button type="button" className={isFavorite ? "active" : ""} onClick={handleFavorite} aria-label="Save to favorites">
           <Icon name="heart" filled={isFavorite} />
         </button>
-        <button type="button" onClick={handleAddCart} aria-label="Ajouter au panier">
+        <button type="button" onClick={handleAddCart} aria-label="Add to cart">
           <Icon name="cart" />
         </button>
-        <Link className="product-icon-link" to={`/store/${product.slug}`} aria-label="Voir le produit en detail">
+        <Link className="product-icon-link" to={`/store/${product.slug}`} aria-label="View product details">
           <Icon name="eye" />
         </Link>
       </div>

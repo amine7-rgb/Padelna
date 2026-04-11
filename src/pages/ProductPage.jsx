@@ -57,7 +57,7 @@ function ProductPage() {
   );
 
   if (activeStatus === "loading" || !activeProduct) {
-    return <LoadingBall label="Chargement du produit..." variant="page" />;
+    return <LoadingBall label="Loading product..." variant="page" />;
   }
 
   const isFavorite = favorites.includes(activeProduct.slug);
@@ -70,7 +70,7 @@ function ProductPage() {
         quantity
       })
     );
-    dispatch(showToast({ type: "success", message: `${activeProduct.name} ajoute au panier.` }));
+    dispatch(showToast({ type: "success", message: `${activeProduct.name} added to cart.` }));
   };
 
   const handleReviewSubmit = async (event) => {
@@ -79,7 +79,7 @@ function ProductPage() {
     try {
       await dispatch(submitReview({ slug, payload: reviewForm })).unwrap();
       setReviewForm(initialReview);
-      dispatch(showToast({ type: "success", message: "Merci, votre avis a ete ajoute." }));
+      dispatch(showToast({ type: "success", message: "Thanks, your review has been added." }));
     } catch (error) {
       dispatch(showToast({ type: "error", message: error.message }));
     }
@@ -94,7 +94,8 @@ function ProductPage() {
 
         <Reveal className="product-summary-column">
           <Link className="back-link" to="/store">
-            Retour a la boutique
+            <Icon name="arrow-left" />
+            Back to store
           </Link>
           <p className="eyebrow">{activeProduct.heroTag}</p>
           <h1>{activeProduct.name}</h1>
@@ -107,21 +108,21 @@ function ProductPage() {
 
           <div className="meta-grid">
             <article>
-              <span>Genre</span>
+              <span>Gender</span>
               <strong>{activeProduct.gender}</strong>
             </article>
             <article>
-              <span>Categorie</span>
+              <span>Category</span>
               <strong>{activeProduct.category}</strong>
             </article>
             <article>
               <span>Stock</span>
-              <strong>{activeProduct.inStock ? `${activeProduct.stockCount} disponibles` : "Rupture"}</strong>
+              <strong>{activeProduct.inStock ? `${activeProduct.stockCount} available` : "Sold out"}</strong>
             </article>
           </div>
 
           <div className="detail-block">
-            <span>Tailles</span>
+            <span>Sizes</span>
             <div className="chip-group">
               {activeProduct.sizes.map((size) => (
                 <button
@@ -137,7 +138,7 @@ function ProductPage() {
           </div>
 
           <div className="detail-block">
-            <span>Couleurs</span>
+            <span>Colors</span>
             <div className="chip-group muted">
               {activeProduct.colors.map((color) => (
                 <button key={color} type="button">
@@ -148,7 +149,7 @@ function ProductPage() {
           </div>
 
           <div className="detail-block">
-            <span>Quantite</span>
+            <span>Quantity</span>
             <QuantitySelector
               value={quantity}
               onDecrease={() => setQuantity((current) => Math.max(1, current - 1))}
@@ -159,11 +160,11 @@ function ProductPage() {
           <div className="detail-actions">
             <button type="button" className="primary-button" onClick={handleAddCart}>
               <Icon name="cart" />
-              Ajouter au panier
+              Add to cart
             </button>
             <button type="button" className="ghost-button" onClick={() => dispatch(toggleFavorite(activeProduct.slug))}>
               <Icon name="heart" filled={isFavorite} />
-              {isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
+              {isFavorite ? "Remove favorite" : "Save favorite"}
             </button>
           </div>
 
@@ -176,7 +177,7 @@ function ProductPage() {
           </div>
 
           <div className="tech-list">
-            <span>Technologies et matieres</span>
+            <span>Fabric and tech details</span>
             <ul>
               {activeProduct.techFeatures.map((feature) => (
                 <li key={feature}>{feature}</li>
@@ -189,8 +190,8 @@ function ProductPage() {
       <section className="section review-section">
         <div className="review-layout">
           <Reveal className="review-list-card">
-            <p className="eyebrow">Avis clients</p>
-            <h2>Ce que pensent les joueurs et joueuses de ce produit.</h2>
+            <p className="eyebrow">Customer reviews</p>
+            <h2>What players think about this product.</h2>
             <div className="review-list">
               {activeProduct.reviews.map((review, index) => (
                 <article key={`${review.name}-${index}`}>
@@ -205,16 +206,16 @@ function ProductPage() {
           </Reveal>
 
           <Reveal className={`review-form-card ${reviewStatus === "loading" ? "loading-surface" : ""}`}>
-            <p className="eyebrow">Ajouter un avis</p>
-            <h2>Partagez votre retour pour rassurer les prochains clients.</h2>
+            <p className="eyebrow">Add a review</p>
+            <h2>Share your feedback with the next customer.</h2>
             {reviewStatus === "loading" ? (
               <div className="loading-surface-overlay">
-                <LoadingBall label="Publication de l'avis..." variant="overlay" />
+                <LoadingBall label="Publishing review..." variant="overlay" />
               </div>
             ) : null}
             <form onSubmit={handleReviewSubmit}>
               <label>
-                Nom
+                Name
                 <input
                   name="name"
                   value={reviewForm.name}
@@ -223,14 +224,14 @@ function ProductPage() {
                 />
               </label>
               <label>
-                Note
+                Rating
                 <StarRatingInput
                   value={reviewForm.rating}
                   onChange={(rating) => setReviewForm((current) => ({ ...current, rating }))}
                 />
               </label>
-              <label>
-                Commentaire
+              <label className="wide">
+                Comment
                 <textarea
                   name="comment"
                   rows="5"
@@ -239,9 +240,18 @@ function ProductPage() {
                   required
                 />
               </label>
-              <button type="submit" className="primary-button review-submit-button" disabled={reviewStatus === "loading"}>
-                {reviewStatus === "loading" ? <LoadingBall label="Ajout..." variant="inline" /> : "Publier l'avis"}
-              </button>
+              <div className="form-action-row wide">
+                <button type="submit" className="primary-button review-submit-button" disabled={reviewStatus === "loading"}>
+                  {reviewStatus === "loading" ? (
+                    <LoadingBall label="Sending..." variant="inline" />
+                  ) : (
+                    <>
+                      <Icon name="send" />
+                      Publish review
+                    </>
+                  )}
+                </button>
+              </div>
             </form>
           </Reveal>
         </div>
@@ -250,8 +260,8 @@ function ProductPage() {
       {relatedProducts.length ? (
         <section className="section section-alt">
           <Reveal>
-            <p className="eyebrow">Vous aimerez aussi</p>
-            <h2>Des pieces proches du meme esprit.</h2>
+            <p className="eyebrow">You may also like</p>
+            <h2>More pieces built with the same padel mindset.</h2>
           </Reveal>
           <ProductGrid products={relatedProducts} compact />
         </section>

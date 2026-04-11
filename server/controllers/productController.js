@@ -28,7 +28,7 @@ export const getProductBySlug = async (req, res) => {
     const product = await Product.findOne({ slug }).lean();
 
     if (!product) {
-      return res.status(404).json({ error: "Produit introuvable." });
+      return res.status(404).json({ error: "Product not found." });
     }
 
     return res.json({ ok: true, product });
@@ -37,7 +37,7 @@ export const getProductBySlug = async (req, res) => {
   const product = getRuntimeProductBySlug(slug);
 
   if (!product) {
-    return res.status(404).json({ error: "Produit introuvable." });
+    return res.status(404).json({ error: "Product not found." });
   }
 
   return res.json({ ok: true, product });
@@ -48,20 +48,20 @@ export const addProductReview = async (req, res) => {
   const { name, rating, comment } = req.body || {};
 
   if (!name || !comment || !rating) {
-    return res.status(400).json({ error: "Nom, note et commentaire sont obligatoires." });
+    return res.status(400).json({ error: "Name, rating and comment are required." });
   }
 
   const normalizedRating = Number(rating);
 
   if (Number.isNaN(normalizedRating) || normalizedRating < 1 || normalizedRating > 5) {
-    return res.status(400).json({ error: "La note doit etre comprise entre 1 et 5." });
+    return res.status(400).json({ error: "Rating must be between 1 and 5." });
   }
 
   if (isMongoConnected()) {
     const product = await Product.findOne({ slug });
 
     if (!product) {
-      return res.status(404).json({ error: "Produit introuvable." });
+      return res.status(404).json({ error: "Product not found." });
     }
 
     product.reviews.push({ name, rating: normalizedRating, comment });
@@ -97,9 +97,8 @@ export const addProductReview = async (req, res) => {
   );
 
   if (!product) {
-    return res.status(404).json({ error: "Produit introuvable." });
+    return res.status(404).json({ error: "Product not found." });
   }
 
   return res.status(201).json({ ok: true, product });
 };
-
