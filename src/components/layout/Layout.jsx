@@ -3,7 +3,6 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
-import CartDrawer from "./CartDrawer.jsx";
 import FavoritesDrawer from "./FavoritesDrawer.jsx";
 import FloatingFavoritesButton from "./FloatingFavoritesButton.jsx";
 import Toast from "./Toast.jsx";
@@ -29,14 +28,29 @@ function Layout() {
   const toast = useSelector((state) => state.ui.toast);
 
   useEffect(() => {
+    document.documentElement.style.colorScheme = theme === "sand" ? "light" : "dark";
+    document.body.style.background = theme === "sand" ? "#f3eddf" : "#07121f";
+  }, [theme]);
+
+  useEffect(() => {
     dispatch(closeDrawers());
 
     if (location.hash) {
-      const timer = window.setTimeout(() => {
-        scrollToHashTarget(location.hash);
-      }, 80);
+      let attempts = 0;
+      let frameId = 0;
 
-      return () => window.clearTimeout(timer);
+      const tryScroll = () => {
+        const found = scrollToHashTarget(location.hash);
+
+        if (!found && attempts < 90) {
+          attempts += 1;
+          frameId = window.requestAnimationFrame(tryScroll);
+        }
+      };
+
+      frameId = window.requestAnimationFrame(tryScroll);
+
+      return () => window.cancelAnimationFrame(frameId);
     }
 
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -57,7 +71,6 @@ function Layout() {
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
       <Header />
-      <CartDrawer />
       <FavoritesDrawer />
       <FloatingFavoritesButton />
       <main className="page-shell">

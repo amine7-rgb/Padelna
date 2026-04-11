@@ -1,6 +1,6 @@
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { closeDrawers, toggleCart, toggleMobileNav, toggleTheme } from "../../features/uiSlice.js";
+import { closeDrawers, toggleMobileNav, toggleTheme } from "../../features/uiSlice.js";
 import { selectCartSummary } from "../../utils/productFilters.js";
 import { brand } from "../../data/brand.js";
 import Icon from "../ui/Icon.jsx";
@@ -20,8 +20,20 @@ function Header() {
   const mobileNavOpen = useSelector((state) => state.ui.mobileNavOpen);
   const cartSummary = useSelector(selectCartSummary);
 
-  const handleSectionNavigation = (sectionId) => {
+  const handleSectionNavigation = (event, sectionId) => {
+    event.preventDefault();
     dispatch(closeDrawers());
+
+    if (sectionId === "home") {
+      if (location.pathname !== "/") {
+        navigate("/");
+        return;
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      navigate("/", { replace: true });
+      return;
+    }
 
     if (location.pathname !== "/") {
       navigate(`/#${sectionId}`);
@@ -30,14 +42,14 @@ function Header() {
 
     const element = document.getElementById(sectionId);
 
-    if (element) {
-      const y = element.getBoundingClientRect().top + window.scrollY - 104;
-      window.scrollTo({ top: y, behavior: "smooth" });
-      window.history.replaceState({}, "", sectionId === "home" ? "/" : `/#${sectionId}`);
+    if (!element) {
+      navigate(`/#${sectionId}`);
       return;
     }
 
-    navigate(`/#${sectionId}`);
+    const y = element.getBoundingClientRect().top + window.scrollY - 104;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    navigate(`/#${sectionId}`, { replace: true });
   };
 
   return (
@@ -61,9 +73,13 @@ function Header() {
 
         <nav className={`header-nav ${mobileNavOpen ? "open" : ""}`} aria-label="Navigation principale">
           {homeLinks.map((link) => (
-            <button key={link.id} type="button" onClick={() => handleSectionNavigation(link.id)}>
+            <Link
+              key={link.id}
+              to={link.id === "home" ? "/" : `/#${link.id}`}
+              onClick={(event) => handleSectionNavigation(event, link.id)}
+            >
               {link.label}
-            </button>
+            </Link>
           ))}
           <NavLink
             to="/store"
@@ -77,12 +93,12 @@ function Header() {
         <div className="header-actions">
           <button className="theme-button" type="button" onClick={() => dispatch(toggleTheme())}>
             <Icon name={theme === "sand" ? "moon" : "sun"} />
-            <span>{theme === "sand" ? "Night" : "Light"}</span>
+            <span>{theme === "sand" ? "Mode nuit" : "Mode clair"}</span>
           </button>
-          <button className="badge-button strong icon-badge-button" type="button" onClick={() => dispatch(toggleCart())}>
+          <Link className="badge-button strong icon-badge-button" to="/cart" onClick={() => dispatch(closeDrawers())}>
             <Icon name="cart" />
             <span>{cartSummary.quantity}</span>
-          </button>
+          </Link>
         </div>
       </div>
     </header>
