@@ -18,21 +18,21 @@ const localizedBrand = {
     heroSlides: [
       {
         id: "hero-1",
-        image: "/hero-court-speed.svg",
+        image: "/brand-media/hero-1.png",
         eyebrow: "Tunisian performance",
         title: "Play light. Strike clean.",
         accent: "Fast court energy"
       },
       {
         id: "hero-2",
-        image: "/hero-club-rally.svg",
+        image: "/brand-media/hero-2.png",
         eyebrow: "Original identity",
         title: "Own every rally.",
         accent: "Club-ready style"
       },
       {
         id: "hero-3",
-        image: "/hero-night-drop.svg",
+        image: "/brand-media/hero-3.png",
         eyebrow: "2026 launch",
         title: "Built for padel nights.",
         accent: "First drop"
@@ -104,21 +104,21 @@ const localizedBrand = {
     heroSlides: [
       {
         id: "hero-1",
-        image: "/hero-court-speed.svg",
+        image: "/brand-media/hero-1.png",
         eyebrow: "Performance tunisienne",
         title: "Jouez leger. Frappez net.",
         accent: "Energie du court"
       },
       {
         id: "hero-2",
-        image: "/hero-club-rally.svg",
+        image: "/brand-media/hero-2.png",
         eyebrow: "Identite originale",
         title: "Dominez chaque rallye.",
         accent: "Style club"
       },
       {
         id: "hero-3",
-        image: "/hero-night-drop.svg",
+        image: "/brand-media/hero-3.png",
         eyebrow: "Lancement 2026",
         title: "Pense pour les nuits padel.",
         accent: "Premier drop"

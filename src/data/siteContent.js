@@ -35,11 +35,11 @@ export const siteContent = {
     },
     store: {
       eyebrow: "Store",
-      title: "Find your Padelna pieces with fast, precise filtering.",
+      title: "Shop the Padelna collection.",
       copy:
-        "Live search, categories, gender, price, stock, new drops and smart sorting help every shopper find the right fit.",
+        "Discover premium padel apparel crafted for performance, comfort and confident court-to-club style.",
       count: "product(s)",
-      subtitle: "Designed for padel, club life and active movement.",
+      subtitle: "Built for match intensity, club presence and everyday movement.",
       loading: "Loading the catalog...",
       empty: "No product matches these filters yet. Try another combination."
     },
@@ -272,11 +272,11 @@ export const siteContent = {
     },
     store: {
       eyebrow: "Boutique",
-      title: "Trouvez vos pieces Padelna avec un filtrage rapide et precis.",
+      title: "Decouvrez la collection Padelna.",
       copy:
-        "Recherche live, categories, genre, prix, stock, nouveautes et tri intelligent aident chaque client a trouver la bonne tenue.",
+        "Explorez des pieces padel premium concues pour la performance, le confort et un style affirme du court au club.",
       count: "produit(s)",
-      subtitle: "Pense pour le padel, la vie du club et le mouvement.",
+      subtitle: "Construit pour l'intensite du match, la presence au club et le mouvement au quotidien.",
       loading: "Chargement du catalogue...",
       empty: "Aucun produit ne correspond a ces filtres. Essayez une autre combinaison."
     },

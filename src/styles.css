@@ -954,7 +954,60 @@ button:disabled {
 }
 
 .store-hero {
-  padding-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(25rem, 34vw, 32rem);
+  display: flex;
+  align-items: center;
+  padding-top: 3.2rem;
+  padding-bottom: 3.2rem;
+  background:
+    linear-gradient(104deg, rgba(4, 10, 19, 0.94) 10%, rgba(7, 18, 31, 0.56) 48%, rgba(5, 13, 25, 0.86) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.store-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(104deg, rgba(4, 10, 19, 0.76) 11%, rgba(7, 18, 31, 0.12) 42%, rgba(5, 13, 25, 0.68) 100%),
+    url("/brand-media/store-cover.png") center 44% / cover no-repeat;
+  opacity: 0.95;
+}
+
+.store-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -3rem -3rem auto;
+  width: min(32vw, 18rem);
+  height: min(32vw, 18rem);
+  border-radius: 50%;
+  border: 1px solid rgba(112, 242, 218, 0.18);
+  background: radial-gradient(circle, rgba(112, 242, 218, 0.18), transparent 68%);
+}
+
+.store-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.store-hero .section-title {
+  margin-bottom: 0;
+  max-width: 56rem;
+  position: relative;
+  z-index: 1;
+}
+
+.store-hero .section-title h2 {
+  max-width: 52rem;
+  font-size: clamp(3rem, 5.7vw, 5.2rem);
+}
+
+.store-hero .section-title p {
+  color: #d9e7ff;
+  max-width: 55rem;
+  font-size: 1.02rem;
 }
 
 .store-layout {
