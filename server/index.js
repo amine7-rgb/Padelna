@@ -6,8 +6,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import productRoutes from "./routes/productRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
+import checkoutRoutes from "./routes/checkoutRoutes.js";
 import { connectMongo } from "./config/db.js";
 import { seedProductsIfEmpty } from "./data/seed.js";
+import { handleStripeWebhook } from "./controllers/checkoutController.js";
 
 dotenv.config();
 
@@ -19,6 +21,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distPath = path.resolve(__dirname, "../dist");
 
 app.use(cors({ origin: clientOrigin }));
+app.post("/api/checkout/webhook", express.raw({ type: "application/json" }), handleStripeWebhook);
 app.use(express.json({ limit: "1mb" }));
 
 app.get("/api/health", (_req, res) => {
@@ -27,6 +30,7 @@ app.get("/api/health", (_req, res) => {
 
 app.use("/api/products", productRoutes);
 app.use("/api/contact", contactRoutes);
+app.use("/api/checkout", checkoutRoutes);
 
 if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));

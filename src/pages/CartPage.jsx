@@ -7,7 +7,6 @@ import QuantitySelector from "../components/product/QuantitySelector.jsx";
 import Icon from "../components/ui/Icon.jsx";
 import LoadingBall from "../components/ui/LoadingBall.jsx";
 import { clearCart, removeFromCart, updateCartQuantity } from "../features/cartSlice.js";
-import { showToast } from "../features/uiSlice.js";
 import { fetchProducts } from "../features/productsSlice.js";
 import { getSiteCopy } from "../data/siteContent.js";
 import { localizeProduct } from "../data/productLocale.js";
@@ -36,15 +35,6 @@ function CartPage() {
       dispatch(fetchProducts());
     }
   }, [dispatch, productsStatus]);
-
-  const handleCheckout = () => {
-    dispatch(
-      showToast({
-        type: "success",
-        message: copy.cart.checkoutToast
-      })
-    );
-  };
 
   return (
     <div className="cart-page">
@@ -156,10 +146,19 @@ function CartPage() {
                 <Icon name="trash" />
                 {copy.cart.clear}
               </button>
-              <button type="button" className="primary-button" onClick={handleCheckout} disabled={!items.length}>
+              <Link
+                to={items.length ? "/checkout" : "#"}
+                className={`primary-button ${items.length ? "" : "disabled"}`.trim()}
+                aria-disabled={!items.length}
+                onClick={(event) => {
+                  if (!items.length) {
+                    event.preventDefault();
+                  }
+                }}
+              >
                 <Icon name="arrow-right" />
                 {copy.cart.checkout}
-              </button>
+              </Link>
             </div>
           </Reveal>
         </div>

@@ -32,5 +32,29 @@ export const api = {
       body: JSON.stringify(payload)
     });
     return parseResponse(response);
+  },
+  createCardCheckoutSession: async (payload) => {
+    const response = await fetch("/api/checkout/card-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    return parseResponse(response);
+  },
+  createCashOrder: async (payload) => {
+    const response = await fetch("/api/checkout/cash-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    return parseResponse(response);
+  },
+  fetchCheckoutOrder: async (orderNumber) => {
+    const response = await fetch(`/api/checkout/orders/${orderNumber}`);
+    return parseResponse(response);
+  },
+  fetchCheckoutSessionStatus: async (sessionId) => {
+    const response = await fetch(`/api/checkout/session/${sessionId}`);
+    return parseResponse(response);
   }
 };

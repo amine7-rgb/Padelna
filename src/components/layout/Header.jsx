@@ -19,7 +19,7 @@ function Header() {
   const copy = getSiteCopy(language);
   const homeLinks = [
     { label: copy.header.home, id: "home", icon: "home" },
-    { label: copy.header.about, id: "about", icon: "spark" },
+    // About is temporarily hidden while the section is not displayed on the home page.
     { label: copy.header.newArrivals, id: "new-arrivals", icon: "spark" },
     { label: copy.header.contact, id: "contact", icon: "mail" }
   ];

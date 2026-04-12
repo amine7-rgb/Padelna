@@ -1,8 +1,12 @@
 const baseBrand = {
   name: "Padelna",
   founded: "2026",
-  email: "amed14170@gmail.com",
-  phone: "+216 55 770 126"
+  email: "info@padelna.com",
+  phone: "+216 51 833 422",
+  instagramHandle: "padelna",
+  instagramUrl: "https://www.instagram.com/padelna/",
+  tiktokHandle: "padelna",
+  tiktokUrl: "https://www.tiktok.com/@padelna"
 };
 
 const localizedBrand = {

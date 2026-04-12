@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import HeroCarousel from "../components/sections/HeroCarousel.jsx";
-import AboutSection from "../components/sections/AboutSection.jsx";
 import NewArrivalsSection from "../components/sections/NewArrivalsSection.jsx";
 import ContactSection from "../components/sections/ContactSection.jsx";
 import { fetchProducts } from "../features/productsSlice.js";
@@ -27,7 +26,7 @@ function HomePage() {
   return (
     <>
       <HeroCarousel />
-      <AboutSection />
+      {/* AboutSection is temporarily hidden until we bring the brand story back. */}
       <section className="section">
         <Reveal>
           <SectionTitle
