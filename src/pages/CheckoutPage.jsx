@@ -29,6 +29,7 @@ function CheckoutPage() {
   const navigate = useNavigate();
   const language = useSelector((state) => state.ui.language);
   const productsStatus = useSelector((state) => state.products.status);
+  const user = useSelector((state) => state.auth.user);
   const rawCartItems = useSelector((state) => state.cart.items);
   const items = useSelector(selectCartDetailedItems).map((item) => ({
     ...item,
@@ -68,6 +69,22 @@ function CheckoutPage() {
       dispatch(fetchProducts());
     }
   }, [dispatch, productsStatus]);
+
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
+
+    setCustomer((current) => ({
+      ...current,
+      name: current.name || user.fullName || `${user.firstName} ${user.lastName}`.trim(),
+      email: current.email || user.email || "",
+      phone: current.phone || user.phone || "",
+      addressLine1: current.addressLine1 || user.addressLine1 || "",
+      city: current.city || user.city || "",
+      postalCode: current.postalCode || user.postalCode || ""
+    }));
+  }, [user]);
 
   const handleChange = (event) => {
     setCustomer((current) => ({ ...current, [event.target.name]: event.target.value }));

@@ -8,53 +8,124 @@ const parseResponse = async (response) => {
   return data;
 };
 
+const request = async (url, options = {}) => {
+  const response = await fetch(url, {
+    credentials: "include",
+    ...options
+  });
+
+  return parseResponse(response);
+};
+
 export const api = {
   fetchProducts: async () => {
-    const response = await fetch("/api/products");
-    return parseResponse(response);
+    return request("/api/products");
   },
   fetchProductBySlug: async (slug) => {
-    const response = await fetch(`/api/products/${slug}`);
-    return parseResponse(response);
+    return request(`/api/products/${slug}`);
   },
   submitReview: async (slug, payload) => {
-    const response = await fetch(`/api/products/${slug}/reviews`, {
+    return request(`/api/products/${slug}/reviews`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
-    return parseResponse(response);
   },
   submitContact: async (payload) => {
-    const response = await fetch("/api/contact", {
+    return request("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
-    return parseResponse(response);
   },
   createCardCheckoutSession: async (payload) => {
-    const response = await fetch("/api/checkout/card-session", {
+    return request("/api/checkout/card-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
-    return parseResponse(response);
   },
   createCashOrder: async (payload) => {
-    const response = await fetch("/api/checkout/cash-order", {
+    return request("/api/checkout/cash-order", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
-    return parseResponse(response);
   },
   fetchCheckoutOrder: async (orderNumber) => {
-    const response = await fetch(`/api/checkout/orders/${orderNumber}`);
-    return parseResponse(response);
+    return request(`/api/checkout/orders/${orderNumber}`);
   },
   fetchCheckoutSessionStatus: async (sessionId) => {
-    const response = await fetch(`/api/checkout/session/${sessionId}`);
-    return parseResponse(response);
-  }
+    return request(`/api/checkout/session/${sessionId}`);
+  },
+  fetchSession: async () => request("/api/auth/session"),
+  signup: async (payload) =>
+    request("/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }),
+  login: async (payload) =>
+    request("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }),
+  logout: async () =>
+    request("/api/auth/logout", {
+      method: "POST"
+    }),
+  updateProfile: async (payload) =>
+    request("/api/auth/profile", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }),
+  changePassword: async (payload) =>
+    request("/api/auth/change-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }),
+  forgotPassword: async (payload) =>
+    request("/api/auth/forgot-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }),
+  resetPassword: async (payload) =>
+    request("/api/auth/reset-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }),
+  verifyEmail: async (payload) =>
+    request("/api/auth/verify-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }),
+  resendVerification: async () =>
+    request("/api/auth/resend-verification", {
+      method: "POST"
+    }),
+  fetchAdminSummary: async () => request("/api/auth/admin/summary"),
+  fetchAdminOrders: async (filters = {}) => {
+    const params = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(filters)) {
+      if (value !== undefined && value !== null && value !== "") {
+        params.set(key, String(value));
+      }
+    }
+
+    return request(`/api/auth/admin/orders${params.toString() ? `?${params.toString()}` : ""}`);
+  },
+  updateAdminOrderStatus: async (orderNumber, payload) =>
+    request(`/api/auth/admin/orders/${encodeURIComponent(orderNumber)}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }),
+  getOAuthUrl: (provider, redirect = "/account") => `/api/auth/${provider}?redirect=${encodeURIComponent(redirect)}`
 };

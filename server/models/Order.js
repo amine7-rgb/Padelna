@@ -54,6 +54,7 @@ const orderSchema = new mongoose.Schema(
       unique: true,
       default: createOrderNumber
     },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     customer: { type: customerSchema, required: true },
     items: { type: [orderItemSchema], default: [] },
     totals: { type: totalsSchema, required: true },
@@ -65,13 +66,13 @@ const orderSchema = new mongoose.Schema(
     paymentStatus: {
       type: String,
       required: true,
-      enum: ["pending", "paid", "failed", "cash_due"],
+      enum: ["pending", "paid", "failed", "cash_due", "cancelled"],
       default: "pending"
     },
     orderStatus: {
       type: String,
       required: true,
-      enum: ["awaiting_payment", "confirmed", "preparing", "cancelled"],
+      enum: ["awaiting_payment", "confirmed", "preparing", "delivered", "returned", "blocked", "cancelled"],
       default: "awaiting_payment"
     },
     customerEmailSentAt: { type: Date, default: null },

@@ -18,6 +18,7 @@ function CartPage() {
   const productsStatus = useSelector((state) => state.products.status);
   const rawCartItems = useSelector((state) => state.cart.items);
   const language = useSelector((state) => state.ui.language);
+  const user = useSelector((state) => state.auth.user);
   const items = useSelector(selectCartDetailedItems).map((item) => ({
     ...item,
     product: localizeProduct(item.product, language)
@@ -147,7 +148,7 @@ function CartPage() {
                 {copy.cart.clear}
               </button>
               <Link
-                to={items.length ? "/checkout" : "#"}
+                to={items.length ? (user ? "/checkout" : "/login?redirect=%2Fcheckout") : "#"}
                 className={`primary-button ${items.length ? "" : "disabled"}`.trim()}
                 aria-disabled={!items.length}
                 onClick={(event) => {
@@ -160,6 +161,7 @@ function CartPage() {
                 {copy.cart.checkout}
               </Link>
             </div>
+            {items.length && !user ? <p className="cart-auth-note">{copy.auth.secureCheckoutMessage}</p> : null}
           </Reveal>
         </div>
       </section>

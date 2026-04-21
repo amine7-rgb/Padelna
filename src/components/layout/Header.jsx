@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { closeDrawers, setLanguage, toggleMobileNav, toggleTheme } from "../../features/uiSlice.js";
+import { closeDrawers, setLanguage, toggleMobileNav } from "../../features/uiSlice.js";
 import { selectCartSummary } from "../../utils/productFilters.js";
 import { getBrandContent } from "../../data/brand.js";
 import { getSiteCopy } from "../../data/siteContent.js";
 import Icon from "../ui/Icon.jsx";
+import ProfileAvatar from "../ui/ProfileAvatar.jsx";
 
 function Header() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const theme = useSelector((state) => state.ui.theme);
   const language = useSelector((state) => state.ui.language);
+  const user = useSelector((state) => state.auth.user);
   const mobileNavOpen = useSelector((state) => state.ui.mobileNavOpen);
   const cartSummary = useSelector(selectCartSummary);
   const [isScrolled, setIsScrolled] = useState(false);
   const brand = getBrandContent(language);
   const copy = getSiteCopy(language);
+  const isAdmin = user?.role === "admin";
+  const userLabel = user ? user.firstName || user.fullName || copy.header.account : copy.header.signIn;
   const homeLinks = [
     { label: copy.header.home, id: "home", icon: "home" },
     // About is temporarily hidden while the section is not displayed on the home page.
@@ -120,13 +123,41 @@ function Header() {
               FR
             </button>
           </div>
-          <button className="theme-button" type="button" onClick={() => dispatch(toggleTheme())}>
-            <Icon name={theme === "sand" ? "moon" : "sun"} />
-            <span>{theme === "sand" ? copy.header.dark : copy.header.light}</span>
-          </button>
+          {isAdmin ? (
+            <>
+              <Link
+                className="badge-button strong icon-badge-button user-entry-button"
+                to="/admin"
+                onClick={() => dispatch(closeDrawers())}
+                aria-label={copy.header.admin}
+              >
+                <Icon name="shield" />
+                <span>{copy.header.admin}</span>
+              </Link>
+              <Link
+                className="badge-button strong icon-badge-button user-entry-button"
+                to="/account"
+                onClick={() => dispatch(closeDrawers())}
+                aria-label={copy.header.account}
+              >
+                <ProfileAvatar avatarUrl={user?.avatarUrl} gender={user?.gender} name={userLabel} className="header-profile-avatar" />
+                <span className="button-label">{userLabel}</span>
+              </Link>
+            </>
+          ) : (
+            <Link
+              className="badge-button strong icon-badge-button user-entry-button"
+              to={user ? "/account" : "/login"}
+              onClick={() => dispatch(closeDrawers())}
+              aria-label={user ? copy.header.account : copy.header.signIn}
+            >
+              <ProfileAvatar avatarUrl={user?.avatarUrl} gender={user?.gender} name={userLabel} className="header-profile-avatar" />
+              <span className="button-label">{userLabel}</span>
+            </Link>
+          )}
           <Link className="badge-button strong icon-badge-button" to="/cart" onClick={() => dispatch(closeDrawers())}>
             <Icon name="cart" />
-            <span>{cartSummary.quantity}</span>
+            <span className="counter-badge">{cartSummary.quantity}</span>
           </Link>
         </div>
       </div>

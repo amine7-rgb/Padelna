@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getBrandContent } from "../../data/brand.js";
@@ -15,16 +15,22 @@ function HeroCarousel() {
   const current = brand.heroSlides[slide];
   const typed = useTypingWords(brand.typingWords, 62, 1500);
 
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      setSlide((currentSlide) => (currentSlide + 1) % brand.heroSlides.length);
-    }, 5200);
-
-    return () => window.clearInterval(interval);
-  }, []);
-
   return (
-    <section id="home" className="hero" style={{ "--hero-image": `url(${current.image})` }}>
+    <section id="home" className="hero">
+      <div className="hero-media" aria-hidden="true">
+        {brand.heroSlides.map((item, index) => (
+          <img
+            key={item.id}
+            className={`hero-image ${slide === index ? "active" : ""}`}
+            src={item.image}
+            alt=""
+            style={{ objectPosition: item.position || "center center" }}
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "auto"}
+            draggable="false"
+          />
+        ))}
+      </div>
       <Reveal className="hero-content">
         <p className="eyebrow">{current.eyebrow}</p>
         <h1>
@@ -58,6 +64,7 @@ function HeroCarousel() {
               key={item.id}
               className={slide === index ? "active" : ""}
               type="button"
+              aria-label={`${copy.hero.changeSlide} ${index + 1}`}
               onClick={() => setSlide(index)}
             />
           ))}

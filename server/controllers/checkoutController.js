@@ -36,6 +36,16 @@ const normalizeCustomer = (customer = {}) => ({
   notes: String(customer.notes || "").trim()
 });
 
+const mergeCustomerWithUser = (customer, user) => ({
+  name: customer.name || `${user.firstName} ${user.lastName}`.trim(),
+  email: customer.email || user.email,
+  phone: customer.phone || user.phone,
+  addressLine1: customer.addressLine1 || user.addressLine1,
+  city: customer.city || user.city,
+  postalCode: customer.postalCode || user.postalCode || "",
+  notes: customer.notes || ""
+});
+
 const validateCustomer = (customer) => {
   if (!customer.name || !customer.email || !customer.phone || !customer.addressLine1 || !customer.city) {
     const error = new Error("Name, email, phone, address and city are required.");
@@ -181,6 +191,39 @@ const finalizeOrderNotifications = async (order) => {
   await sendOrderNotifications(order);
 };
 
+const canAccessOrder = (order, user) => user.role === "admin" || String(order.user) === String(user._id);
+
+const syncUserCheckoutProfile = async (user, customer) => {
+  let changed = false;
+
+  if (customer.name) {
+    const parts = customer.name.trim().split(/\s+/);
+    const firstName = parts.shift() || user.firstName;
+    const lastName = parts.join(" ") || user.lastName;
+
+    if (user.firstName !== firstName) {
+      user.firstName = firstName;
+      changed = true;
+    }
+
+    if (user.lastName !== lastName) {
+      user.lastName = lastName;
+      changed = true;
+    }
+  }
+
+  for (const field of ["email", "phone", "addressLine1", "city", "postalCode"]) {
+    if (customer[field] && user[field] !== customer[field]) {
+      user[field] = customer[field];
+      changed = true;
+    }
+  }
+
+  if (changed) {
+    await user.save();
+  }
+};
+
 export const createCardCheckoutSession = async (req, res) => {
   try {
     requireMongo();
@@ -191,11 +234,13 @@ export const createCardCheckoutSession = async (req, res) => {
       return res.status(500).json({ error: "Stripe is not configured. Add STRIPE_SECRET_KEY first." });
     }
 
-    const customer = normalizeCustomer(req.body?.customer);
+    const customer = mergeCustomerWithUser(normalizeCustomer(req.body?.customer), req.user);
     validateCustomer(customer);
+    await syncUserCheckoutProfile(req.user, customer);
 
     const draft = await buildOrderDraft(req.body?.cartItems, customer);
     const order = await Order.create({
+      user: req.user._id,
       customer,
       items: draft.items,
       totals: {
@@ -244,11 +289,13 @@ export const createCashOrder = async (req, res) => {
   try {
     requireMongo();
 
-    const customer = normalizeCustomer(req.body?.customer);
+    const customer = mergeCustomerWithUser(normalizeCustomer(req.body?.customer), req.user);
     validateCustomer(customer);
+    await syncUserCheckoutProfile(req.user, customer);
 
     const draft = await buildOrderDraft(req.body?.cartItems, customer);
     const order = await Order.create({
+      user: req.user._id,
       customer,
       items: draft.items,
       totals: {
@@ -280,6 +327,10 @@ export const getCheckoutOrder = async (req, res) => {
       return res.status(404).json({ error: "Order not found." });
     }
 
+    if (!canAccessOrder(order, req.user)) {
+      return res.status(403).json({ error: "You are not allowed to view this order." });
+    }
+
     return res.json({ ok: true, order: publicOrder(order) });
   } catch (error) {
     return res.status(error.statusCode || 500).json({ error: error.message || "Unable to fetch the order." });
@@ -303,6 +354,10 @@ export const getCheckoutSessionStatus = async (req, res) => {
 
     if (!order) {
       return res.status(404).json({ error: "Order not found for this session." });
+    }
+
+    if (!canAccessOrder(order, req.user)) {
+      return res.status(403).json({ error: "You are not allowed to view this checkout session." });
     }
 
     if (session.payment_status === "paid" && order.paymentStatus !== "paid") {
