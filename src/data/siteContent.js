@@ -1,7 +1,7 @@
 export const siteContent = {
   en: {
     app: {
-      loading: "Loading Padelna..."
+      loading: "Loading Palina..."
     },
     header: {
       home: "Home",
@@ -19,26 +19,36 @@ export const siteContent = {
       language: "Language"
     },
     hero: {
-      shopNow: "Shop now",
-      meetBrand: "Meet the brand",
-      changeSlide: "Change hero slide"
+      womenEyebrow: "Women's edit",
+      womenTitle: "Women's\noutfits",
+      menEyebrow: "Men's edit",
+      menTitle: "Men's\noutfits",
+      discover: "Discover",
+      centerLabel: "Palina hero showcase"
     },
     home: {
       previewEyebrow: "Featured selection",
-      previewTitle: "Discover the Padelna collection.",
+      previewTitle: "Discover the Palina collection.",
       previewCopy:
-        "Explore premium padel apparel designed for performance, comfort and confident club style, with a smooth shopping experience from first look to final choice."
+        "Explore premium padel apparel designed for performance, comfort and confident club style, with a smooth shopping experience from first look to final choice.",
+      marqueeLabel: "Palina collection marquee",
+      marqueeItems: [
+        "Featured selection",
+        "Discover the Palina collection",
+        "New arrivals",
+        "The 2026 pieces opening the Palina universe"
+      ]
     },
     about: {},
     newArrivals: {
       eyebrow: "New arrivals",
-      title: "The 2026 pieces opening the Padelna universe.",
+      title: "The 2026 pieces opening the Palina universe.",
       copy: "A first capsule built to showcase premium finishing, Tunisian identity and sport-dedicated fabrics.",
       cta: "View the full store"
     },
     store: {
       eyebrow: "Store",
-      title: "Shop the Padelna collection.",
+      title: "Shop the Palina collection.",
       copy:
         "Discover premium padel apparel crafted for performance, comfort and confident court-to-club style.",
       count: "product(s)",
@@ -93,12 +103,12 @@ export const siteContent = {
     },
     auth: {
       loadingSession: "Checking your secure session...",
-      loginEyebrow: "Secure sign in",
-      loginTitle: "Welcome back to Padelna.",
-      loginCopy: "Sign in with Google or email to keep checkout, delivery details and your order history connected in one premium account.",
+      loginEyebrow: "Secure member access",
+      loginTitle: "Sign in to your Palina account.",
+      loginCopy: "",
       signupEyebrow: "Create account",
-      signupTitle: "Create your premium Padelna account.",
-      signupCopy: "Open your account once, save your delivery profile and move through future orders with a smoother checkout flow.",
+      signupTitle: "Open your Palina account.",
+      signupCopy: "",
       forgotEyebrow: "Password help",
       forgotTitle: "Reset your password securely.",
       forgotCopy: "Enter your email address and we will send a secure reset link to your inbox.",
@@ -111,8 +121,11 @@ export const siteContent = {
       accountEyebrow: "My account",
       accountTitle: "Manage your delivery profile.",
       accountCopy: "Keep your contact details, shipping address and account security ready for future orders.",
+      completeProfileTitle: "Complete your profile before checkout.",
+      completeProfileCopy: "Add your phone number, gender and delivery details so Palina can secure your orders and delivery flow properly.",
+      completeProfileAction: "Complete profile first",
       adminEyebrow: "Admin",
-      adminTitle: "Padelna admin overview.",
+      adminTitle: "Palina admin overview.",
       adminCopy: "Monitor accounts and orders from one secure place.",
       firstName: "First name",
       lastName: "Last name",
@@ -137,13 +150,14 @@ export const siteContent = {
       profilePhoto: "Profile photo",
       uploadPhoto: "Upload photo",
       removePhoto: "Remove photo",
-      avatarHint: "Add a clean portrait or let Padelna use a refined profile icon.",
+      avatarHint: "Add a clean portrait or let Palina use a refined profile icon.",
       identitySection: "Profile identity",
       identitySectionCopy: "Set the customer details that will follow your account and orders.",
       deliverySection: "Delivery details",
       deliverySectionCopy: "Keep your address and map notes ready for faster future checkout.",
       securitySection: "Account security",
-      securitySectionCopy: "Choose a strong password and keep your account protected.",
+      securitySectionCopy: "Create a strong password to secure your future orders and account access.",
+      signupNote: "You can complete your phone, gender and delivery details later from your account before checkout.",
       signInAction: "Sign in",
       signupAction: "Create account",
       saveProfile: "Save profile",
@@ -165,14 +179,12 @@ export const siteContent = {
       googleUnavailableCopy: "Add your Google client credentials to enable one-tap sign-in from the login and signup pages.",
       socialUnavailable: "Social sign-in will appear here as soon as Google or Facebook credentials are configured.",
       socialPasswordHint: "This account uses Google or Facebook sign-in. You can keep signing in through your social provider.",
-      loginShowcaseEyebrow: "Google Passport",
-      loginShowcaseTitle: "Fast access for checkout, profile and orders.",
-      loginShowcaseCopy: "Use Google Passport for a cleaner sign-in flow and keep every order, delivery update and payment confirmation attached to the same secure account.",
-      signupShowcaseEyebrow: "Premium onboarding",
-      signupShowcaseTitle: "Create once. Return faster every time.",
-      signupShowcaseCopy: "Start with Google or email, save your delivery profile and keep a refined account experience ready for every new Padelna order.",
-      loginHighlights: ["Google Passport sign-in", "Protected checkout access", "Orders and profile in one place"],
-      signupHighlights: ["Google or email onboarding", "Saved delivery profile", "Faster repeat checkout"],
+      loginShowcaseEyebrow: "Palina club access",
+      loginShowcaseTitle: "Return to the brand with ease.",
+      loginShowcaseCopy: "Keep your orders, delivery details and future checkout steps inside one polished Palina account.",
+      signupShowcaseEyebrow: "Palina membership",
+      signupShowcaseTitle: "Join the brand with a cleaner start.",
+      signupShowcaseCopy: "One account keeps your future orders, saved profile and checkout path inside the same premium Palina experience.",
       unverified: "Email verification pending",
       unverifiedCopy: "Please verify your email to keep your account fully secured.",
       profileSaved: "Your profile has been updated.",
@@ -251,7 +263,7 @@ export const siteContent = {
       eyebrow: "Checkout",
       title: "Choose how you want to pay.",
       copy:
-        "Complete your customer details, confirm your delivery information and finish your Padelna order with the payment method that suits you.",
+        "Complete your customer details, confirm your delivery information and finish your Palina order with the payment method that suits you.",
       customerTitle: "Customer details",
       customerCopy: "We use these details to prepare delivery and order support.",
       paymentTitle: "Payment method",
@@ -292,7 +304,7 @@ export const siteContent = {
       awaitingStatus: "Awaiting payment",
       cancelledStatus: "Cancelled",
       successTitleCard: "Your card payment is confirmed.",
-      successCopyCard: "Stripe has confirmed your payment and Padelna can start preparing your order.",
+      successCopyCard: "Stripe has confirmed your payment and Palina can start preparing your order.",
       successTitleCash: "Your cash order is confirmed.",
       successCopyCash: "Your order is booked successfully and payment will happen on delivery.",
       cancelTitle: "Your card checkout was canceled.",
@@ -300,10 +312,10 @@ export const siteContent = {
       continueShopping: "Continue shopping",
       returnCheckout: "Back to checkout"
     },
-    product: {
-      loading: "Loading product...",
-      addedToCart: "added to cart.",
-      backToStore: "Back to store",
+      product: {
+        loading: "Loading product...",
+        addedToCart: "added to cart.",
+        backToStore: "Back to store",
       gender: "Gender",
       category: "Category",
       stock: "Stock",
@@ -325,16 +337,23 @@ export const siteContent = {
       rating: "Rating",
       comment: "Comment",
       publishReview: "Publish review",
-      sending: "Sending...",
-      reviewAdded: "Thanks, your review has been added.",
-      youMayAlsoLike: "You may also like",
-      morePieces: "More pieces built with the same padel mindset."
-    },
+        sending: "Sending...",
+        reviewAdded: "Thanks, your review has been added.",
+        youMayAlsoLike: "You may also like",
+        morePieces: "More pieces built with the same padel mindset."
+      },
     contact: {
       eyebrow: "Contact",
       title: "Let's talk about your order, club or collaboration.",
       copy:
-        "Reach Padelna for product questions, club requests, collaborations or customer support. We reply with the same care we bring to every collection.",
+        "Reach Palina for product questions, club requests, collaborations or customer support. We reply with the same care we bring to every collection.",
+      marqueeLabel: "Palina contact marquee",
+      marqueeItems: [
+        "Direct contact",
+        "Customer support",
+        "Club requests",
+        "Brand collaborations"
+      ],
       sendingOverlay: "Sending your message...",
       name: "Name",
       email: "Email",
@@ -344,7 +363,7 @@ export const siteContent = {
       message: "Message",
       sendRequest: "Send request",
       sendingInline: "Sending...",
-      sentToast: "Your message has been sent to Padelna.",
+      sentToast: "Your message has been sent to Palina.",
       why: "Why contact us?",
       whyTitle: "Support for orders, teamwear and brand partnerships.",
       whyCopy:
@@ -367,10 +386,10 @@ export const siteContent = {
       removedToast: "Product removed from favorites."
     },
     footer: {
-      kicker: "Padelna Tunisia",
+      kicker: "Palina Tunisia",
       connect: "Connect",
       direct: "Direct contact",
-      copy: "Stay connected with Padelna for product news, customer support, club requests and collaboration opportunities.",
+      copy: "Stay connected with Palina for product news, customer support, club requests and collaboration opportunities.",
       instagram: "Instagram",
       tiktok: "TikTok",
       email: "Email",
@@ -379,7 +398,7 @@ export const siteContent = {
     },
     notFound: {
       title: "This page does not exist yet.",
-      copy: "Go back to the Padelna home page or jump straight into the store.",
+      copy: "Go back to the Palina home page or jump straight into the store.",
       home: "Home",
       store: "Store"
     },
@@ -397,7 +416,7 @@ export const siteContent = {
   },
   fr: {
     app: {
-      loading: "Chargement de Padelna..."
+      loading: "Chargement de Palina..."
     },
     header: {
       home: "Accueil",
@@ -415,26 +434,36 @@ export const siteContent = {
       language: "Langue"
     },
     hero: {
-      shopNow: "Voir la boutique",
-      meetBrand: "Decouvrir la marque",
-      changeSlide: "Changer le slide hero"
+      womenEyebrow: "Edit femme",
+      womenTitle: "Tenues femme",
+      menEyebrow: "Edit homme",
+      menTitle: "Tenues homme",
+      discover: "Decouvrir",
+      centerLabel: "Vitrine hero Palina"
     },
     home: {
       previewEyebrow: "Selection a la une",
-      previewTitle: "Decouvrez la collection Padelna.",
+      previewTitle: "Decouvrez la collection Palina.",
       previewCopy:
-        "Explorez des vetements padel premium concus pour la performance, le confort et un style club affirme, avec une experience d'achat fluide du premier regard au bon choix."
+        "Explorez des vetements padel premium concus pour la performance, le confort et un style club affirme, avec une experience d'achat fluide du premier regard au bon choix.",
+      marqueeLabel: "Bande deroulante collection Palina",
+      marqueeItems: [
+        "Selection a la une",
+        "Decouvrez la collection Palina",
+        "Nouveautes",
+        "Les pieces 2026 qui ouvrent l'univers Palina"
+      ]
     },
     about: {},
     newArrivals: {
       eyebrow: "Nouveautes",
-      title: "Les pieces 2026 qui ouvrent l'univers Padelna.",
+      title: "Les pieces 2026 qui ouvrent l'univers Palina.",
       copy: "Une premiere capsule pour montrer la finition premium, l'identite tunisienne et les tissus dedies au sport.",
       cta: "Voir toute la boutique"
     },
     store: {
       eyebrow: "Boutique",
-      title: "Decouvrez la collection Padelna.",
+      title: "Decouvrez la collection Palina.",
       copy:
         "Explorez des pieces padel premium concues pour la performance, le confort et un style affirme du court au club.",
       count: "produit(s)",
@@ -489,12 +518,12 @@ export const siteContent = {
     },
     auth: {
       loadingSession: "Verification de votre session securisee...",
-      loginEyebrow: "Connexion securisee",
-      loginTitle: "Heureux de vous revoir chez Padelna.",
-      loginCopy: "Connectez-vous avec Google ou par email pour garder le paiement, la livraison et l'historique de vos commandes relies dans un seul compte premium.",
+      loginEyebrow: "Acces membre securise",
+      loginTitle: "Connectez-vous a votre compte Palina.",
+      loginCopy: "Retrouvez vos commandes, votre profil enregistre et un paiement securise dans un seul espace client soigne.",
       signupEyebrow: "Creer un compte",
-      signupTitle: "Creez votre compte premium Padelna.",
-      signupCopy: "Ouvrez votre compte une seule fois, sauvegardez votre profil de livraison et profitez d'un parcours de paiement plus fluide pour les prochaines commandes.",
+      signupTitle: "Ouvrez votre compte Palina.",
+      signupCopy: "Creez votre profil membre en quelques etapes rapides, puis completez la livraison plus tard lorsque vous etes pret a commander.",
       forgotEyebrow: "Mot de passe",
       forgotTitle: "Reinitialisez votre mot de passe en toute securite.",
       forgotCopy: "Entrez votre adresse email et nous enverrons un lien de reinitialisation securise vers votre boite.",
@@ -507,8 +536,11 @@ export const siteContent = {
       accountEyebrow: "Mon compte",
       accountTitle: "Gerez votre profil de livraison.",
       accountCopy: "Gardez vos coordonnees, votre adresse et la securite de votre compte pretes pour vos futures commandes.",
+      completeProfileTitle: "Completez votre profil avant le paiement.",
+      completeProfileCopy: "Ajoutez votre numero, votre genre et vos details de livraison pour que Palina puisse securiser vos commandes et votre livraison correctement.",
+      completeProfileAction: "Completer le profil d'abord",
       adminEyebrow: "Admin",
-      adminTitle: "Vue admin Padelna.",
+      adminTitle: "Vue admin Palina.",
       adminCopy: "Surveillez les comptes et les commandes depuis un espace securise.",
       firstName: "Prenom",
       lastName: "Nom",
@@ -533,13 +565,14 @@ export const siteContent = {
       profilePhoto: "Photo de profil",
       uploadPhoto: "Ajouter une photo",
       removePhoto: "Retirer la photo",
-      avatarHint: "Ajoutez un portrait propre ou laissez Padelna utiliser une icone de profil elegante.",
+      avatarHint: "Ajoutez un portrait propre ou laissez Palina utiliser une icone de profil elegante.",
       identitySection: "Identite du profil",
       identitySectionCopy: "Renseignez les informations client qui suivront votre compte et vos commandes.",
       deliverySection: "Details de livraison",
       deliverySectionCopy: "Gardez votre adresse et vos reperes de carte prets pour un prochain paiement plus rapide.",
       securitySection: "Securite du compte",
-      securitySectionCopy: "Choisissez un mot de passe solide et protegez votre acces.",
+      securitySectionCopy: "Choisissez un mot de passe solide pour securiser vos futures commandes et votre acces au compte.",
+      signupNote: "Vous pourrez completer votre numero, votre genre et vos details de livraison plus tard depuis votre compte avant le paiement.",
       signInAction: "Se connecter",
       signupAction: "Creer le compte",
       saveProfile: "Enregistrer le profil",
@@ -561,14 +594,12 @@ export const siteContent = {
       googleUnavailableCopy: "Ajoutez vos identifiants client Google pour activer la connexion en un clic depuis la page de connexion et d'inscription.",
       socialUnavailable: "La connexion sociale apparaitra ici des que Google ou Facebook seront configures.",
       socialPasswordHint: "Ce compte utilise Google ou Facebook. Vous pouvez continuer a vous connecter avec votre fournisseur social.",
-      loginShowcaseEyebrow: "Google Passport",
-      loginShowcaseTitle: "Un acces rapide pour le paiement, le profil et les commandes.",
-      loginShowcaseCopy: "Utilisez Google Passport pour une connexion plus fluide et gardez chaque commande, suivi de livraison et confirmation de paiement attaches au meme compte securise.",
-      signupShowcaseEyebrow: "Onboarding premium",
-      signupShowcaseTitle: "Creer une fois. Revenir plus vite a chaque fois.",
-      signupShowcaseCopy: "Commencez avec Google ou par email, enregistrez votre profil de livraison et gardez une experience compte plus elegante pour chaque nouvelle commande Padelna.",
-      loginHighlights: ["Connexion Google Passport", "Acces checkout protege", "Commandes et profil au meme endroit"],
-      signupHighlights: ["Onboarding Google ou email", "Profil de livraison sauvegarde", "Checkout repete plus rapide"],
+      loginShowcaseEyebrow: "Acces club Palina",
+      loginShowcaseTitle: "Retrouvez la marque en toute fluidite.",
+      loginShowcaseCopy: "Commandes, details de livraison et prochaines validations restent reunis dans un seul compte Palina, plus propre et plus fluide.",
+      signupShowcaseEyebrow: "Univers Palina",
+      signupShowcaseTitle: "Entrez dans la marque avec un depart plus net.",
+      signupShowcaseCopy: "Un seul compte pour garder vos futures commandes, votre profil enregistre et votre parcours de paiement dans la meme experience Palina.",
       unverified: "Verification email en attente",
       unverifiedCopy: "Veuillez verifier votre email pour garder un compte pleinement securise.",
       profileSaved: "Votre profil a ete mis a jour.",
@@ -647,7 +678,7 @@ export const siteContent = {
       eyebrow: "Paiement",
       title: "Choisissez votre mode de paiement.",
       copy:
-        "Renseignez vos informations client, confirmez votre livraison et finalisez votre commande Padelna avec la methode qui vous convient.",
+        "Renseignez vos informations client, confirmez votre livraison et finalisez votre commande Palina avec la methode qui vous convient.",
       customerTitle: "Informations client",
       customerCopy: "Ces informations nous aident a preparer la livraison et le suivi de commande.",
       paymentTitle: "Mode de paiement",
@@ -688,7 +719,7 @@ export const siteContent = {
       awaitingStatus: "En attente de paiement",
       cancelledStatus: "Annulee",
       successTitleCard: "Votre paiement par carte est confirme.",
-      successCopyCard: "Stripe a confirme votre paiement et Padelna peut commencer la preparation de votre commande.",
+      successCopyCard: "Stripe a confirme votre paiement et Palina peut commencer la preparation de votre commande.",
       successTitleCash: "Votre commande a la livraison est confirmee.",
       successCopyCash: "Votre commande est bien enregistree et le paiement se fera a la livraison.",
       cancelTitle: "Votre paiement carte a ete annule.",
@@ -696,10 +727,10 @@ export const siteContent = {
       continueShopping: "Continuer vos achats",
       returnCheckout: "Retour au paiement"
     },
-    product: {
-      loading: "Chargement du produit...",
-      addedToCart: "ajoute au panier.",
-      backToStore: "Retour a la boutique",
+      product: {
+        loading: "Chargement du produit...",
+        addedToCart: "ajoute au panier.",
+        backToStore: "Retour a la boutique",
       gender: "Genre",
       category: "Categorie",
       stock: "Stock",
@@ -721,16 +752,23 @@ export const siteContent = {
       rating: "Note",
       comment: "Commentaire",
       publishReview: "Publier l'avis",
-      sending: "Envoi...",
-      reviewAdded: "Merci, votre avis a ete ajoute.",
-      youMayAlsoLike: "Vous aimerez aussi",
-      morePieces: "D'autres pieces construites avec le meme esprit padel."
-    },
+        sending: "Envoi...",
+        reviewAdded: "Merci, votre avis a ete ajoute.",
+        youMayAlsoLike: "Vous aimerez aussi",
+        morePieces: "D'autres pieces construites avec le meme esprit padel."
+      },
     contact: {
       eyebrow: "Contact",
       title: "Parlons de votre commande, de votre club ou de votre collaboration.",
       copy:
-        "Contactez Padelna pour vos questions produit, demandes club, collaborations ou assistance client. Nous repondons avec le meme soin que nous apportons a chaque collection.",
+        "Contactez Palina pour vos questions produit, demandes club, collaborations ou assistance client. Nous repondons avec le meme soin que nous apportons a chaque collection.",
+      marqueeLabel: "Bande deroulante contact Palina",
+      marqueeItems: [
+        "Contact direct",
+        "Service client",
+        "Demandes club",
+        "Collaborations de marque"
+      ],
       sendingOverlay: "Envoi de votre message...",
       name: "Nom",
       email: "Email",
@@ -740,7 +778,7 @@ export const siteContent = {
       message: "Message",
       sendRequest: "Envoyer la demande",
       sendingInline: "Envoi...",
-      sentToast: "Votre message a ete envoye a Padelna.",
+      sentToast: "Votre message a ete envoye a Palina.",
       why: "Pourquoi nous contacter ?",
       whyTitle: "Un accompagnement pour les commandes, les tenues equipe et les partenariats.",
       whyCopy:
@@ -763,11 +801,11 @@ export const siteContent = {
       removedToast: "Produit retire des favoris."
     },
     footer: {
-      kicker: "Padelna Tunisie",
+      kicker: "Palina Tunisie",
       connect: "Connexion",
       direct: "Contact direct",
       copy:
-          "Restez connecte avec Padelna pour les nouveautes produit, l'assistance client, les demandes club et les opportunites de collaboration.",
+          "Restez connecte avec Palina pour les nouveautes produit, l'assistance client, les demandes club et les opportunites de collaboration.",
       instagram: "Instagram",
       tiktok: "TikTok",
       email: "Email",
@@ -776,7 +814,7 @@ export const siteContent = {
     },
     notFound: {
       title: "Cette page n'existe pas encore.",
-      copy: "Retournez a l'accueil Padelna ou ouvrez directement la boutique.",
+      copy: "Retournez a l'accueil Palina ou ouvrez directement la boutique.",
       home: "Accueil",
       store: "Boutique"
     },

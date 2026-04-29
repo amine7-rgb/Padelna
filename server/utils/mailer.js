@@ -46,7 +46,7 @@ const formatPhoneLine = ({ phone, phoneCountry, phoneCode, phoneNumber }) => {
 };
 
 export const formatContactText = ({ name, email, phone, phoneCountry, phoneCode, phoneNumber, message }) => `
-New Padelna contact request
+New Palina contact request
 
 Name: ${name}
 Email: ${email}
@@ -71,9 +71,9 @@ export const formatContactHtml = ({ name, email, phone, phoneCountry, phoneCode,
           <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:700px;background:#ffffff;border-radius:20px;overflow:hidden;border:1px solid #dbe3ef;">
             <tr>
               <td style="padding:32px;background:linear-gradient(135deg,#123f9b,#091a41);">
-                <p style="margin:0 0 10px;color:#90ffe8;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">Padelna Contact</p>
+                <p style="margin:0 0 10px;color:#90ffe8;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">Palina Contact</p>
                 <h1 style="margin:0;color:#ffffff;font-size:32px;line-height:1.18;">New website request</h1>
-                <p style="margin:14px 0 0;color:#dbe7ff;font-size:15px;line-height:1.7;">A visitor just sent a message from the Padelna e-commerce website.</p>
+                <p style="margin:14px 0 0;color:#dbe7ff;font-size:15px;line-height:1.7;">A visitor just sent a message from the Palina e-commerce website.</p>
               </td>
             </tr>
             <tr>
@@ -91,7 +91,7 @@ export const formatContactHtml = ({ name, email, phone, phoneCountry, phoneCode,
               </td>
             </tr>
             <tr>
-              <td style="padding:18px 32px;background:#eff4ff;color:#5a6f90;font-size:13px;">Sent from Padelna. Same destination inbox as the portfolio: amed14170@gmail.com.</td>
+              <td style="padding:18px 32px;background:#eff4ff;color:#5a6f90;font-size:13px;">Sent from Palina. Same destination inbox as the portfolio: amed14170@gmail.com.</td>
             </tr>
           </table>
         </td>

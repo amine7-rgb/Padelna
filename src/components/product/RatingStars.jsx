@@ -9,14 +9,14 @@ function Star({ active }) {
   );
 }
 
-function RatingStars({ rating, reviewCount }) {
+function RatingStars({ rating, reviewCount, compact = false, className = "" }) {
   const language = useSelector((state) => state.ui.language);
   const copy = getSiteCopy(language);
   const filledStars = Math.round(rating);
   const ariaLabel = copy.rating.outOfFive.replace("{rating}", rating.toFixed(1));
 
   return (
-    <div className="rating-stars" aria-label={ariaLabel}>
+    <div className={`rating-stars ${compact ? "compact" : ""} ${className}`.trim()} aria-label={ariaLabel}>
       <div className="star-row">
         {Array.from({ length: 5 }, (_, index) => (
           <Star key={index} active={index < filledStars} />

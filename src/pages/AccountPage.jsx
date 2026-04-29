@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Reveal from "../components/sections/Reveal.jsx";
 import SectionTitle from "../components/sections/SectionTitle.jsx";
@@ -10,10 +10,12 @@ import { changeUserPassword, logoutUser, resendVerificationEmail, updateUserProf
 import { showToast } from "../features/uiSlice.js";
 import { prepareAvatarDataUrl } from "../utils/avatarImage.js";
 import { getMapEmbedSrc } from "../utils/locationMap.js";
+import { isProfileComplete } from "../utils/profileCompletion.js";
 
 function AccountPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const language = useSelector((state) => state.ui.language);
   const user = useSelector((state) => state.auth.user);
   const actionStatus = useSelector((state) => state.auth.actionStatus);
@@ -23,6 +25,7 @@ function AccountPage() {
   const [locating, setLocating] = useState(false);
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
   const [processingAvatar, setProcessingAvatar] = useState(false);
+  const redirectTarget = searchParams.get("redirect") || "/checkout";
 
   useEffect(() => {
     if (!user) {
@@ -35,10 +38,10 @@ function AccountPage() {
       email: user.email,
       gender: user.gender || "",
       avatarUrl: user.avatarUrl || "",
-      phone: user.phone,
-      addressLine1: user.addressLine1,
-      city: user.city,
-      postalCode: user.postalCode,
+      phone: user.phone || "",
+      addressLine1: user.addressLine1 || "",
+      city: user.city || "",
+      postalCode: user.postalCode || "",
       locationLabel: user.locationLabel || "",
       location: user.location || { latitude: null, longitude: null }
     });
@@ -67,6 +70,8 @@ function AccountPage() {
   }, [passwordModalOpen]);
 
   const mapSrc = useMemo(() => getMapEmbedSrc(form?.location), [form]);
+  const profileComplete = useMemo(() => isProfileComplete(user), [user]);
+  const postProfileTarget = redirectTarget === "/account" ? "/checkout" : redirectTarget;
 
   if (!user || !form) {
     return null;
@@ -123,8 +128,12 @@ function AccountPage() {
     event.preventDefault();
 
     try {
-      await dispatch(updateUserProfile(form)).unwrap();
+      const response = await dispatch(updateUserProfile(form)).unwrap();
       dispatch(showToast({ type: "success", message: copy.auth.profileSaved }));
+
+      if (response.user?.profileComplete && redirectTarget && redirectTarget !== "/account") {
+        navigate(redirectTarget, { replace: true });
+      }
     } catch (error) {
       dispatch(showToast({ type: "error", message: error.message }));
     }
@@ -167,6 +176,15 @@ function AccountPage() {
 
         <div className="account-layout">
           <Reveal className="auth-card auth-card-main">
+            {!profileComplete ? (
+              <div className="account-banner account-banner-priority">
+                <div>
+                  <span>{copy.auth.completeProfileTitle}</span>
+                  <strong>{copy.auth.completeProfileCopy}</strong>
+                </div>
+              </div>
+            ) : null}
+
             {!user.emailVerified ? (
               <div className="account-banner">
                 <div>
@@ -251,7 +269,7 @@ function AccountPage() {
               </label>
               <label>
                 {copy.auth.postalCode}
-                <input value={form.postalCode} onChange={(event) => setForm((current) => ({ ...current, postalCode: event.target.value }))} />
+                <input value={form.postalCode} onChange={(event) => setForm((current) => ({ ...current, postalCode: event.target.value }))} required />
               </label>
               <label className="wide">
                 {copy.auth.locationLabel}
@@ -302,10 +320,17 @@ function AccountPage() {
             )}
 
             <div className="auth-side-actions">
-              <Link to="/checkout" className="primary-button account-compact-button">
-                <Icon name="credit-card" />
-                {copy.auth.continueCheckout}
-              </Link>
+              {profileComplete ? (
+                <Link to={postProfileTarget} className="primary-button account-compact-button">
+                  <Icon name="credit-card" />
+                  {copy.auth.continueCheckout}
+                </Link>
+              ) : (
+                <button type="button" className="ghost-button account-compact-button" disabled>
+                  <Icon name="alert-circle" />
+                  {copy.auth.completeProfileAction}
+                </button>
+              )}
               {user.role === "admin" ? (
                 <Link to="/admin" className="ghost-button account-compact-button">
                   <Icon name="shield" />

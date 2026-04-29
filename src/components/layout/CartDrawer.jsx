@@ -83,7 +83,7 @@ function CartDrawer() {
               ))
             ) : (
               <div className="drawer-empty">
-                <p>Votre panier est encore vide. Ajoutez une tenue Padelna pour demarrer.</p>
+                <p>Votre panier est encore vide. Ajoutez une tenue Palina pour demarrer.</p>
               </div>
             )}
           </div>

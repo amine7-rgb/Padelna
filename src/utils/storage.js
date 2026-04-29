@@ -1,4 +1,4 @@
-const STORAGE_KEY = "padelna-store";
+const STORAGE_KEY = "palina-store";
 
 const defaultPersistedState = {
   cart: { items: [] },

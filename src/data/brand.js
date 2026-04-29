@@ -1,12 +1,24 @@
 const baseBrand = {
-  name: "Padelna",
+  name: "Palina",
   founded: "2026",
-  email: "info@padelna.com",
+  email: "amed14170@gmail.com",
   phone: "+216 51 833 422",
-  instagramHandle: "padelna",
-  instagramUrl: "https://www.instagram.com/padelna/",
-  tiktokHandle: "padelna",
-  tiktokUrl: "https://www.tiktok.com/@padelna"
+  instagramHandle: "@palina",
+  instagramUrl: "https://www.instagram.com/palina/",
+  tiktokHandle: "@palina",
+  tiktokUrl: "https://www.tiktok.com/@palina",
+  heroPanels: [
+    {
+      id: "women",
+      poster: "/brand-media/hero-2.png",
+      video: "/brand-media/palina-video-women.mp4"
+    },
+    {
+      id: "men",
+      poster: "/brand-media/hero-3.png",
+      video: "/brand-media/palina-video-men.mp4"
+    }
+  ]
 };
 
 const localizedBrand = {
@@ -68,10 +80,10 @@ const localizedBrand = {
       }
     ],
     story: {
-      eyebrow: "About Padelna",
+      eyebrow: "About Palina",
       title: "Born to elevate Tunisian padel.",
       intro:
-        "Padelna was launched in 2026 to create original, technical and stylish apparel for padel players who want quality, movement and identity in one brand.",
+        "Palina was launched in 2026 to create original, technical and stylish apparel for padel players who want quality, movement and identity in one brand.",
       points: [
         "The first 100% Tunisian brand focused on padel and its lifestyle.",
         "Original designs with premium details and comfort built for intense matches.",
@@ -95,7 +107,7 @@ const localizedBrand = {
     ],
     footerLinks: [
       { label: "Email", href: "mailto:amed14170@gmail.com", value: "amed14170@gmail.com" },
-      { label: "Instagram", href: "https://www.instagram.com/", value: "@padelna" },
+      { label: "Instagram", href: "https://www.instagram.com/palina/", value: "@palina" },
       { label: "Origin", href: "/#about", value: "Made in Tunisia" }
     ]
   },
@@ -157,10 +169,10 @@ const localizedBrand = {
       }
     ],
     story: {
-      eyebrow: "A propos de Padelna",
+      eyebrow: "A propos de Palina",
       title: "Nee pour faire rayonner le padel tunisien.",
       intro:
-        "Padelna a ete lancee en 2026 pour creer des vetements originaux, techniques et elegants pour les joueuses et joueurs qui veulent qualite, mouvement et identite dans une seule marque.",
+        "Palina a ete lancee en 2026 pour creer des vetements originaux, techniques et elegants pour les joueuses et joueurs qui veulent qualite, mouvement et identite dans une seule marque.",
       points: [
         "La premiere marque 100% tunisienne centree sur le padel et son lifestyle.",
         "Des designs originaux avec des details premium et un confort pense pour les matchs intenses.",
@@ -184,7 +196,7 @@ const localizedBrand = {
     ],
     footerLinks: [
       { label: "Email", href: "mailto:amed14170@gmail.com", value: "amed14170@gmail.com" },
-      { label: "Instagram", href: "https://www.instagram.com/", value: "@padelna" },
+      { label: "Instagram", href: "https://www.instagram.com/palina/", value: "@palina" },
       { label: "Origine", href: "/#about", value: "Fabrique en Tunisie" }
     ]
   }

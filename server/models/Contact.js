@@ -11,7 +11,7 @@ const contactSchema = new mongoose.Schema(
     company: { type: String, trim: true, maxlength: 180 },
     budget: { type: String, trim: true, maxlength: 120 },
     message: { type: String, required: true, trim: true, maxlength: 3000 },
-    source: { type: String, default: "padelna-store" }
+    source: { type: String, default: "palina-store" }
   },
   { timestamps: true }
 );

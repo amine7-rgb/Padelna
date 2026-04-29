@@ -37,10 +37,10 @@ export const sendContactMessage = async (req, res) => {
 
   if (mailer) {
     await mailer.sendMail({
-      from: `"Padelna Contact" <${process.env.SMTP_USER}>`,
+      from: `"Palina Contact" <${process.env.SMTP_USER}>`,
       replyTo: email,
       to: contactToEmail,
-      subject: `New Padelna contact from ${name}`,
+      subject: `New Palina contact from ${name}`,
       text: formatContactText({ name, email, phone, phoneCountry, phoneCode, phoneNumber, company, budget, message }),
       html: formatContactHtml({ name, email, phone, phoneCountry, phoneCode, phoneNumber, company, budget, message })
     });

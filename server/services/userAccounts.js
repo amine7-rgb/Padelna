@@ -4,7 +4,7 @@ import { isMongoConnected } from "../config/db.js";
 
 const getProfileEmail = (profile) => String(profile?.emails?.[0]?.value || "").trim().toLowerCase();
 const getProfileAvatar = (profile) => String(profile?.photos?.[0]?.value || "").trim();
-const getProfileFirstName = (profile) => String(profile?.name?.givenName || profile?.displayName || "Padelna").trim();
+const getProfileFirstName = (profile) => String(profile?.name?.givenName || profile?.displayName || "Palina").trim();
 const getProfileLastName = (profile) => String(profile?.name?.familyName || "User").trim();
 
 export const findOrCreateOAuthUser = async (provider, profile) => {
@@ -26,9 +26,9 @@ export const findOrCreateOAuthUser = async (provider, profile) => {
       lastName: getProfileLastName(profile),
       email,
       gender: "",
-      phone: "+216",
-      addressLine1: "To be completed",
-      city: "Tunis",
+      phone: "",
+      addressLine1: "",
+      city: "",
       postalCode: "",
       locationLabel: "",
       provider,
@@ -113,7 +113,7 @@ export const seedAdminUserIfNeeded = async () => {
     }
 
     if (!user.locationLabel) {
-      user.locationLabel = "Padelna HQ";
+      user.locationLabel = "Palina HQ";
       hasUpdates = true;
     }
 
@@ -138,7 +138,7 @@ export const seedAdminUserIfNeeded = async () => {
     addressLine1: "Tunis",
     city: "Tunis",
     postalCode: "1000",
-    locationLabel: "Padelna HQ"
+    locationLabel: "Palina HQ"
   });
 
   return true;

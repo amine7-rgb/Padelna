@@ -3,11 +3,11 @@ import jwt from "jsonwebtoken";
 
 const env = (key, fallback = "") => String(process.env[key] || fallback).trim();
 
-export const AUTH_COOKIE_NAME = "padelna_token";
-export const OAUTH_STATE_COOKIE = "padelna_oauth_state";
-export const OAUTH_REDIRECT_COOKIE = "padelna_oauth_redirect";
+export const AUTH_COOKIE_NAME = "palina_token";
+export const OAUTH_STATE_COOKIE = "palina_oauth_state";
+export const OAUTH_REDIRECT_COOKIE = "palina_oauth_redirect";
 
-const JWT_SECRET = () => env("JWT_SECRET", "padelna-dev-jwt-secret-change-me");
+const JWT_SECRET = () => env("JWT_SECRET", "palina-dev-jwt-secret-change-me");
 const CLIENT_ORIGIN = () => env("CLIENT_ORIGIN", "http://localhost:5173");
 const TOKEN_TTL_DAYS = Number(env("AUTH_TOKEN_TTL_DAYS", "7")) || 7;
 
@@ -64,21 +64,18 @@ export const normalizeUserInput = (payload = {}) => ({
   location: normalizeLocation(payload.location || {})
 });
 
+export const isProfileCompleteInput = (input) =>
+  Boolean(input.firstName && input.lastName && input.email && input.gender && input.phone && input.addressLine1 && input.city && input.postalCode);
+
 export const validateSignupInput = (input) => {
-  if (!input.firstName || !input.lastName || !input.email || !input.password || !input.phone || !input.addressLine1 || !input.city || !input.gender) {
-    const error = new Error("First name, last name, email, password, gender, phone, address and city are required.");
+  if (!input.firstName || !input.lastName || !input.email || !input.password) {
+    const error = new Error("First name, last name, email and password are required.");
     error.statusCode = 400;
     throw error;
   }
 
   if (!isEmail(input.email)) {
     const error = new Error("Please provide a valid email address.");
-    error.statusCode = 400;
-    throw error;
-  }
-
-  if (!isPhone(input.phone)) {
-    const error = new Error("Please provide a valid phone number.");
     error.statusCode = 400;
     throw error;
   }
@@ -88,17 +85,11 @@ export const validateSignupInput = (input) => {
     error.statusCode = 400;
     throw error;
   }
-
-  if (!isGender(input.gender) || !input.gender) {
-    const error = new Error("Please choose a valid gender.");
-    error.statusCode = 400;
-    throw error;
-  }
 };
 
 export const validateProfileInput = (input) => {
-  if (!input.firstName || !input.lastName || !input.email || !input.phone || !input.addressLine1 || !input.city) {
-    const error = new Error("First name, last name, email, phone, address and city are required.");
+  if (!isProfileCompleteInput(input)) {
+    const error = new Error("First name, last name, email, gender, phone, address, city and postal code are required.");
     error.statusCode = 400;
     throw error;
   }
@@ -115,7 +106,7 @@ export const validateProfileInput = (input) => {
     throw error;
   }
 
-  if (!isGender(input.gender)) {
+  if (!isGender(input.gender) || !input.gender) {
     const error = new Error("Please choose a valid gender.");
     error.statusCode = 400;
     throw error;
@@ -171,7 +162,17 @@ export const publicUser = (user) => ({
   provider: user.provider,
   avatarUrl: user.avatarUrl || "",
   emailVerified: Boolean(user.emailVerified),
-  hasPassword: Boolean(user.passwordHash)
+  hasPassword: Boolean(user.passwordHash),
+  profileComplete: isProfileCompleteInput({
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    gender: user.gender || "",
+    phone: user.phone || "",
+    addressLine1: user.addressLine1 || "",
+    city: user.city || "",
+    postalCode: user.postalCode || ""
+  })
 });
 
 export const safeRedirectPath = (target = "/account") => {

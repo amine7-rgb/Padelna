@@ -40,10 +40,13 @@ function ProductCard({ product, compact = false }) {
 
   return (
     <article className={`product-card ${compact ? "compact" : ""}`}>
-      <Link className="product-image-wrap" to={`/store/${product.slug}`}>
+      <div className="product-image-wrap">
+        <div className="product-review-rail">
+          <RatingStars rating={product.rating} reviewCount={product.reviewCount} compact />
+        </div>
         <img src={product.images[0]?.url} alt={product.images[0]?.alt || localizedProduct.name} loading="lazy" />
         <span className="product-badge">{localizedProduct.heroTag}</span>
-      </Link>
+      </div>
 
       <div className="product-actions">
         <button
@@ -63,10 +66,11 @@ function ProductCard({ product, compact = false }) {
       </div>
 
       <div className="product-card-copy">
-        <RatingStars rating={product.rating} reviewCount={product.reviewCount} />
-        <h3>{localizedProduct.name}</h3>
         <p>{localizedProduct.gender}</p>
-        <strong>{formatCurrency(product.price)}</strong>
+        <div className="product-price-stack">
+          <strong>{formatCurrency(product.price)}</strong>
+          {product.previousPrice ? <span>{formatCurrency(product.previousPrice)}</span> : null}
+        </div>
       </div>
     </article>
   );

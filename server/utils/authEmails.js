@@ -12,16 +12,16 @@ const escapeHtml = (value = "") =>
     .replaceAll("'", "&#039;");
 
 const getLogoAttachments = () => {
-  const logoPath = path.resolve(process.cwd(), "public", "logo-padelna.svg");
+  const logoPath = path.resolve(process.cwd(), "public", "logo-palina.png");
 
   if (!fs.existsSync(logoPath)) {
     return [];
   }
 
-  return [{ filename: "logo-padelna.svg", path: logoPath, cid: "padelna-logo" }];
+  return [{ filename: "logo-palina.png", path: logoPath, cid: "palina-logo" }];
 };
 
-const getFromEmail = () => `"Padelna Auth" <${process.env.SMTP_USER}>`;
+const getFromEmail = () => `"Palina Auth" <${process.env.SMTP_USER}>`;
 
 const renderMailLayout = ({ eyebrow, title, intro, buttonLabel, buttonUrl, footer }) => `<!doctype html>
 <html lang="en">
@@ -32,7 +32,7 @@ const renderMailLayout = ({ eyebrow, title, intro, buttonLabel, buttonUrl, foote
           <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:720px;background:#ffffff;border-radius:24px;overflow:hidden;border:1px solid #d6e0ee;">
             <tr>
               <td style="padding:30px 32px;background:linear-gradient(135deg,#102d73,#071528);">
-                <img src="cid:padelna-logo" alt="Padelna" style="display:block;width:210px;max-width:100%;height:auto;" />
+                <img src="cid:palina-logo" alt="Palina" style="display:block;width:210px;max-width:100%;height:auto;" />
                 <p style="margin:22px 0 10px;color:#83f6e4;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;">${escapeHtml(
                   eyebrow
                 )}</p>
@@ -73,15 +73,15 @@ export const sendVerificationEmail = async (user, token) => {
   await mailer.sendMail({
     from: getFromEmail(),
     to: user.email,
-    subject: "Verify your Padelna account",
-    text: `Verify your Padelna account: ${verifyUrl}`,
+    subject: "Verify your Palina account",
+    text: `Verify your Palina account: ${verifyUrl}`,
     html: renderMailLayout({
-      eyebrow: "Padelna account",
+      eyebrow: "Palina account",
       title: "Verify your email address.",
-      intro: "Confirm your email to secure your Padelna account and keep your orders and deliveries connected to the right inbox.",
+      intro: "Confirm your email to secure your Palina account and keep your orders and deliveries connected to the right inbox.",
       buttonLabel: "Verify my email",
       buttonUrl: verifyUrl,
-      footer: "Padelna account security and order access."
+      footer: "Palina account security and order access."
     }),
     attachments: getLogoAttachments()
   });
@@ -101,12 +101,12 @@ export const sendResetPasswordEmail = async (user, token) => {
   await mailer.sendMail({
     from: getFromEmail(),
     to: user.email,
-    subject: "Reset your Padelna password",
-    text: `Reset your Padelna password: ${resetUrl}`,
+    subject: "Reset your Palina password",
+    text: `Reset your Palina password: ${resetUrl}`,
     html: renderMailLayout({
-      eyebrow: "Padelna security",
+      eyebrow: "Palina security",
       title: "Reset your password.",
-      intro: "Use the secure link below to choose a new password for your Padelna account.",
+      intro: "Use the secure link below to choose a new password for your Palina account.",
       buttonLabel: "Reset password",
       buttonUrl: resetUrl,
       footer: "If you did not request this change, you can ignore this email."

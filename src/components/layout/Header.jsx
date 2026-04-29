@@ -16,6 +16,7 @@ function Header() {
   const mobileNavOpen = useSelector((state) => state.ui.mobileNavOpen);
   const cartSummary = useSelector(selectCartSummary);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [heroHeaderVisible, setHeroHeaderVisible] = useState(true);
   const brand = getBrandContent(language);
   const copy = getSiteCopy(language);
   const isAdmin = user?.role === "admin";
@@ -37,6 +38,50 @@ function Header() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    let hideTimer = 0;
+
+    const isDesktopHeroMode = () =>
+      location.pathname === "/" && window.scrollY < 24 && window.innerWidth > 980 && !mobileNavOpen;
+
+    const showHeaderTemporarily = () => {
+      if (!isDesktopHeroMode()) {
+        setHeroHeaderVisible(true);
+        return;
+      }
+
+      setHeroHeaderVisible(true);
+      window.clearTimeout(hideTimer);
+      hideTimer = window.setTimeout(() => {
+        if (isDesktopHeroMode()) {
+          setHeroHeaderVisible(false);
+        }
+      }, 1200);
+    };
+
+    const syncVisibility = () => {
+      if (!isDesktopHeroMode()) {
+        window.clearTimeout(hideTimer);
+        setHeroHeaderVisible(true);
+        return;
+      }
+
+      setHeroHeaderVisible(false);
+    };
+
+    syncVisibility();
+    window.addEventListener("mousemove", showHeaderTemporarily, { passive: true });
+    window.addEventListener("scroll", syncVisibility, { passive: true });
+    window.addEventListener("resize", syncVisibility);
+
+    return () => {
+      window.clearTimeout(hideTimer);
+      window.removeEventListener("mousemove", showHeaderTemporarily);
+      window.removeEventListener("scroll", syncVisibility);
+      window.removeEventListener("resize", syncVisibility);
+    };
+  }, [location.pathname, mobileNavOpen]);
 
   const handleSectionNavigation = (sectionId) => {
     dispatch(closeDrawers());
@@ -69,10 +114,10 @@ function Header() {
   };
 
   return (
-    <header className={`site-header ${isScrolled ? "scrolled" : ""}`}>
+    <header className={`site-header ${isScrolled ? "scrolled" : ""} ${heroHeaderVisible ? "" : "hero-hidden"}`}>
       <div className="header-inner">
         <NavLink className="brand-lockup logo-only" to="/" aria-label={`${brand.name} ${copy.header.home}`}>
-          <img src="/logo-padelna.svg" alt={`${brand.name} logo`} />
+          <img className="brand-logo-image" src="/logo-palina.png" alt={`${brand.name} logo`} />
         </NavLink>
 
         <button
@@ -82,9 +127,7 @@ function Header() {
           aria-label={copy.header.openMenu}
           onClick={() => dispatch(toggleMobileNav())}
         >
-          <span />
-          <span />
-          <span />
+          <Icon name={mobileNavOpen ? "close" : "menu"} />
         </button>
 
         <nav className={`header-nav ${mobileNavOpen ? "open" : ""}`} aria-label={copy.header.primaryNav}>

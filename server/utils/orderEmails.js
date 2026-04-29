@@ -14,10 +14,10 @@ const formatMoney = (value) => `${Number(value || 0).toFixed(2)} TND`;
 
 const getOrderInboxEmail = () => process.env.ORDERS_TO_EMAIL || process.env.CONTACT_TO_EMAIL || process.env.SMTP_USER || "";
 
-const getOrderFromEmail = () => `"Padelna Orders" <${process.env.SMTP_USER}>`;
+const getOrderFromEmail = () => `"Palina Orders" <${process.env.SMTP_USER}>`;
 
 const getLogoAttachments = () => {
-  const logoPath = path.resolve(process.cwd(), "public", "logo-padelna.svg");
+  const logoPath = path.resolve(process.cwd(), "public", "logo-palina.png");
 
   if (!fs.existsSync(logoPath)) {
     return [];
@@ -25,9 +25,9 @@ const getLogoAttachments = () => {
 
   return [
     {
-      filename: "logo-padelna.svg",
+      filename: "logo-palina.png",
       path: logoPath,
-      cid: "padelna-logo"
+      cid: "palina-logo"
     }
   ];
 };
@@ -65,8 +65,8 @@ const getCustomerHeading = (order) =>
 
 const getCustomerIntro = (order) =>
   order.paymentMethod === "card"
-    ? "Thank you for shopping with Padelna. We have received your payment and your order is now being prepared for delivery."
-    : "Thank you for shopping with Padelna. Your order has been received and will be prepared for delivery. Payment will be collected on delivery.";
+    ? "Thank you for shopping with Palina. We have received your payment and your order is now being prepared for delivery."
+    : "Thank you for shopping with Palina. Your order has been received and will be prepared for delivery. Payment will be collected on delivery.";
 
 const getCustomerClosing = () =>
   "Our team will prepare your order with care and you will receive it as quickly as possible.";
@@ -123,7 +123,7 @@ const renderLayout = ({ eyebrow, title, intro, body, footer }) => `<!doctype htm
           <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:760px;background:#ffffff;border-radius:24px;overflow:hidden;border:1px solid #d6e0ee;">
             <tr>
               <td style="padding:30px 32px;background:linear-gradient(135deg,#102d73,#071528);">
-                <img src="cid:padelna-logo" alt="Padelna" style="display:block;width:210px;max-width:100%;height:auto;" />
+                <img src="cid:palina-logo" alt="Palina" style="display:block;width:210px;max-width:100%;height:auto;" />
                 <p style="margin:22px 0 10px;color:#83f6e4;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;">${eyebrow}</p>
                 <h1 style="margin:0;color:#ffffff;font-size:32px;line-height:1.2;">${title}</h1>
                 <p style="margin:14px 0 0;color:#dce7ff;font-size:15px;line-height:1.75;">${intro}</p>
@@ -144,7 +144,7 @@ const renderLayout = ({ eyebrow, title, intro, body, footer }) => `<!doctype htm
 
 const formatCustomerOrderHtml = (order) =>
   renderLayout({
-    eyebrow: "Padelna order confirmation",
+    eyebrow: "Palina order confirmation",
     title: getCustomerHeading(order),
     intro: getCustomerIntro(order),
     body: `
@@ -177,14 +177,14 @@ const formatCustomerOrderHtml = (order) =>
         <p style="margin:10px 0 0;font-size:14px;line-height:1.8;">${getCustomerClosing()}</p>
       </div>
     `,
-    footer: "Padelna 2026 | Tunisian padel apparel made for performance, style and movement."
+    footer: "Palina 2026 | Tunisian padel apparel made for performance, style and movement."
   });
 
 const formatAdminOrderHtml = (order) =>
   renderLayout({
-    eyebrow: "Padelna admin alert",
+    eyebrow: "Palina admin alert",
     title: "A new order has been placed.",
-    intro: "A customer completed a new order on the Padelna storefront. Review the details below and start the fulfillment process.",
+    intro: "A customer completed a new order on the Palina storefront. Review the details below and start the fulfillment process.",
     body: `
       <div style="display:block;padding:18px 20px;border-radius:18px;background:#f5f8fe;border:1px solid #dce5f1;">
         <p style="margin:0 0 8px;color:#5d7393;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;">Order overview</p>
@@ -220,10 +220,10 @@ const formatAdminOrderHtml = (order) =>
 
       ${renderSummaryHtml(order)}
     `,
-    footer: "Direct destination inbox for Padelna orders and fulfillment."
+    footer: "Direct destination inbox for Palina orders and fulfillment."
   });
 
-const formatCustomerOrderText = (order) => `Padelna order confirmation
+const formatCustomerOrderText = (order) => `Palina order confirmation
 
 Order: ${order.orderNumber}
 Payment method: ${getPaymentMethodLabel(order)}
@@ -240,7 +240,7 @@ Total: ${formatMoney(order.totals.totalTnd)}
 
 ${getCustomerClosing()}`;
 
-const formatAdminOrderText = (order) => `New Padelna order
+const formatAdminOrderText = (order) => `New Palina order
 
 Order: ${order.orderNumber}
 Customer: ${order.customer.name}
@@ -278,8 +278,8 @@ export const sendOrderNotifications = async (order) => {
         to: order.customer.email,
         subject:
           order.paymentMethod === "card"
-            ? `Padelna payment confirmed | ${order.orderNumber}`
-            : `Padelna order confirmed | ${order.orderNumber}`,
+            ? `Palina payment confirmed | ${order.orderNumber}`
+            : `Palina order confirmed | ${order.orderNumber}`,
         text: formatCustomerOrderText(order),
         html: formatCustomerOrderHtml(order),
         attachments
@@ -298,7 +298,7 @@ export const sendOrderNotifications = async (order) => {
         from: getOrderFromEmail(),
         replyTo: order.customer.email,
         to: orderInboxEmail,
-        subject: `New Padelna order | ${order.orderNumber}`,
+        subject: `New Palina order | ${order.orderNumber}`,
         text: formatAdminOrderText(order),
         html: formatAdminOrderHtml(order),
         attachments

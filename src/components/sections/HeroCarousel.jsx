@@ -1,75 +1,67 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getBrandContent } from "../../data/brand.js";
 import { getSiteCopy } from "../../data/siteContent.js";
-import { useTypingWords } from "../../utils/useTypingWords.js";
-import Reveal from "./Reveal.jsx";
-import Icon from "../ui/Icon.jsx";
 
 function HeroCarousel() {
   const language = useSelector((state) => state.ui.language);
   const brand = getBrandContent(language);
   const copy = getSiteCopy(language);
-  const [slide, setSlide] = useState(0);
-  const current = brand.heroSlides[slide];
-  const typed = useTypingWords(brand.typingWords, 62, 1500);
+  const panels = [
+    {
+      id: "women",
+      eyebrow: copy.hero.womenEyebrow,
+      title: copy.hero.womenTitle,
+      video: brand.heroPanels?.[0]?.video,
+      poster: brand.heroPanels?.[0]?.poster || brand.heroSlides?.[1]?.image,
+      accent: brand.metrics?.[1]?.label || brand.tagline
+    },
+    {
+      id: "men",
+      eyebrow: copy.hero.menEyebrow,
+      title: copy.hero.menTitle,
+      video: brand.heroPanels?.[1]?.video,
+      poster: brand.heroPanels?.[1]?.poster || brand.heroSlides?.[2]?.image,
+      accent: brand.metrics?.[2]?.label || brand.shortCopy
+    }
+  ];
 
   return (
-    <section id="home" className="hero">
-      <div className="hero-media" aria-hidden="true">
-        {brand.heroSlides.map((item, index) => (
-          <img
-            key={item.id}
-            className={`hero-image ${slide === index ? "active" : ""}`}
-            src={item.image}
-            alt=""
-            style={{ objectPosition: item.position || "center center" }}
-            loading={index === 0 ? "eager" : "lazy"}
-            fetchPriority={index === 0 ? "high" : "auto"}
-            draggable="false"
-          />
+    <section id="home" className="hero-split">
+      <div className="hero-split-panels">
+        {panels.map((panel) => (
+          <article key={panel.id} className="hero-split-panel hero-split-panel-hoverable">
+            <video
+              className="hero-split-video"
+              src={panel.video}
+              poster={panel.poster}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+            <div className="hero-split-shade" aria-hidden="true" />
+            <div className="hero-split-copy">
+              <span>{panel.eyebrow}</span>
+              <h2>{panel.title}</h2>
+              <small>{panel.accent}</small>
+              <Link className="hero-split-link" to="/store">
+                {copy.hero.discover}
+              </Link>
+            </div>
+          </article>
         ))}
       </div>
-      <Reveal className="hero-content">
-        <p className="eyebrow">{current.eyebrow}</p>
-        <h1>
-          {current.title}
-          <span>{typed}</span>
-        </h1>
-        <p className="hero-copy">
-          {brand.shortCopy}
-        </p>
-        <div className="hero-actions">
-          <Link className="primary-button" to="/store">
-            <Icon name="shop" />
-            {copy.hero.shopNow}
-          </Link>
-          <a className="ghost-button" href="/#about">
-            <Icon name="arrow-right" />
-            {copy.hero.meetBrand}
-          </a>
+      <div className="hero-split-center" aria-label={copy.hero.centerLabel}>
+        <div className="hero-split-logo-frame">
+          <img src="/logo-palina.png" alt={`${brand.name} logo`} />
         </div>
-        <div className="hero-proof">
-          {brand.metrics.map((metric) => (
-            <article key={metric.label}>
-              <strong>{metric.value}</strong>
-              <span>{metric.label}</span>
-            </article>
-          ))}
+        <div className="hero-split-center-copy">
+          <span>{brand.tagline}</span>
+          <p>{brand.shortCopy}</p>
         </div>
-        <div className="hero-dots" aria-label={copy.hero.changeSlide}>
-          {brand.heroSlides.map((item, index) => (
-            <button
-              key={item.id}
-              className={slide === index ? "active" : ""}
-              type="button"
-              aria-label={`${copy.hero.changeSlide} ${index + 1}`}
-              onClick={() => setSlide(index)}
-            />
-          ))}
-        </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

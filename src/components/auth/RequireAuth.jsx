@@ -2,8 +2,9 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LoadingBall from "../ui/LoadingBall.jsx";
 import { getSiteCopy } from "../../data/siteContent.js";
+import { isProfileComplete } from "../../utils/profileCompletion.js";
 
-function RequireAuth({ children }) {
+function RequireAuth({ children, requireProfileComplete = false }) {
   const location = useLocation();
   const language = useSelector((state) => state.ui.language);
   const copy = getSiteCopy(language);
@@ -16,6 +17,11 @@ function RequireAuth({ children }) {
   if (!user) {
     const redirect = `${location.pathname}${location.search}`;
     return <Navigate to={`/login?redirect=${encodeURIComponent(redirect)}`} replace />;
+  }
+
+  if (requireProfileComplete && !isProfileComplete(user) && location.pathname !== "/account") {
+    const redirect = `${location.pathname}${location.search}`;
+    return <Navigate to={`/account?redirect=${encodeURIComponent(redirect)}`} replace />;
   }
 
   return children;

@@ -1,7 +1,8 @@
 const categoryLabels = {
   Matchwear: { en: "Matchwear", fr: "Matchwear" },
   Training: { en: "Training", fr: "Training" },
-  Outerwear: { en: "Outerwear", fr: "Outerwear" }
+  Outerwear: { en: "Outerwear", fr: "Outerwear" },
+  Accessories: { en: "Accessories", fr: "Accessoires" }
 };
 
 const genderLabels = {
@@ -16,7 +17,7 @@ const frenchProducts = {
     description:
       "Carthage Match Polo combine un tissu respirant, des manches souples et une coupe stable pour garder le haut du corps libre dans toutes les phases de jeu. C'est une piece signature pour les joueurs qui veulent rester precis sur le court tout en gardant une allure premium au club.",
     heroTag: "Meilleure vente",
-    colors: ["Bleu Padelna", "Sable", "Blanc"],
+    colors: ["Bleu Palina", "Sable", "Blanc"],
     benefits: ["Sechage rapide", "Coutures plates", "Liberte d'epaule"],
     techFeatures: ["Mesh lateral", "Col stabilise", "Toucher doux"],
     reviews: [
@@ -28,7 +29,7 @@ const frenchProducts = {
   "alya-court-dress": {
     summary: "Une robe padel aerienne avec short integre et maintien fluide.",
     description:
-      "Alya Court Dress a ete pensee pour les joueuses qui veulent de l'aisance dans les deplacements lateraux sans perdre l'elegance. Son tissu stretch accompagne le corps, son short integre securise le jeu et sa ligne moderne affirme l'identite Padelna.",
+      "Alya Court Dress a ete pensee pour les joueuses qui veulent de l'aisance dans les deplacements lateraux sans perdre l'elegance. Son tissu stretch accompagne le corps, son short integre securise le jeu et sa ligne moderne affirme l'identite Palina.",
     heroTag: "Nouveau drop",
     colors: ["Blanc craie", "Bleu nuit", "Corail"],
     benefits: ["Short integre", "Tissu stretch", "Legerete premium"],
@@ -47,7 +48,7 @@ const frenchProducts = {
     description:
       "Tunis Ace Shorts mise sur une taille stable, une matiere extensible et des poches utiles pour les balles. Il accompagne l'entrainement, le match et les moments club avec une sensation de legerete continue.",
     heroTag: "Essentiel training",
-    colors: ["Noir", "Bleu Padelna"],
+    colors: ["Noir", "Bleu Palina"],
     benefits: ["Mouvement libre", "Poches balles", "Poids plume"],
     techFeatures: ["Taille ajustee", "Stretch 4 directions", "Finition anti-frottement"],
     reviews: [
@@ -69,14 +70,20 @@ const frenchProducts = {
     ]
   },
   "sahara-warm-up-jacket": {
-    summary: "La veste d'echauffement premium pour entrer sur le court avec presence.",
+    summary: "Un look de voyage coordonne avec casquette, sac et allure premium avant match.",
     description:
-      "Sahara Warm-Up Jacket apporte une couche sportive elegante, utile avant le match, pendant le voyage et apres la session. Sa structure legere bloque le vent, garde le confort et donne une allure forte a l'identite Padelna.",
-    heroTag: "Outerwear",
-    colors: ["Bleu profond", "Sable fumee"],
-    benefits: ["Protection legere", "Style avant match", "Interieur doux"],
-    techFeatures: ["Zip premium", "Poignets souples", "Coupe mixte"],
-    reviews: [{ name: "Skander", rating: 4.8, comment: "Veste super classe, bonne tenue et tres beau bleu." }]
+      "Sahara Club Travel Set capture le moment d'arrivee Palina avec un polo structure, un short net, une casquette assortie et un sac duffel qui pose tout de suite la silhouette. Un ensemble pense pour le trajet, l'entree au club et une presence propre avant le premier point.",
+    heroTag: "Travel look",
+    colors: ["Blanc", "Marine", "Bleu Palina"],
+    benefits: ["Look coordonne", "Pret pour le trajet", "Details premium"],
+    techFeatures: ["Casquette structuree", "Sac signature", "Silhouette athletique nette"],
+    reviews: [
+      {
+        name: "Skander",
+        rating: 4.8,
+        comment: "Super look de voyage, la casquette et le sac finissent parfaitement l'ensemble."
+      }
+    ]
   },
   "jasmine-move-top": {
     summary: "Un top souple et respirant pour enchainer les echanges en confiance.",
@@ -89,24 +96,83 @@ const frenchProducts = {
     reviews: [{ name: "Aya", rating: 4.5, comment: "Top agreable et facile a porter sous une veste ou seul." }]
   },
   "lagoon-club-hoodie": {
-    summary: "Le hoodie premium pour la sortie de court et la vie du club.",
+    summary: "Un tee performance sombre pense pour les points sous pression et les celebrations.",
     description:
-      "Lagoon Club Hoodie prolonge l'energie Padelna apres le match. Sa matiere dense mais souple, sa capuche structuree et ses details propres donnent un rendu street-sport ideal pour la communaute padel.",
-    heroTag: "Lifestyle",
-    colors: ["Marine", "Ecru"],
-    benefits: ["Confort club", "Capuche structuree", "Interieur brosse"],
-    techFeatures: ["Maille premium", "Broderie Padelna", "Coupe unisexe"],
-    reviews: [{ name: "Nour", rating: 4.7, comment: "Super qualitatif et parfait pour les fins de soiree au club." }]
+      "Lagoon Victory Tee apporte une tension plus competitive a la ligne Palina. Sa maille technique legere garde le mouvement libre tandis que le contraste du top noir et du short blanc cree une silhouette forte pour les matchs a haute intensite.",
+    heroTag: "Match energy",
+    colors: ["Noir", "Blanc"],
+    benefits: ["Look competitif", "Stretch leger", "Grande aeration"],
+    techFeatures: ["Ventilation decoupee", "Maille technique douce", "Ligne d'epaule stable"],
+    reviews: [
+      {
+        name: "Nour",
+        rating: 4.7,
+        comment: "Look tres fort sur le court et excellente liberte de mouvement dans les points intenses."
+      }
+    ]
   },
   "riviera-rally-tee": {
     summary: "Le tee de match epure pour jouer vite, leger et sans distraction.",
     description:
       "Riviera Rally Tee mise sur l'essentiel: une main douce, une excellente aeration et un fit moderne. C'est la piece facile a porter pour les joueurs qui veulent une base technique nette au quotidien.",
     heroTag: "Court quotidien",
-    colors: ["Blanc", "Bleu Padelna", "Anthracite"],
+    colors: ["Blanc", "Bleu Palina", "Anthracite"],
     benefits: ["Toucher doux", "Aeration", "Look propre"],
     techFeatures: ["Maille fine", "Sechage rapide", "Col stable"],
     reviews: [{ name: "Wael", rating: 4.4, comment: "Tres bon tee pour jouer l'ete, simple et efficace." }]
+  },
+  "noura-indoor-match-dress": {
+    summary: "Une robe froide et technique pour le rythme indoor, le controle et les swings fluides.",
+    description:
+      "Noura Indoor Match Dress associe un haut stable et une ligne de jupe fluide pour garder l'equilibre dans les courts fermes. Sa palette bleu nuit et bleu brume donne a Palina une silhouette moderne et tres nette pour le timing et la precision.",
+    heroTag: "Indoor court",
+    colors: ["Bleu nuit", "Bleu brume"],
+    benefits: ["Fit stable", "Swing fluide", "Confort rapide"],
+    techFeatures: ["Stretch performance", "Panneaux respirants", "Maintien integre"],
+    reviews: [
+      {
+        name: "Rania",
+        rating: 4.9,
+        comment: "La robe est tres technique et reste propre meme dans les changements de direction."
+      },
+      {
+        name: "Loubna",
+        rating: 4.7,
+        comment: "Super coupe et tres belle balance de couleurs pour le padel."
+      }
+    ]
+  },
+  "ariana-pink-court-set": {
+    summary: "Un ensemble blanc et blush pour un style leger et un mouvement confiant.",
+    description:
+      "Ariana Pink Court Set melange une base blanche propre avec une jupe subtilement rose pour une silhouette plus douce et tres soignee. C'est une tenue faite pour les joueuses qui veulent un look feminin fiable pendant l'entrainement et la vie du club.",
+    heroTag: "Soft court",
+    colors: ["Blanc", "Rose blush"],
+    benefits: ["Mouvement facile", "Sensation fraiche", "Set elegant"],
+    techFeatures: ["Stretch doux", "Jersey respirant", "Confort plisse"],
+    reviews: [
+      {
+        name: "Salma",
+        rating: 4.7,
+        comment: "Look tres propre, tres doux sur le corps, parfait pour les sessions au soleil."
+      }
+    ]
+  },
+  "sunset-ace-pleated-set": {
+    summary: "Un set plisse minimaliste blanc pense pour les matchs au coucher du soleil.",
+    description:
+      "Sunset Ace Pleated Set associe un top crop structure et une jupe plissee fluide pour une presence tres nette sur le court en fin de journee. Il garde la ligne Palina elegante tout en restant leger pour les longues sessions d'ete.",
+    heroTag: "Sunset play",
+    colors: ["Blanc pur", "Sable doux"],
+    benefits: ["Maintien leger", "Mouvement elegant", "Finition propre"],
+    techFeatures: ["Maille seche rapide", "Taille douce", "Ligne raffinee"],
+    reviews: [
+      {
+        name: "Nesrine",
+        rating: 4.9,
+        comment: "Un des looks les plus propres de la collection, magnifique a la golden hour."
+      }
+    ]
   }
 };
 

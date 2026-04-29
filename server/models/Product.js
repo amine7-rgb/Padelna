@@ -17,6 +17,17 @@ const imageSchema = new mongoose.Schema(
   { _id: false }
 );
 
+const focusAreaSchema = new mongoose.Schema(
+  {
+    key: { type: String, required: true, trim: true, maxlength: 40 },
+    position: { type: String, required: true, trim: true, maxlength: 80 },
+    scale: { type: Number, min: 1, max: 3, default: 1.18 },
+    x: { type: Number, min: 0, max: 100, default: 50 },
+    y: { type: Number, min: 0, max: 100, default: 50 }
+  },
+  { _id: false }
+);
+
 const productSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true, maxlength: 160 },
@@ -40,6 +51,7 @@ const productSchema = new mongoose.Schema(
     benefits: [{ type: String, trim: true, maxlength: 180 }],
     techFeatures: [{ type: String, trim: true, maxlength: 180 }],
     images: [imageSchema],
+    focusAreas: [focusAreaSchema],
     reviews: [reviewSchema]
   },
   { timestamps: true }

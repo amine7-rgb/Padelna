@@ -48,7 +48,7 @@ function Footer() {
         <div className="footer-brand-card footer-brand-showcase">
           <div className="footer-logo-shell">
             <span className="footer-logo-glow" aria-hidden="true" />
-            <img src="/logo-padelna.svg" alt={`${brand.name} logo`} />
+            <img className="footer-brand-image" src="/logo-palina.png" alt={`${brand.name} logo`} />
           </div>
           <div className="footer-brand-copy">
             <p className="footer-kicker">{copy.footer.kicker}</p>

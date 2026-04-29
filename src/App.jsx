@@ -66,7 +66,7 @@ function App() {
           <Route
             path="/checkout"
             element={
-              <RequireAuth>
+              <RequireAuth requireProfileComplete>
                 <CheckoutPage />
               </RequireAuth>
             }
@@ -74,7 +74,7 @@ function App() {
           <Route
             path="/checkout/:status"
             element={
-              <RequireAuth>
+              <RequireAuth requireProfileComplete>
                 <CheckoutStatusPage />
               </RequireAuth>
             }
